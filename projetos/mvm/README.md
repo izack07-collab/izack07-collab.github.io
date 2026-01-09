@@ -8,9 +8,9 @@ Sistema automatizado de recuperação de carrinhos abandonados para MVM Creators
 
 | Métrica | Valor |
 |---------|-------|
-| Taxa de Recuperação | ~70% |
-| Tempo de Resposta | <5 segundos |
-| Leads Atendidos/Dia | 50+ |
+| Taxa de Recuperação | 15-25% |
+| Taxa de Resposta | 36.7% |
+| Leads Atendidos | 55+ |
 | Operação | 24/7 automatizado |
 
 ---

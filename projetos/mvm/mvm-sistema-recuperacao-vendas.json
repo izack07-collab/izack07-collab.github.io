@@ -7,9 +7,10 @@
     "overview": {
         "summary": "Sistema completo de recuperação de vendas que combina automação inteligente, IA conversacional e CRM customizado para recuperar carrinhos abandonados via WhatsApp.",
         "metrics": {
-            "taxa_recuperacao": "~70%",
-            "tempo_resposta": "<5 segundos",
-            "vendas_recuperadas": "+R$150 milhões (comunidade MVM)"
+            "taxa_recuperacao": "15-25%",
+            "taxa_resposta": "36.7%",
+            "leads_atendidos": "55+",
+            "operacao": "24/7"
         },
         "stack": [
             "n8n (Orquestração)",
