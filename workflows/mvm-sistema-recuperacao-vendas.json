@@ -1,0 +1,187 @@
+{
+    "name": "MVM - Sistema Completo de Recuperação de Vendas",
+    "description": "Sistema automatizado de recuperação de carrinhos abandonados para MVM Creators com IA conversacional via WhatsApp",
+    "version": "2.0",
+    "author": "Isaac Silveira",
+    "date": "2025-01",
+    "overview": {
+        "summary": "Sistema completo de recuperação de vendas que combina automação inteligente, IA conversacional e CRM customizado para recuperar carrinhos abandonados via WhatsApp.",
+        "metrics": {
+            "taxa_recuperacao": "~70%",
+            "tempo_resposta": "<5 segundos",
+            "vendas_recuperadas": "+R$150 milhões (comunidade MVM)"
+        },
+        "stack": [
+            "n8n (Orquestração)",
+            "Evolution API (WhatsApp)",
+            "OpenAI GPT-4o-mini (IA)",
+            "Supabase (PostgreSQL + Vector Store)",
+            "Redis (Buffer de mensagens + Status)",
+            "Kiwify (Pagamentos)"
+        ]
+    },
+    "architecture": {
+        "workflows": {
+            "1_dispatcher": {
+                "name": "Dispatcher de Follow-ups",
+                "trigger": "Schedule (10 min)",
+                "description": "Gerencia sequência de follow-ups automatizados para leads em carrinho abandonado",
+                "features": [
+                    "3 níveis de follow-up com timing inteligente (FU1: 2h, FU2: 6h, FU3: 12h)",
+                    "Horário comercial (9h-21h)",
+                    "Priorização de produto (Legacy > Brasil)",
+                    "Agente IA gera mensagens únicas e variadas",
+                    "Simulação de digitação realista"
+                ],
+                "nodes_count": 45
+            },
+            "2_main_agent": {
+                "name": "Agente Principal - Milena Victoria",
+                "trigger": "Webhook (WhatsApp incoming)",
+                "description": "Agente de vendas com IA que responde leads e recupera vendas",
+                "features": [
+                    "Tratamento multimodal: texto, áudio (transcrição), imagem (análise), PDF (extração)",
+                    "Buffer de mensagens com Redis (aguarda cliente terminar de digitar)",
+                    "Prompt de 600+ linhas com persona completa da Milena",
+                    "RAG com 100+ documentos (produtos, bônus, objeções, FAQ)",
+                    "Gestão de intervenção humana (desativa bot quando atendente entra)",
+                    "Sistema anti-loop e anti-duplicação",
+                    "Humanização de resposta (quebra em 2-3 mensagens naturais)",
+                    "Simulação de digitação dinâmica",
+                    "Memória persistente (PostgreSQL)",
+                    "Atualização de CRM (stages, ultima_msg, messages_responded)"
+                ],
+                "nodes_count": 72
+            },
+            "3_vector_store": {
+                "name": "RAG - Vector Store Upload",
+                "trigger": "Manual",
+                "description": "Carrega conhecimento no vector store para consulta do agente",
+                "features": [
+                    "100 documentos estruturados (MVM Brasil, Legacy, bônus, preços, garantias)",
+                    "Embeddings OpenAI",
+                    "Metadados: id, title, section, category, importance_score",
+                    "Character splitter (10k chunks)"
+                ],
+                "nodes_count": 6
+            },
+            "4_chip_contingency": {
+                "name": "Contingência de Chip",
+                "trigger": "Schedule (1 min)",
+                "description": "Monitora status da instância WhatsApp e alerta em caso de queda",
+                "features": [
+                    "Verificação contínua de connectionStatus",
+                    "Alerta automático via WhatsApp quando instância cai",
+                    "Identificação de instância por nome"
+                ],
+                "nodes_count": 5
+            }
+        },
+        "database_schema": {
+            "clients": {
+                "description": "Dados dos leads",
+                "fields": [
+                    "id",
+                    "name",
+                    "phone",
+                    "stage",
+                    "followUp",
+                    "ultima_msg",
+                    "messages_responded",
+                    "created_at"
+                ]
+            },
+            "client_products": {
+                "description": "Produtos abandonados por lead",
+                "fields": [
+                    "id",
+                    "client_id",
+                    "product_name",
+                    "product_id",
+                    "stage",
+                    "created_at"
+                ]
+            },
+            "documents_mvm": {
+                "description": "Vector store com conhecimento RAG",
+                "fields": [
+                    "id",
+                    "content",
+                    "embedding",
+                    "metadata (title, section, category, importance_score)"
+                ]
+            },
+            "n8n_chat_histories": {
+                "description": "Memória das conversas",
+                "fields": [
+                    "session_id",
+                    "messages (JSONB)"
+                ]
+            }
+        },
+        "integrations": {
+            "whatsapp": "Evolution API (instância self-hosted)",
+            "payments": "Kiwify (MVM Brasil R$497, MVM Legacy R$2.997)",
+            "ai": "OpenAI GPT-4o-mini + Embeddings",
+            "database": "Supabase PostgreSQL + pgvector",
+            "cache": "Redis (buffer + status agente)"
+        }
+    },
+    "ai_agent": {
+        "persona": "Milena Victoria - Especialista em Recuperação de Vendas",
+        "style": "Profissional, acolhedora, confiante - conversa de WhatsApp com credibilidade",
+        "capabilities": [
+            "Identificação automática de produto abandonado (Brasil vs Legacy)",
+            "Consulta RAG para informações precisas (bônus, preços, instrutores)",
+            "Tratamento de objeções (financeira, tempo, decisão)",
+            "Anti-alucinação (nunca inventa informações)",
+            "Silêncio estratégico (não responde agradecimentos pós-fechamento)",
+            "Detecção de compra realizada (encerra conversa com parabéns)"
+        ],
+        "products": {
+            "mvm_brasil": {
+                "price": "R$497 (12x R$51,40)",
+                "access": "12 meses",
+                "focus": "TikTok Shop Brasil",
+                "content": "29 aulas, ~8h, 4 missões + 5 bônus"
+            },
+            "mvm_legacy": {
+                "price": "R$2.997 (12x R$309,96)",
+                "access": "Vitalício",
+                "focus": "TikTok Shop EUA",
+                "content": "65+ aulas, ~25h, mentalidade, copywriting, Alto Escalão"
+            }
+        },
+        "guarantees": [
+            "7 dias: teste e devolução 100%",
+            "90 dias: se aplicar método (3 vídeos/dia) e não fizer R$10k, devolvem tudo + R$5k PIX"
+        ]
+    },
+    "metrics_tracked": {
+        "lead_stages": [
+            "carrinho_abandonado",
+            "em_atendimento",
+            "sem_resposta",
+            "convertido",
+            "perdido"
+        ],
+        "followup_stages": [
+            "followup1",
+            "followup2",
+            "followup3",
+            "followup4"
+        ],
+        "engagement": [
+            "messages_responded",
+            "ultima_msg",
+            "created_at"
+        ]
+    },
+    "security_features": [
+        "Gestão de intervenção humana (desativa bot por 15min)",
+        "Anti-loop (deduplicação por message_id)",
+        "Filtros de protocolo (ignora mensagens de sistema)",
+        "Horário comercial respeitado (9h-21h)",
+        "Memória de contexto limitada (25 mensagens)"
+    ]
+}

@@ -1,130 +1,319 @@
-# 🤖 n8n Workflows Portfolio
+# 🚀 MVM - Sistema de Recuperação de Vendas
 
-This folder contains examples of automation workflows I've developed using **n8n** and **AI agents**.
-
-> ⚠️ **Note:** These are simplified versions for portfolio purposes. Credentials and sensitive data have been removed.
+Sistema automatizado de recuperação de carrinhos abandonados para MVM Creators, combinando **IA conversacional** (GPT-4o-mini), **automação n8n** e **CRM customizado** para recuperar vendas via WhatsApp 24/7.
 
 ---
 
-## 📁 Workflow Index
+## 📊 Métricas do Sistema
 
-| # | File | Description | Stack |
-|---|------|-------------|-------|
-| 01 | [ugc-video-generator.json](./01-ugc-video-generator.json) | Automated UGC video creation from product images | n8n, GPT-4 Vision, Veo3, fal.ai |
-| 02 | [multiagent-support.json](./02-multiagent-support.json) | Multi-agent support system with RAG | n8n, OpenAI, Supabase Vector Store |
-| 03 | [ecommerce-sales-agent.json](./03-ecommerce-sales-agent.json) | E-commerce sales agent with payment integration | n8n, OpenAI, Supabase, Asaas |
-| 04 | [payment-webhook.json](./04-payment-webhook.json) | Payment confirmation webhook handler | n8n, Asaas, Supabase, Trello |
-| 05 | [lead-capture-sdr.json](./05-lead-capture-sdr.json) | Lead capture + SDR qualification agent | n8n, Tally, Notion, OpenAI, WhatsApp |
-| 06 | [crm-subworkflow.json](./06-crm-subworkflow.json) | Reusable subworkflow for CRM integration | n8n, Trello, Supabase |
+| Métrica | Valor |
+|---------|-------|
+| Taxa de Recuperação | ~70% |
+| Tempo de Resposta | <5 segundos |
+| Leads Atendidos/Dia | 50+ |
+| Operação | 24/7 automatizado |
 
 ---
 
-## 🎬 01 - UGC Video Generator
+## 🏗️ Arquitetura Geral
 
-**Purpose:** Automatically generate UGC-style commercial videos from product images.
-
-**Flow:**
-1. Receive image via webhook
-2. Analyze image with GPT-4 Vision
-3. Generate styled image with Nano Banana (fal.ai)
-4. Create video with Veo3
-5. Send results via email
-
-**Use cases:**
-- E-commerce product videos
-- Social media content
-- Ad creatives
-
----
-
-## 🤖 02 - Multi-Agent Support System
-
-**Purpose:** Technical support center with intelligent routing and RAG.
-
-**Architecture:**
-- **Orchestrator Agent:** Routes questions to specialists
-- **n8n Specialist:** Answers n8n questions
-- **Lovable Specialist:** Answers Lovable questions
-- **FlutterFlow Specialist:** Answers FlutterFlow questions
-
-**Features:**
-- Each specialist has its own vector store
-- Persistent memory with PostgreSQL
-- Intelligent question routing
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   Kiwify        │────▶│   Webhook       │────▶│   Supabase      │
+│   (Checkout)    │     │   Abandonado    │     │   (CRM DB)      │
+└─────────────────┘     └─────────────────┘     └────────┬────────┘
+                                                         │
+                                                         ▼
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   WhatsApp      │◀───▶│   n8n           │◀───▶│   Redis         │
+│   (Evolution)   │     │   (Orquestrador)│     │   (Buffer/Cache)│
+└─────────────────┘     └────────┬────────┘     └─────────────────┘
+                                 │
+                        ┌────────┴────────┐
+                        ▼                 ▼
+              ┌─────────────────┐ ┌─────────────────┐
+              │   OpenAI        │ │   Vector Store  │
+              │   (Milena IA)   │ │   (RAG)         │
+              └─────────────────┘ └─────────────────┘
+```
 
 ---
 
-## 🛒 03 - E-commerce Sales Agent
+## 🔄 Fluxo Passo a Passo
 
-**Purpose:** Automated sales agent for online stores.
+### 1️⃣ Captura do Lead (Carrinho Abandonado)
 
-**Flow:**
-1. Receive customer message
-2. Present products based on interest
-3. Create order
-4. Collect customer data
-5. Generate payment link (PIX, Boleto, Credit Card)
-6. Send payment link
+1. Cliente inicia checkout no Kiwify (MVM Brasil ou Legacy)
+2. Webhook detecta carrinho abandonado
+3. Lead é registrado no Supabase com `stage = carrinho_abandonado`
+4. Dados capturados: nome, telefone, email, produto, timestamp
 
-**Integrations:**
-- Supabase (database)
-- Asaas (payment gateway)
-- MCP Tools (order management)
+### 2️⃣ Dispatcher de Follow-ups
+
+O workflow de **Dispatcher** executa a cada 10 minutos:
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Schedule Trigger (10 min)                                    │
+│     │                                                        │
+│     ▼                                                        │
+│ Buscar leads com stage = "carrinho_abandonado"               │
+│     │                                                        │
+│     ├── Filtro: horário comercial (9h-21h)                  │
+│     ├── Filtro: não respondeu ainda                         │
+│     ├── Priorização: Legacy > Brasil                        │
+│     │                                                        │
+│     ▼                                                        │
+│ Calcular timing do follow-up:                                │
+│     • FU1: 2h após abandono                                  │
+│     • FU2: 6h após abandono                                  │
+│     • FU3: 12h após abandono                                 │
+│     │                                                        │
+│     ▼                                                        │
+│ Agente IA gera mensagem personalizada e variada              │
+│     │                                                        │
+│     ▼                                                        │
+│ Simular digitação + Enviar via WhatsApp                      │
+│     │                                                        │
+│     ▼                                                        │
+│ Atualizar stage = "em_atendimento"                           │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### 3️⃣ Agente Principal (Milena Victoria)
+
+Quando o lead responde, o **Agente Principal** processa:
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Webhook WhatsApp (mensagem recebida)                         │
+│     │                                                        │
+│     ▼                                                        │
+│ Filtros anti-loop e validação                                │
+│     │                                                        │
+│     ├── É intervenção humana? → Desativa bot (15min)        │
+│     │                                                        │
+│     ▼                                                        │
+│ Tratamento multimodal:                                       │
+│     • Texto → direto pro buffer                             │
+│     • Áudio → Transcrição OpenAI → buffer                   │
+│     • Imagem → Análise GPT-4 Vision → buffer                │
+│     • PDF → Extração de texto → buffer                      │
+│     │                                                        │
+│     ▼                                                        │
+│ Buffer Redis (aguarda 120s para cliente terminar de digitar) │
+│     │                                                        │
+│     ▼                                                        │
+│ Consulta RAG (100+ docs sobre MVM, bônus, preços, FAQ)       │
+│     │                                                        │
+│     ▼                                                        │
+│ Agente Milena processa com contexto:                         │
+│     • Memória da conversa (PostgreSQL)                       │
+│     • Produto abandonado (Brasil/Legacy)                     │
+│     • Histórico de mensagens                                 │
+│     • Prompt de 600+ linhas                                  │
+│     │                                                        │
+│     ▼                                                        │
+│ Humanizar resposta (quebrar em 2-3 mensagens naturais)       │
+│     │                                                        │
+│     ▼                                                        │
+│ Simular digitação dinâmica (280ms/palavra)                   │
+│     │                                                        │
+│     ▼                                                        │
+│ Enviar via WhatsApp + Atualizar CRM                          │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### 4️⃣ CRM Customizado (recuperacao.mvmcreators.com)
+
+O CRM foi desenvolvido pela equipe MVM para gestão visual e operacional de todo o funil de recuperação. Possui interface dark mode profissional com 3 módulos principais:
+
+#### 📊 Dashboard
+
+Painel de métricas em tempo real com visão completa do desempenho:
+
+**Métricas Principais (cards superiores):**
+- **Total Atendidos** - Quantidade de leads que receberam follow-up
+- **Respondidas** - Leads que responderam às mensagens
+- **Taxa de Resposta (%)** - Percentual de engajamento
+- **Taxa de Conversão (%)** - Leads convertidos em vendas
+- **Ticket Médio (R$)** - Valor médio das vendas recuperadas
+
+**Conversões do Funil:**
+- Vendas FRONT (MVM Brasil - R$497)
+- Vendas UPSELL (MVM Legacy - R$2.997)
+
+**Pipeline Atual:**
+Distribuição de leads por etapa em tempo real:
+- 🟡 Carrinho Abandonado
+- 🟢 Em Atendimento  
+- 🔴 Sem Resposta
+- ✅ Recuperados
+- 🔵 Comprou sem Atendimento
+
+**Evolução Diária:**
+Cards com contagem do dia atual para cada etapa do funil.
+
+**Gráfico de Evolução Temporal:**
+Visualização da distribuição de clientes por etapa ao longo do tempo (últimos 7 dias), mostrando a progressão do funil.
 
 ---
 
-## 💳 04 - Payment Confirmation Webhook
+#### 📋 Kanban
 
-**Purpose:** Handle payment confirmations from Asaas.
+Visualização estilo Trello para gestão visual do pipeline:
 
-**Flow:**
-1. Receive webhook from Asaas
-2. Update order status to "paid"
-3. Update lead status
-4. Move CRM card to "Paid" list
+**Colunas do Board:**
+1. **Carrinho Abandonado** (🟡) - Leads que abandonaram checkout
+2. **Em Atendimento** (🟢) - Milena conversando ativamente
+3. **Sem Resposta** (🔴) - 3 FUs enviados sem retorno
+4. **Recuperado** (✅) - Venda concluída
+5. **Comprou sem Atendimento** (🔵) - Comprou antes do follow-up
 
----
+**Cada Card exibe:**
+- Nome do cliente
+- Email
+- Telefone
+- Produto abandonado
+- Data/hora do abandono
+- Botões de ação rápida (Recuperado / Sem Resposta)
+- Opção "Mover para Atendimento" (intervenção manual)
 
-## 📞 05 - Lead Capture + SDR Agent
-
-**Purpose:** Capture leads from forms and automatically qualify via WhatsApp.
-
-**Flow:**
-1. Receive lead from Tally form
-2. Save to Supabase
-3. Create entry in Notion CRM
-4. SDR Agent sends first message
-5. Qualify lead and present solutions
-
-**Features:**
-- Automatic lead qualification
-- Persistent conversation memory
-- WhatsApp integration (Z-API)
+**Filtros:**
+- Todos / FRONT / UPSELL
 
 ---
 
-## 🔄 06 - CRM Subworkflow
+#### 👥 Lista de Clientes
 
-**Purpose:** Reusable subworkflow for CRM operations.
+Tabela completa com todos os leads e histórico:
 
-**Features:**
-- Create card in Trello (or any CRM)
-- Link card ID back to lead in Supabase
-- Modular and reusable
+**Colunas:**
+| Coluna | Descrição |
+|--------|-----------|
+| Nome | Nome completo do lead |
+| Email | Email do checkout |
+| Telefone | WhatsApp com código do país |
+| Documento | CPF/CNPJ |
+| Produtos | MVM Brasil / Legacy / Ecossistema |
+| Valor Total | Valor do carrinho |
+| Etapas | Badge colorido com status atual |
+| Última Atualização | Data/hora da última interação |
+| Ações | Editar, visualizar, deletar |
+
+**Funcionalidades:**
+- Busca por nome, email, telefone, documento ou produto
+- Filtro por etapa (dropdown)
+- Ordenação por coluna
+- Paginação
 
 ---
 
-## 📬 Contact
+#### 🔗 Integração n8n ↔ CRM
 
-Interested in implementing similar automations?
+O CRM se comunica com o n8n em tempo real:
 
-- 📧 **Email:** izack07@gmail.com
-- 📱 **WhatsApp:** (11) 98558-7684
-- 🔗 **LinkedIn:** [Isaac Silveira](https://www.linkedin.com/in/isaac-silveira-49b09821a)
-- 🌐 **Portfolio:** [izack07-collab.github.io](https://izack07-collab.github.io)
+```
+n8n                                    CRM
+ │                                      │
+ ├── Atualiza stage ────────────────▶  Pipeline atualiza
+ ├── Atualiza ultima_msg ───────────▶  Timestamp atualiza
+ ├── Incrementa messages_responded ─▶  Contador atualiza
+ │                                      │
+ ◀── Webhook de compra ────────────────┤ Kiwify confirma
+```
+
+### 5️⃣ Contingência de Chip
+
+Monitoramento contínuo da instância WhatsApp:
+
+```
+Schedule (1 min) → Verificar status → Se caiu → Alerta WhatsApp
+```
 
 ---
 
-<p align="center">
-  <i>Building automations that work while you sleep 🌙</i>
-</p>
+## 🛠️ Stack Tecnológica
+
+| Componente | Tecnologia |
+|------------|------------|
+| Orquestração | n8n (self-hosted) |
+| WhatsApp | Evolution API |
+| IA | OpenAI GPT-4o-mini |
+| RAG | Supabase pgvector |
+| Database | PostgreSQL (Supabase) |
+| Cache/Buffer | Redis |
+| Pagamentos | Kiwify |
+| CRM | Aplicação customizada |
+
+---
+
+## 🤖 Persona: Milena Victoria
+
+A agente IA foi treinada com persona de **Especialista em Recuperação de Vendas**:
+
+- **Tom:** Profissional, acolhedora, confiante
+- **Estilo:** Conversa natural de WhatsApp (não robótica)
+- **Capacidades:**
+  - Identifica produto abandonado (Brasil vs Legacy)
+  - Consulta RAG para respostas precisas
+  - Trata objeções (financeira, tempo, decisão)
+  - Oferece parcelamento e garantias
+  - Detecta quando cliente já comprou
+  - Nunca inventa informações (anti-alucinação)
+
+---
+
+## 📁 Estrutura dos Workflows
+
+```
+workflows/
+├── mvm-sistema-recuperacao-vendas.json   # Documentação completa
+├── 01-dispatcher-followups.json          # Disparos automáticos
+├── 02-agente-principal.json              # Milena (IA principal)
+├── 03-vector-store-rag.json              # Subida de conhecimento
+├── 04-contingencia-chip.json             # Monitoramento WhatsApp
+└── README.md                             # Este arquivo
+```
+
+---
+
+## 📈 Pipeline de Leads
+
+```mermaid
+stateDiagram-v2
+    [*] --> Carrinho_Abandonado: Checkout iniciado
+    Carrinho_Abandonado --> Em_Atendimento: FU1 enviado
+    Em_Atendimento --> Sem_Resposta: 3 FUs sem resposta
+    Em_Atendimento --> Recuperado: Cliente comprou
+    Carrinho_Abandonado --> Comprou_Sem_Atendimento: Comprou antes do FU1
+```
+
+**Etapas:**
+- 🟡 **Carrinho Abandonado** - Lead ainda não foi abordado
+- 🟢 **Em Atendimento** - Milena está conversando
+- 🔴 **Sem Resposta** - 3 follow-ups enviados, sem retorno
+- ✅ **Recuperado** - Venda recuperada pela IA
+- 🔵 **Comprou sem Atendimento** - Comprou sozinho
+
+---
+
+## 🔐 Segurança
+
+- Gestão de intervenção humana (desativa bot quando atendente entra)
+- Deduplicação por message_id (anti-loop)
+- Filtros de mensagens de protocolo
+- Horário comercial respeitado (9h-21h)
+- Memória de contexto limitada (25 mensagens)
+
+---
+
+## 📞 Contato
+
+**Desenvolvido por:** Isaac Silveira  
+**Email:** izack07@gmail.com  
+**LinkedIn:** [isaac-silveira](https://www.linkedin.com/in/isaac-silveira-49b09821a)
+
+---
+
+*Sistema operando desde Janeiro 2025 para MVM Creators*
