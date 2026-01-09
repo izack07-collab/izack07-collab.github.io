@@ -1,0 +1,294 @@
+{
+    "name": "Lead Capture + SDR Agent",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "tally-leads",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 2,
+            "position": [
+                384,
+                1056
+            ],
+            "id": "b6eb2469-bec5-464c-861a-07d4d5a66b42",
+            "name": "Tally Webhook"
+        },
+        {
+            "parameters": {
+                "assignments": {
+                    "assignments": [
+                        {
+                            "name": "name",
+                            "value": "={{ $json.body.data.fields[0].value }}",
+                            "type": "string"
+                        },
+                        {
+                            "name": "email",
+                            "value": "={{ $json.body.data.fields[2].value }}",
+                            "type": "string"
+                        },
+                        {
+                            "name": "phone",
+                            "value": "={{ $json.body.data.fields[1].value.replace('+', '') }}",
+                            "type": "string"
+                        },
+                        {
+                            "name": "message",
+                            "value": "={{ $json.body.data.fields[3].value }}",
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.4,
+            "position": [
+                560,
+                1056
+            ],
+            "id": "ca51c430-f9d5-47ed-a597-39ee61534303",
+            "name": "Normalize Data"
+        },
+        {
+            "parameters": {
+                "tableId": "leads",
+                "fieldsUi": {
+                    "fieldValues": [
+                        {
+                            "fieldId": "name",
+                            "fieldValue": "={{ $json.name }}"
+                        },
+                        {
+                            "fieldId": "email",
+                            "fieldValue": "={{ $json.email }}"
+                        },
+                        {
+                            "fieldId": "phone",
+                            "fieldValue": "={{ $json.phone }}"
+                        },
+                        {
+                            "fieldId": "message",
+                            "fieldValue": "={{ $json.message }}"
+                        },
+                        {
+                            "fieldId": "status",
+                            "fieldValue": "new_lead"
+                        },
+                        {
+                            "fieldId": "last_message",
+                            "fieldValue": "={{ $now }}"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.supabase",
+            "typeVersion": 1,
+            "position": [
+                736,
+                1056
+            ],
+            "id": "b2bfa48d-32f0-4295-9a12-2cd0b77bd79a",
+            "name": "Save to Supabase"
+        },
+        {
+            "parameters": {
+                "resource": "databasePage",
+                "databaseId": {
+                    "__rl": true,
+                    "value": "notion-crm-database-id"
+                },
+                "propertiesUi": {
+                    "propertyValues": [
+                        {
+                            "key": "Name|title",
+                            "title": "={{ $('Normalize Data').item.json.name }}"
+                        },
+                        {
+                            "key": "email|email",
+                            "emailValue": "={{ $('Normalize Data').item.json.email }}"
+                        },
+                        {
+                            "key": "phone|rich_text",
+                            "textContent": "={{ $('Normalize Data').item.json.phone }}"
+                        },
+                        {
+                            "key": "status|select",
+                            "selectValue": "New Lead"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.notion",
+            "typeVersion": 2.2,
+            "position": [
+                944,
+                1056
+            ],
+            "id": "fddfcdf0-9560-45e3-a5fe-708c852b623c",
+            "name": "Create in Notion CRM"
+        },
+        {
+            "parameters": {
+                "promptType": "define",
+                "text": "={{ $json.property_message }}",
+                "options": {
+                    "systemMessage": "# SDR Agent - Agent+ Agency\n\nYou are Vox, an SDR virtual agent for Agent+, specialized in AI Agents for B2B Sales.\n\nYour role:\n1. Greet the lead warmly\n2. Understand their needs\n3. Qualify the lead\n4. Present relevant solutions\n5. Schedule a call or send proposal\n\nAvailable services:\n- SDR Agent (from R$4,000)\n- Sales Agent (from R$6,000)\n- AI Diagnostics (from R$2,500)"
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 1.9,
+            "position": [
+                1152,
+                1056
+            ],
+            "id": "238324ef-76a7-4263-a114-7ecf37f12e84",
+            "name": "SDR Agent"
+        },
+        {
+            "parameters": {
+                "model": {
+                    "__rl": true,
+                    "value": "gpt-4o"
+                },
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "typeVersion": 1.2,
+            "position": [
+                1072,
+                1280
+            ],
+            "id": "b750624a-0b81-43cc-a756-586a3d625049",
+            "name": "OpenAI Chat Model"
+        },
+        {
+            "parameters": {
+                "sessionIdType": "customKey",
+                "sessionKey": "={{ $('Normalize Data').item.json.phone }}",
+                "contextWindowLength": 8
+            },
+            "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+            "typeVersion": 1.3,
+            "position": [
+                1264,
+                1280
+            ],
+            "id": "a928684d-9675-49d6-89ed-b667936fee6f",
+            "name": "Postgres Memory"
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://api.z-api.io/instances/YOUR_INSTANCE/token/YOUR_TOKEN/send-text",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpHeaderAuth",
+                "sendBody": true,
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "phone",
+                            "value": "={{ $('Normalize Data').item.json.phone }}"
+                        },
+                        {
+                            "name": "message",
+                            "value": "={{ $json.output }}"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                1600,
+                1056
+            ],
+            "id": "c70ec608-fa0e-46ce-b4c1-6d22e207f7fd",
+            "name": "Send WhatsApp (Z-API)"
+        }
+    ],
+    "connections": {
+        "Tally Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Normalize Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Normalize Data": {
+            "main": [
+                [
+                    {
+                        "node": "Save to Supabase",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Save to Supabase": {
+            "main": [
+                [
+                    {
+                        "node": "Create in Notion CRM",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Create in Notion CRM": {
+            "main": [
+                [
+                    {
+                        "node": "SDR Agent",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "SDR Agent": {
+            "main": [
+                [
+                    {
+                        "node": "Send WhatsApp (Z-API)",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "OpenAI Chat Model": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "SDR Agent",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Postgres Memory": {
+            "ai_memory": [
+                [
+                    {
+                        "node": "SDR Agent",
+                        "type": "ai_memory",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "meta": {
+        "instanceId": "portfolio-demo"
+    }
+}

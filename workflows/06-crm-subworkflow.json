@@ -1,0 +1,106 @@
+{
+    "name": "CRM Card Creator (Subworkflow)",
+    "nodes": [
+        {
+            "parameters": {
+                "workflowInputs": {
+                    "values": [
+                        {
+                            "name": "Name"
+                        },
+                        {
+                            "name": "Phone"
+                        },
+                        {
+                            "name": "Email"
+                        },
+                        {
+                            "name": "cpfCnpj"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.executeWorkflowTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                144,
+                656
+            ],
+            "id": "a60cea33-2694-4136-8fa3-e935825948d9",
+            "name": "Workflow Trigger"
+        },
+        {
+            "parameters": {
+                "listId": "your-trello-list-id",
+                "name": "={{ $('Workflow Trigger').item.json.Name }}",
+                "description": "Phone: {{ $('Workflow Trigger').item.json.Phone }}\nEmail: {{ $('Workflow Trigger').item.json.Email }}\nCPF/CNPJ: {{ $('Workflow Trigger').item.json.cpfCnpj }}"
+            },
+            "type": "n8n-nodes-base.trello",
+            "typeVersion": 1,
+            "position": [
+                352,
+                656
+            ],
+            "id": "5309229c-0eaf-4bee-b04b-9613216550ab",
+            "name": "Create CRM Card"
+        },
+        {
+            "parameters": {
+                "operation": "update",
+                "tableId": "leads",
+                "filters": {
+                    "conditions": [
+                        {
+                            "keyName": "cpfCnpj",
+                            "condition": "eq",
+                            "keyValue": "={{ $('Workflow Trigger').item.json.cpfCnpj }}"
+                        }
+                    ]
+                },
+                "fieldsUi": {
+                    "fieldValues": [
+                        {
+                            "fieldId": "crm_card_id",
+                            "fieldValue": "={{ $json.id }}"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.supabase",
+            "typeVersion": 1,
+            "position": [
+                560,
+                656
+            ],
+            "id": "03798fef-7acb-4318-859b-94df62ee7bbd",
+            "name": "Link Card to Lead"
+        }
+    ],
+    "connections": {
+        "Workflow Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Create CRM Card",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Create CRM Card": {
+            "main": [
+                [
+                    {
+                        "node": "Link Card to Lead",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "meta": {
+        "instanceId": "portfolio-demo"
+    }
+}

@@ -1,0 +1,258 @@
+{
+    "name": "E-commerce Sales Agent",
+    "nodes": [
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                -832,
+                -80
+            ],
+            "id": "3fd17e10-434d-48f0-9190-d55443c43855",
+            "name": "Chat Trigger"
+        },
+        {
+            "parameters": {
+                "promptType": "define",
+                "text": "={{ $('Chat Trigger').item.json.chatInput }}",
+                "options": {
+                    "systemMessage": "# E-commerce Sales Agent - MaxFit Store\n\nYou are a sales agent for MaxFit, a health supplements store.\n\n## Flow:\n1. Present products based on customer interest\n2. Create order after confirmation\n3. Collect customer data (name, CPF, email, phone, address)\n4. Generate payment link via Asaas (PIX, Boleto, Credit Card)\n5. Send payment link to customer\n\nAlways use appropriate tools. Never invent data."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 1.9,
+            "position": [
+                384,
+                -80
+            ],
+            "id": "b7d519fe-6d4f-43e4-87b8-ef24282c221e",
+            "name": "Sales Agent"
+        },
+        {
+            "parameters": {
+                "model": {
+                    "__rl": true,
+                    "value": "gpt-4o"
+                },
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "typeVersion": 1.2,
+            "position": [
+                288,
+                128
+            ],
+            "id": "d90fc4d9-c5e9-42c0-a4c1-9e1f15152631",
+            "name": "OpenAI Chat Model"
+        },
+        {
+            "parameters": {
+                "sessionIdType": "customKey",
+                "sessionKey": "={{ $('Chat Trigger').item.json.sessionId }}"
+            },
+            "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+            "typeVersion": 1.3,
+            "position": [
+                464,
+                128
+            ],
+            "id": "75d44ee2-f731-4de7-a919-3de3bf201728",
+            "name": "Session Memory"
+        },
+        {
+            "parameters": {
+                "operation": "get",
+                "tableId": "customers",
+                "filters": {
+                    "conditions": [
+                        {
+                            "keyName": "session_id",
+                            "keyValue": "={{ $json.sessionId }}"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.supabase",
+            "typeVersion": 1,
+            "position": [
+                -608,
+                -80
+            ],
+            "id": "da572855-52f7-4af5-8499-40f14586c876",
+            "name": "Get Customer",
+            "alwaysOutputData": true
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "conditions": [
+                        {
+                            "leftValue": "={{ $json.session_id }}",
+                            "operator": {
+                                "type": "string",
+                                "operation": "exists"
+                            }
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 2.2,
+            "position": [
+                -432,
+                -80
+            ],
+            "id": "f6365147-897b-4a99-9fb4-9fddf117268f",
+            "name": "Customer Exists?"
+        },
+        {
+            "parameters": {
+                "tableId": "customers",
+                "fieldsUi": {
+                    "fieldValues": [
+                        {
+                            "fieldId": "session_id",
+                            "fieldValue": "={{ $('Chat Trigger').item.json.sessionId }}"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.supabase",
+            "typeVersion": 1,
+            "position": [
+                -240,
+                16
+            ],
+            "id": "a7bb061c-651f-49de-8d2b-17021d970276",
+            "name": "Create Customer"
+        },
+        {
+            "parameters": {},
+            "type": "n8n-nodes-base.merge",
+            "typeVersion": 3.1,
+            "position": [
+                -48,
+                -80
+            ],
+            "id": "e46a114e-94be-42fe-9e92-c6f7bc1df8a6",
+            "name": "Merge"
+        },
+        {
+            "parameters": {
+                "sseEndpoint": "https://your-mcp-server/mcp/sales-agent/sse",
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+            "typeVersion": 1,
+            "position": [
+                640,
+                128
+            ],
+            "id": "edc415b2-b07f-46b8-a564-e4c45a32c4ad",
+            "name": "Order Management Tools"
+        }
+    ],
+    "connections": {
+        "Chat Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Get Customer",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "OpenAI Chat Model": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "Sales Agent",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Session Memory": {
+            "ai_memory": [
+                [
+                    {
+                        "node": "Sales Agent",
+                        "type": "ai_memory",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Customer": {
+            "main": [
+                [
+                    {
+                        "node": "Customer Exists?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Customer Exists?": {
+            "main": [
+                [
+                    {
+                        "node": "Merge",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Create Customer",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Create Customer": {
+            "main": [
+                [
+                    {
+                        "node": "Merge",
+                        "type": "main",
+                        "index": 1
+                    }
+                ]
+            ]
+        },
+        "Merge": {
+            "main": [
+                [
+                    {
+                        "node": "Sales Agent",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Order Management Tools": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "Sales Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "meta": {
+        "instanceId": "portfolio-demo"
+    }
+}

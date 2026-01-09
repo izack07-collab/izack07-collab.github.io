@@ -1,0 +1,142 @@
+{
+    "name": "Payment Confirmation Webhook",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "payment",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 2.1,
+            "position": [
+                128,
+                400
+            ],
+            "id": "59c0e927-bf76-4c6a-b2eb-45282e4f72bb",
+            "name": "Asaas Webhook",
+            "webhookId": "payment-webhook"
+        },
+        {
+            "parameters": {
+                "operation": "update",
+                "tableId": "orders",
+                "filters": {
+                    "conditions": [
+                        {
+                            "keyName": "asaas_payment_id",
+                            "condition": "eq",
+                            "keyValue": "={{ $json.body.payment.customer }}"
+                        }
+                    ]
+                },
+                "fieldsUi": {
+                    "fieldValues": [
+                        {
+                            "fieldId": "status",
+                            "fieldValue": "paid"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.supabase",
+            "typeVersion": 1,
+            "position": [
+                336,
+                400
+            ],
+            "id": "97108ffa-6ba6-4d2a-b185-dc7a0e9fbaa8",
+            "name": "Update Order Status"
+        },
+        {
+            "parameters": {
+                "operation": "update",
+                "tableId": "leads",
+                "filters": {
+                    "conditions": [
+                        {
+                            "keyName": "id",
+                            "condition": "eq",
+                            "keyValue": "={{ $json.lead_id }}"
+                        }
+                    ]
+                },
+                "fieldsUi": {
+                    "fieldValues": [
+                        {
+                            "fieldId": "follow_up_status",
+                            "fieldValue": "paid"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.supabase",
+            "typeVersion": 1,
+            "position": [
+                544,
+                400
+            ],
+            "id": "dd83a44d-5ad0-4f18-bac5-57a2b24efeef",
+            "name": "Update Lead Status"
+        },
+        {
+            "parameters": {
+                "operation": "update",
+                "id": {
+                    "__rl": true,
+                    "value": "={{ $json.trello_id }}",
+                    "mode": "id"
+                },
+                "updateFields": {
+                    "idList": "paid-list-id"
+                }
+            },
+            "type": "n8n-nodes-base.trello",
+            "typeVersion": 1,
+            "position": [
+                752,
+                400
+            ],
+            "id": "5e4b8cc7-d00b-4703-b9f7-f8e3dc76c335",
+            "name": "Move CRM Card to Paid"
+        }
+    ],
+    "connections": {
+        "Asaas Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Update Order Status",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Update Order Status": {
+            "main": [
+                [
+                    {
+                        "node": "Update Lead Status",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Update Lead Status": {
+            "main": [
+                [
+                    {
+                        "node": "Move CRM Card to Paid",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "meta": {
+        "instanceId": "portfolio-demo"
+    }
+}

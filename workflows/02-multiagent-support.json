@@ -1,0 +1,335 @@
+{
+    "name": "Multi-Agent Support System",
+    "nodes": [
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                -864,
+                -1008
+            ],
+            "id": "dada8c29-9152-4bcb-832a-ff03b6119dbb",
+            "name": "Chat Trigger"
+        },
+        {
+            "parameters": {
+                "options": {
+                    "systemMessage": "You are the Orchestrator Agent of a Multi-Agent Technical Support Center. Your role is to understand the user's question and route it to the appropriate specialist agent.\n\nAvailable specialists:\n- especialista_n8n: n8n questions\n- especialista_lovable: Lovable questions\n- especialista_flutterflow: FlutterFlow questions\n\nYou do NOT answer technical questions directly. Focus on intelligent routing."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 2.1,
+            "position": [
+                -560,
+                -1008
+            ],
+            "id": "df13b772-8f3a-46dc-b65a-5e1c99f74b24",
+            "name": "Orchestrator Agent"
+        },
+        {
+            "parameters": {
+                "model": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "gpt-4.1-mini"
+                },
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "typeVersion": 1.2,
+            "position": [
+                -672,
+                -432
+            ],
+            "id": "6c2cc062-af38-43dd-89f8-3d08ef961816",
+            "name": "OpenAI Chat Model"
+        },
+        {
+            "parameters": {
+                "contextWindowLength": 15
+            },
+            "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+            "typeVersion": 1.3,
+            "position": [
+                -464,
+                -432
+            ],
+            "id": "b1521fad-6ce3-4729-bfb6-a118a439019d",
+            "name": "Postgres Chat Memory"
+        },
+        {
+            "parameters": {
+                "toolDescription": "Answers technical questions about n8n",
+                "text": "={{ $fromAI('Prompt__User_Message_', '', 'string') }}",
+                "options": {
+                    "systemMessage": "You are a technical support specialist for n8n. Use the vector store tool to search documentation and provide accurate answers."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agentTool",
+            "typeVersion": 2.2,
+            "position": [
+                16,
+                -816
+            ],
+            "id": "39894d03-1030-45c2-8cb1-6402c3899248",
+            "name": "especialista_n8n"
+        },
+        {
+            "parameters": {
+                "toolDescription": "Answers technical questions about Lovable",
+                "text": "={{ $fromAI('Prompt__User_Message_', '', 'string') }}",
+                "options": {
+                    "systemMessage": "You are a technical support specialist for Lovable. Use the vector store tool to search documentation and provide accurate answers."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agentTool",
+            "typeVersion": 2.2,
+            "position": [
+                400,
+                -816
+            ],
+            "id": "78f7404a-9e42-458d-b0e6-1a56b96f371c",
+            "name": "especialista_lovable"
+        },
+        {
+            "parameters": {
+                "toolDescription": "Answers technical questions about FlutterFlow",
+                "text": "={{ $fromAI('Prompt__User_Message_', '', 'string') }}",
+                "options": {
+                    "systemMessage": "You are a technical support specialist for FlutterFlow. Use the vector store tool to search documentation and provide accurate answers."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agentTool",
+            "typeVersion": 2.2,
+            "position": [
+                816,
+                -816
+            ],
+            "id": "445a31e7-8cb7-41a6-9a7b-df46a8932d5d",
+            "name": "especialista_flutterflow"
+        },
+        {
+            "parameters": {
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+            "typeVersion": 1.2,
+            "position": [
+                528,
+                352
+            ],
+            "id": "f9d9fe56-7236-4928-a58e-155c6224197f",
+            "name": "Embeddings OpenAI"
+        },
+        {
+            "parameters": {
+                "mode": "retrieve-as-tool",
+                "toolDescription": "Searches n8n official documentation",
+                "tableName": {
+                    "__rl": true,
+                    "value": "rpc/match_documents_n8n"
+                },
+                "topK": 100
+            },
+            "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+            "typeVersion": 1.3,
+            "position": [
+                16,
+                -224
+            ],
+            "id": "d55ca641-5f5d-47b9-adf0-76d05efa5dd4",
+            "name": "n8n_docs_vectorstore"
+        },
+        {
+            "parameters": {
+                "mode": "retrieve-as-tool",
+                "toolDescription": "Searches Lovable official documentation",
+                "tableName": {
+                    "__rl": true,
+                    "value": "rpc/match_documents_lovable"
+                },
+                "topK": 100
+            },
+            "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+            "typeVersion": 1.3,
+            "position": [
+                400,
+                -224
+            ],
+            "id": "05afadd2-7267-4a23-90aa-73f8383c181a",
+            "name": "lovable_docs_vectorstore"
+        },
+        {
+            "parameters": {
+                "mode": "retrieve-as-tool",
+                "toolDescription": "Searches FlutterFlow official documentation",
+                "tableName": {
+                    "__rl": true,
+                    "value": "rpc/match_documents_flutterflow"
+                },
+                "topK": 100
+            },
+            "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+            "typeVersion": 1.3,
+            "position": [
+                800,
+                -224
+            ],
+            "id": "101798e9-c362-4546-9cfb-43878e4f72d3",
+            "name": "flutterflow_docs_vectorstore"
+        }
+    ],
+    "connections": {
+        "Chat Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Orchestrator Agent",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "OpenAI Chat Model": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "Orchestrator Agent",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "especialista_n8n",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "especialista_lovable",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "especialista_flutterflow",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Postgres Chat Memory": {
+            "ai_memory": [
+                [
+                    {
+                        "node": "Orchestrator Agent",
+                        "type": "ai_memory",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "especialista_n8n": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "Orchestrator Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "especialista_lovable": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "Orchestrator Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "especialista_flutterflow": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "Orchestrator Agent",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Embeddings OpenAI": {
+            "ai_embedding": [
+                [
+                    {
+                        "node": "n8n_docs_vectorstore",
+                        "type": "ai_embedding",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "lovable_docs_vectorstore",
+                        "type": "ai_embedding",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "flutterflow_docs_vectorstore",
+                        "type": "ai_embedding",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "n8n_docs_vectorstore": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "especialista_n8n",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "lovable_docs_vectorstore": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "especialista_lovable",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "flutterflow_docs_vectorstore": {
+            "ai_tool": [
+                [
+                    {
+                        "node": "especialista_flutterflow",
+                        "type": "ai_tool",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "meta": {
+        "instanceId": "portfolio-demo"
+    }
+}

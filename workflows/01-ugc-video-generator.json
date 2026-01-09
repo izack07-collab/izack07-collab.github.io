@@ -1,0 +1,350 @@
+{
+    "name": "UGC Video Generator",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "ugc-creator",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 2.1,
+            "position": [
+                96,
+                368
+            ],
+            "id": "346cc677-0fd0-4efd-96d3-c09f95be01b8",
+            "name": "Webhook",
+            "webhookId": "d33965bc-91ce-4b79-914c-520e0e79aff8"
+        },
+        {
+            "parameters": {
+                "inputDataFieldName": "image",
+                "driveId": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "My Drive"
+                },
+                "folderId": {
+                    "__rl": true,
+                    "value": "1hWzm77_NEoNpFYxPd3ZYAbX2J8cFf6TS",
+                    "mode": "list",
+                    "cachedResultName": "Imagens - UGC"
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.googleDrive",
+            "typeVersion": 3,
+            "position": [
+                320,
+                368
+            ],
+            "id": "109ed084-33c2-4f3f-8e90-2d4d887bcc9c",
+            "name": "Upload file"
+        },
+        {
+            "parameters": {
+                "resource": "image",
+                "operation": "analyze",
+                "modelId": {
+                    "__rl": true,
+                    "value": "chatgpt-4o-latest",
+                    "mode": "list"
+                },
+                "text": "Analyze image and determine if it's a product, character, or both. Return YAML format.",
+                "imageUrls": "={{ $json.webContentLink }}",
+                "options": {}
+            },
+            "type": "@n8n/n8n-nodes-langchain.openAi",
+            "typeVersion": 1.8,
+            "position": [
+                672,
+                368
+            ],
+            "id": "768f5a45-3ac9-4920-88d9-539a21850278",
+            "name": "Analyze image"
+        },
+        {
+            "parameters": {
+                "promptType": "define",
+                "text": "Create UGC-style image prompt from reference image and user description",
+                "hasOutputParser": true,
+                "options": {
+                    "systemMessage": "You are a UGC Image Prompt Builder. Create natural, phone-style image prompts."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 2.2,
+            "position": [
+                880,
+                368
+            ],
+            "id": "91f89ff9-ba92-41c3-98a5-58f7b80ea9ee",
+            "name": "Image Prompt Generator"
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://queue.fal.run/fal-ai/nano-banana/edit",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpHeaderAuth",
+                "sendBody": true,
+                "specifyBody": "json",
+                "jsonBody": "{ \"prompt\": \"{{ $json.output.image_prompt }}\", \"image_urls\": [\"{{ $('Upload file').item.json.webContentLink }}\"] }"
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                1232,
+                368
+            ],
+            "id": "97a62488-508a-4b12-bc48-d0f703e08d44",
+            "name": "Generate Image (Nano Banana)"
+        },
+        {
+            "parameters": {
+                "amount": 30
+            },
+            "type": "n8n-nodes-base.wait",
+            "typeVersion": 1.1,
+            "position": [
+                1440,
+                368
+            ],
+            "id": "5ffd51ca-ac37-42fa-987e-732edaf3bd13",
+            "name": "Wait for Image"
+        },
+        {
+            "parameters": {
+                "url": "={{ $json.response_url }}",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpHeaderAuth"
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                1648,
+                368
+            ],
+            "id": "d50b8e2a-b039-4500-90eb-2506163f51f6",
+            "name": "Get Generated Image"
+        },
+        {
+            "parameters": {
+                "promptType": "define",
+                "text": "Create UGC-style video prompt from reference image",
+                "hasOutputParser": true,
+                "options": {
+                    "systemMessage": "You are a UGC Video Prompt Builder. Create casual, phone-style video prompts."
+                }
+            },
+            "type": "@n8n/n8n-nodes-langchain.agent",
+            "typeVersion": 2.2,
+            "position": [
+                2048,
+                368
+            ],
+            "id": "ff1e556c-9ec3-4ffb-a8ef-b5814699aafc",
+            "name": "Video Prompt Generator"
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://queue.fal.run/fal-ai/veo3/fast/image-to-video",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpHeaderAuth",
+                "sendBody": true,
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "prompt",
+                            "value": "={{ $json.output.video_prompt }}"
+                        },
+                        {
+                            "name": "image_url",
+                            "value": "={{ $('Get Generated Image').item.json.images[0].url }}"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                2400,
+                368
+            ],
+            "id": "e81a00c8-ee30-432c-becb-17c98b0f7aaf",
+            "name": "Generate Video (Veo3)"
+        },
+        {
+            "parameters": {
+                "amount": 3,
+                "unit": "minutes"
+            },
+            "type": "n8n-nodes-base.wait",
+            "typeVersion": 1.1,
+            "position": [
+                2608,
+                368
+            ],
+            "id": "5575a72f-9f40-47b3-b537-37e185034144",
+            "name": "Wait for Video"
+        },
+        {
+            "parameters": {
+                "url": "={{ $('Generate Video (Veo3)').item.json.response_url }}",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpHeaderAuth"
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                2816,
+                368
+            ],
+            "id": "f4e85041-ddca-4fdd-9f32-e593bf31d6a3",
+            "name": "Get Generated Video"
+        },
+        {
+            "parameters": {
+                "sendTo": "={{ $('Webhook').item.json.body.email }}",
+                "subject": "Your UGC Video is Ready!",
+                "message": "Hello,\n\nYour UGC video is ready!\n\nVideo URL: {{ $json.video.url }}\nImage URL: {{ $('Get Generated Image').item.json.images[0].url }}"
+            },
+            "type": "n8n-nodes-base.gmail",
+            "typeVersion": 2.1,
+            "position": [
+                3024,
+                368
+            ],
+            "id": "6ac376a9-2d66-40c5-b685-b1ca58391d44",
+            "name": "Send Email with Results"
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Upload file",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Upload file": {
+            "main": [
+                [
+                    {
+                        "node": "Analyze image",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Analyze image": {
+            "main": [
+                [
+                    {
+                        "node": "Image Prompt Generator",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Image Prompt Generator": {
+            "main": [
+                [
+                    {
+                        "node": "Generate Image (Nano Banana)",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Generate Image (Nano Banana)": {
+            "main": [
+                [
+                    {
+                        "node": "Wait for Image",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Wait for Image": {
+            "main": [
+                [
+                    {
+                        "node": "Get Generated Image",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Generated Image": {
+            "main": [
+                [
+                    {
+                        "node": "Video Prompt Generator",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Video Prompt Generator": {
+            "main": [
+                [
+                    {
+                        "node": "Generate Video (Veo3)",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Generate Video (Veo3)": {
+            "main": [
+                [
+                    {
+                        "node": "Wait for Video",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Wait for Video": {
+            "main": [
+                [
+                    {
+                        "node": "Get Generated Video",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Generated Video": {
+            "main": [
+                [
+                    {
+                        "node": "Send Email with Results",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "meta": {
+        "instanceId": "portfolio-demo"
+    }
+}
