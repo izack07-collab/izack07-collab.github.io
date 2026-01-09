@@ -5,16 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isaac Silveira | Especialista em Automação & IA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --dark: #1e293b;
-            --gray: #64748b;
-            --light-gray: #e2e8f0;
-            --bg: #ffffff;
-            --accent: #10b981;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-card-hover: #22222e;
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.3);
+            --accent: #22d3ee;
+            --accent-glow: rgba(34, 211, 238, 0.3);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #2e2e3a;
         }
 
         * {
@@ -25,206 +33,291 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: var(--dark);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            background: var(--bg);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 40px 20px;
         }
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 40px;
+            text-align: center;
+            padding: 60px 0 40px;
             position: relative;
         }
 
-        .header::after {
+        .header::before {
             content: '';
             position: absolute;
-            bottom: -20px;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: var(--bg);
-            border-radius: 20px 20px 0 0;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 24px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 60px var(--primary-glow);
         }
 
         .header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
         }
 
-        .header .title {
-            font-size: 1.1rem;
-            font-weight: 400;
-            opacity: 0.95;
-            margin-bottom: 16px;
+        .header .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .location {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-row {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
-            font-size: 0.9rem;
+            gap: 12px;
+            margin-top: 24px;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-row a {
-            color: white;
+            color: var(--text-secondary);
             text-decoration: none;
-            opacity: 0.9;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .contact-row a:hover {
-            opacity: 1;
-            text-decoration: underline;
+            color: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
-        /* Main Content */
-        .main {
-            padding: 20px 40px 40px;
+        /* Pitch Box */
+        .pitch-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(34, 211, 238, 0.1) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin: 40px 0;
+            text-align: center;
         }
 
-        section {
-            margin-bottom: 32px;
+        .pitch-box p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
 
-        .section-title {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--primary);
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--light-gray);
-        }
-
-        /* Pitch Section */
-        .pitch {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 20px 24px;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
-            margin-bottom: 32px;
-        }
-
-        .pitch p {
-            font-size: 1rem;
-            color: var(--dark);
-        }
-
-        .pitch strong {
-            color: var(--primary);
+        .pitch-box strong {
+            color: var(--accent);
         }
 
         /* Metrics */
         .metrics {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 16px;
-            margin-bottom: 32px;
+            margin: 40px 0;
         }
 
         .metric {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
             text-align: center;
-            padding: 16px;
-            background: #f8fafc;
-            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .metric:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px var(--primary-glow);
+            transform: translateY(-4px);
         }
 
         .metric-value {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .metric-label {
             font-size: 0.8rem;
-            color: var(--gray);
-            margin-top: 4px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* Section */
+        section {
+            margin-bottom: 48px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+
+        .section-link {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .section-link:hover {
+            color: var(--accent);
         }
 
         /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
         .project {
-            margin-bottom: 24px;
-            padding: 20px;
-            background: #fafafa;
-            border-radius: 12px;
-            border: 1px solid var(--light-gray);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .project:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px var(--primary-glow);
+            transform: translateY(-4px);
+        }
+
+        .project.featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, var(--bg-card) 100%);
         }
 
         .project-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .project-title {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .project-badge {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
-            background: var(--accent);
-            color: white;
             padding: 4px 10px;
             border-radius: 20px;
         }
 
+        .project-badge.production {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .project-badge.functional {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+
         .project-desc {
             font-size: 0.9rem;
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 12px;
         }
 
         .project-result {
+            font-size: 0.9rem;
+            color: var(--success);
+            font-weight: 500;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 500;
+            gap: 6px;
         }
 
         .project-result::before {
             content: '→';
-            font-weight: 700;
+            color: var(--accent);
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 12px;
+            gap: 8px;
+            margin-bottom: 16px;
         }
 
         .tech-tag {
-            font-size: 0.7rem;
-            background: var(--light-gray);
-            color: var(--gray);
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-
-        .project-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 16px;
-            padding-top: 12px;
-            border-top: 1px solid var(--light-gray);
+            font-size: 0.75rem;
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
         }
 
         .btn-code {
@@ -232,21 +325,58 @@
             align-items: center;
             gap: 6px;
             font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--primary);
+            color: var(--accent);
             text-decoration: none;
-            padding: 6px 12px;
-            border: 1px solid var(--primary);
-            border-radius: 6px;
-            transition: all 0.2s ease;
+            padding: 8px 16px;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .btn-code:hover {
-            background: var(--primary);
-            color: white;
+            background: var(--accent);
+            color: var(--bg-primary);
         }
 
-        /* Skills */
+        /* Tech Stack */
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .tech-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .tech-item .icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .tech-item .name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .tech-item .level {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Skills with bars */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -257,6 +387,15 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-color: var(--primary);
         }
 
         .skill-name {
@@ -267,26 +406,91 @@
 
         .skill-bar {
             flex: 1;
-            height: 8px;
-            background: var(--light-gray);
-            border-radius: 4px;
+            height: 6px;
+            background: var(--bg-secondary);
+            border-radius: 3px;
             overflow: hidden;
         }
 
         .skill-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 4px;
+            border-radius: 3px;
         }
 
         .skill-level {
             font-size: 0.75rem;
-            color: var(--gray);
+            color: var(--text-muted);
             width: 40px;
             text-align: right;
         }
 
-        /* Education & Certs */
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 32px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .timeline-company {
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Education */
         .edu-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -294,45 +498,94 @@
         }
 
         .edu-item {
-            padding: 12px 16px;
-            background: #f8fafc;
-            border-radius: 8px;
+            padding: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .edu-item:hover {
+            border-color: var(--primary);
         }
 
         .edu-title {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text-primary);
+            margin-bottom: 4px;
         }
 
         .edu-place {
             font-size: 0.8rem;
-            color: var(--gray);
+            color: var(--text-muted);
+        }
+
+        /* Certifications */
+        .certs-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .cert-tag {
+            font-size: 0.75rem;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 20px;
-            font-size: 0.8rem;
-            color: var(--gray);
-            border-top: 1px solid var(--light-gray);
+            padding: 48px 0 24px;
+            border-top: 1px solid var(--border);
+            margin-top: 48px;
         }
 
-        /* Print styles */
-        @media print {
-            body {
-                background: white;
-            }
-
-            .container {
-                box-shadow: none;
-            }
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
         }
 
-        @media (max-width: 600px) {
+        .footer-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--bg-primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--primary-glow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
             .metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .project.featured {
+                grid-column: span 1;
+            }
+
+            .tech-stack {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .skills-grid,
@@ -340,12 +593,18 @@
                 grid-template-columns: 1fr;
             }
 
-            .header {
-                padding: 24px;
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metrics {
+                grid-template-columns: 1fr;
             }
 
-            .main {
-                padding: 16px 24px 24px;
+            .tech-stack {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -355,204 +614,324 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
+            <div class="avatar">🤖</div>
             <h1>Isaac Silveira</h1>
-            <p class="title">Especialista em Automação & Inteligência Artificial</p>
+            <p class="subtitle">Especialista em Automação & Inteligência Artificial</p>
+            <p class="location">📍 Salvador, BA • Disponível para trabalho remoto</p>
             <div class="contact-row">
-                <span>📍 Salvador, BA (Remoto)</span>
                 <a href="mailto:izack07@gmail.com">📧 izack07@gmail.com</a>
-                <a href="tel:+5511985587684">📱 (11) 98558-7684</a>
+                <a href="https://wa.me/5511985587684" target="_blank">📱 (11) 98558-7684</a>
                 <a href="https://www.linkedin.com/in/isaac-silveira-49b09821a" target="_blank">🔗 LinkedIn</a>
                 <a href="https://github.com/izack07-collab" target="_blank">💻 GitHub</a>
             </div>
         </header>
 
-        <main class="main">
-            <!-- Pitch -->
-            <div class="pitch">
-                <p>
-                    Desenvolvedor de <strong>agentes de IA em produção 24/7</strong>.
-                    Crio sistemas autônomos que vendem, qualificam leads, recuperam carrinhos e atendem clientes —
-                    <strong>sem intervenção humana</strong>. Case principal em produção para empresa de e-commerce.
-                </p>
-            </div>
+        <!-- Pitch -->
+        <div class="pitch-box">
+            <p>
+                Desenvolvo <strong>agentes de IA que operam 24/7 em produção</strong>.
+                Sistemas autônomos que vendem, qualificam leads, recuperam carrinhos abandonados e atendem clientes —
+                <strong>sem intervenção humana</strong>.
+            </p>
+            <p style="margin-top: 16px; font-size: 0.95rem; color: var(--text-muted);">
+                Minha jornada começou na programação tradicional, mas descobri que o verdadeiro poder está em conectar
+                ferramentas certas com IA — criando sistemas que realmente funcionam no mundo real.
+            </p>
+        </div>
 
-            <!-- Metrics -->
-            <div class="metrics">
-                <div class="metric">
-                    <div class="metric-value">24/7</div>
-                    <div class="metric-label">Sistemas em produção</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">-70%</div>
-                    <div class="metric-label">Tempo de pré-venda</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-value">10+</div>
-                    <div class="metric-label">Agentes desenvolvidos</div>
-                </div>
+        <!-- Metrics -->
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">24/7</div>
+                <div class="metric-label">Sistemas em produção</div>
             </div>
+            <div class="metric">
+                <div class="metric-value">-70%</div>
+                <div class="metric-label">Tempo de pré-venda</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">10+</div>
+                <div class="metric-label">Agentes desenvolvidos</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">6+</div>
+                <div class="metric-label">Workflows públicos</div>
+            </div>
+        </div>
 
-            <!-- Projects -->
-            <section>
+        <!-- Projects -->
+        <section>
+            <div class="section-header">
                 <h2 class="section-title">Projetos em Produção</h2>
+                <a href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/workflows" target="_blank"
+                    class="section-link">Ver todos no GitHub →</a>
+            </div>
 
-                <div class="project">
+            <div class="projects-grid">
+                <div class="project featured">
                     <div class="project-header">
                         <h3 class="project-title">Sistema de Recuperação de Vendas (MVM Creators)</h3>
-                        <span class="project-badge">Em Produção</span>
+                        <span class="project-badge production">Em Produção</span>
                     </div>
                     <p class="project-desc">
-                        Agente IA que detecta carrinhos abandonados, faz follow-up em 3 etapas e
-                        atende clientes via WhatsApp. Processa áudio, imagem e PDF automaticamente.
+                        Agente IA completo para e-commerce que detecta carrinhos abandonados, executa follow-up em 3
+                        etapas,
+                        processa áudio/imagem/PDF e atende clientes via WhatsApp com memória persistente e RAG.
                     </p>
-                    <p class="project-result">Recuperação automática de vendas 24/7</p>
+                    <p class="project-result">Recuperação automática de vendas operando 24/7</p>
                     <div class="project-tech">
                         <span class="tech-tag">n8n</span>
                         <span class="tech-tag">OpenAI GPT-4</span>
                         <span class="tech-tag">Supabase</span>
                         <span class="tech-tag">Redis</span>
-                        <span class="tech-tag">WhatsApp API</span>
+                        <span class="tech-tag">Evolution API</span>
+                        <span class="tech-tag">RAG</span>
                     </div>
-                    <div class="project-footer">
-                        <a href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/workflows"
-                            target="_blank" class="btn-code">💻 Ver Workflows</a>
-                    </div>
+                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/workflows"
+                        target="_blank" class="btn-code">💻 Ver Arquitetura</a>
                 </div>
 
                 <div class="project">
                     <div class="project-header">
-                        <h3 class="project-title">Agente SDR com Qualificação Automática</h3>
-                        <span class="project-badge">Em Produção</span>
+                        <h3 class="project-title">Agente SDR com IA</h3>
+                        <span class="project-badge production">Em Produção</span>
                     </div>
-                    <p class="project-desc">
-                        Qualifica leads automaticamente, faz follow-ups inteligentes e
-                        encaminha apenas leads prontos para o time comercial.
-                    </p>
-                    <p class="project-result">Redução de 70% no tempo gasto na pré-venda</p>
+                    <p class="project-desc">Qualifica leads automaticamente e encaminha apenas os prontos para o time
+                        comercial.</p>
+                    <p class="project-result">Redução de 70% no tempo de pré-venda</p>
                     <div class="project-tech">
                         <span class="tech-tag">n8n</span>
                         <span class="tech-tag">LLMs</span>
-                        <span class="tech-tag">CRM Integration</span>
-                        <span class="tech-tag">WhatsApp</span>
+                        <span class="tech-tag">CRM</span>
                     </div>
-                    <div class="project-footer">
-                        <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/05-lead-capture-sdr.json"
-                            target="_blank" class="btn-code">💻 Ver Código</a>
-                    </div>
+                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/05-lead-capture-sdr.json"
+                        target="_blank" class="btn-code">💻 Ver Código</a>
                 </div>
 
                 <div class="project">
                     <div class="project-header">
-                        <h3 class="project-title">Gerador de Vídeos UGC com IA</h3>
-                        <span class="project-badge">Funcional</span>
+                        <h3 class="project-title">Gerador de Vídeos UGC</h3>
+                        <span class="project-badge functional">Funcional</span>
                     </div>
-                    <p class="project-desc">
-                        Sistema que recebe imagem de produto + prompt e gera vídeo comercial
-                        automaticamente usando Veo3 e análise de imagem GPT-4 Vision.
+                    <p class="project-desc">Transforma imagem de produto em vídeo comercial estilo UGC automaticamente.
                     </p>
-                    <p class="project-result">Criação de conteúdo em minutos, não horas</p>
+                    <p class="project-result">Criação de conteúdo em minutos</p>
                     <div class="project-tech">
-                        <span class="tech-tag">n8n</span>
                         <span class="tech-tag">GPT-4 Vision</span>
                         <span class="tech-tag">Veo3</span>
                         <span class="tech-tag">fal.ai</span>
                     </div>
-                    <div class="project-footer">
-                        <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/01-ugc-video-generator.json"
-                            target="_blank" class="btn-code">💻 Ver Código</a>
-                    </div>
+                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/01-ugc-video-generator.json"
+                        target="_blank" class="btn-code">💻 Ver Código</a>
                 </div>
-            </section>
 
-            <!-- Skills -->
-            <section>
-                <h2 class="section-title">Habilidades Técnicas</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <span class="skill-name">n8n</span>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 100%"></div>
-                        </div>
-                        <span class="skill-level">10/10</span>
+                <div class="project">
+                    <div class="project-header">
+                        <h3 class="project-title">Sistema Multiagente de Suporte</h3>
+                        <span class="project-badge functional">Funcional</span>
                     </div>
-                    <div class="skill-item">
-                        <span class="skill-name">WhatsApp API</span>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 100%"></div>
-                        </div>
-                        <span class="skill-level">10/10</span>
+                    <p class="project-desc">Orquestrador + especialistas com RAG próprio para suporte técnico
+                        automatizado.</p>
+                    <p class="project-result">Atendimento 24/7 sem intervenção</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Multiagente</span>
+                        <span class="tech-tag">Vector Store</span>
                     </div>
-                    <div class="skill-item">
-                        <span class="skill-name">OpenAI/LLMs</span>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 90%"></div>
-                        </div>
-                        <span class="skill-level">9/10</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Supabase</span>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 90%"></div>
-                        </div>
-                        <span class="skill-level">9/10</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Prompt Eng.</span>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 90%"></div>
-                        </div>
-                        <span class="skill-level">9/10</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">RAG</span>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 90%"></div>
-                        </div>
-                        <span class="skill-level">9/10</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">APIs REST</span>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 100%"></div>
-                        </div>
-                        <span class="skill-level">10/10</span>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-name">Redis</span>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 80%"></div>
-                        </div>
-                        <span class="skill-level">8/10</span>
-                    </div>
+                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/02-multiagent-support.json"
+                        target="_blank" class="btn-code">💻 Ver Código</a>
                 </div>
-            </section>
 
-            <!-- Education -->
-            <section>
-                <h2 class="section-title">Formação & Certificações</h2>
-                <div class="edu-grid">
-                    <div class="edu-item">
-                        <div class="edu-title">Formação Gestor de Agentes de IA 2.0</div>
-                        <div class="edu-place">NoCode StartUp</div>
+                <div class="project">
+                    <div class="project-header">
+                        <h3 class="project-title">Agente Vendedor E-commerce</h3>
+                        <span class="project-badge functional">Funcional</span>
                     </div>
-                    <div class="edu-item">
-                        <div class="edu-title">Automação e IA Avançado</div>
-                        <div class="edu-place">IAAcademy</div>
+                    <p class="project-desc">Vendas automatizadas com geração de cobrança Pix/Boleto/Cartão via Asaas.
+                    </p>
+                    <p class="project-result">Checkout completo automatizado</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Asaas</span>
+                        <span class="tech-tag">MCP Tools</span>
                     </div>
-                    <div class="edu-item">
-                        <div class="edu-title">Lógica de Programação</div>
-                        <div class="edu-place">SENAI</div>
-                    </div>
-                    <div class="edu-item">
-                        <div class="edu-title">Python Programming</div>
-                        <div class="edu-place">Curso em Vídeo</div>
-                    </div>
+                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/03-ecommerce-sales-agent.json"
+                        target="_blank" class="btn-code">💻 Ver Código</a>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
 
+        <!-- Tech Stack -->
+        <section>
+            <h2 class="section-title">Stack Principal</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="icon">⚡</div>
+                    <div class="name">n8n</div>
+                    <div class="level">Expert</div>
+                </div>
+                <div class="tech-item">
+                    <div class="icon">🤖</div>
+                    <div class="name">OpenAI/LLMs</div>
+                    <div class="level">Avançado</div>
+                </div>
+                <div class="tech-item">
+                    <div class="icon">💚</div>
+                    <div class="name">WhatsApp API</div>
+                    <div class="level">Expert</div>
+                </div>
+                <div class="tech-item">
+                    <div class="icon">🗄️</div>
+                    <div class="name">Supabase</div>
+                    <div class="level">Avançado</div>
+                </div>
+                <div class="tech-item">
+                    <div class="icon">🧠</div>
+                    <div class="name">RAG/Embeddings</div>
+                    <div class="level">Avançado</div>
+                </div>
+                <div class="tech-item">
+                    <div class="icon">📝</div>
+                    <div class="name">Prompt Eng.</div>
+                    <div class="level">Avançado</div>
+                </div>
+                <div class="tech-item">
+                    <div class="icon">🔴</div>
+                    <div class="name">Redis</div>
+                    <div class="level">Intermediário</div>
+                </div>
+                <div class="tech-item">
+                    <div class="icon">🐍</div>
+                    <div class="name">Python</div>
+                    <div class="level">Intermediário</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section>
+            <h2 class="section-title">Proficiência Técnica</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <span class="skill-name">n8n</span>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 100%"></div>
+                    </div>
+                    <span class="skill-level">10/10</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">WhatsApp API</span>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 100%"></div>
+                    </div>
+                    <span class="skill-level">10/10</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">APIs REST</span>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 100%"></div>
+                    </div>
+                    <span class="skill-level">10/10</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">OpenAI/LLMs</span>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-level">9/10</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Supabase</span>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-level">9/10</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Prompt Eng.</span>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-level">9/10</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">RAG</span>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-level">9/10</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Web Scraping</span>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 80%"></div>
+                    </div>
+                    <span class="skill-level">8/10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section>
+            <h2 class="section-title">Experiência</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-title">Especialista em Automação & IA</h3>
+                            <p class="timeline-company">Projetos Independentes (Autônomo)</p>
+                        </div>
+                        <span class="timeline-date">Jul 2025 – Atual</span>
+                    </div>
+                    <p class="timeline-desc">
+                        Desenvolvimento de automações avançadas com n8n, agentes LLM personalizados e integrações
+                        complexas de APIs
+                        para gerar eficiência operacional e impulsionar vendas para PMEs e negócios digitais.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section>
+            <h2 class="section-title">Formação</h2>
+            <div class="edu-grid">
+                <div class="edu-item">
+                    <div class="edu-title">Formação Gestor de Agentes de IA 2.0</div>
+                    <div class="edu-place">NoCode StartUp</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Automação e IA Avançado</div>
+                    <div class="edu-place">IAAcademy</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Lógica de Programação</div>
+                    <div class="edu-place">SENAI</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-title">Python Programming (MTA)</div>
+                    <div class="edu-place">Curso em Vídeo</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section>
+            <h2 class="section-title">Certificações</h2>
+            <div class="certs-list">
+                <span class="cert-tag">Agentes de IA & n8n</span>
+                <span class="cert-tag">Agente SDR com Follow-up</span>
+                <span class="cert-tag">Agente de Agendamentos</span>
+                <span class="cert-tag">RAG (PDF, Planilhas, Arquivos)</span>
+                <span class="cert-tag">Tools para Agentes</span>
+                <span class="cert-tag">Engenharia de Prompt</span>
+                <span class="cert-tag">Supabase (BD & Modelagem)</span>
+                <span class="cert-tag">API Meta WhatsApp</span>
+                <span class="cert-tag">Framework NoCode StartUp.AI</span>
+            </div>
+        </section>
+
+        <!-- Footer -->
         <footer class="footer">
-            Disponível para trabalho remoto | Projetos prontos para demonstração ao vivo
+            <p class="footer-text">Portfólio atualizado em Janeiro 2026</p>
         </footer>
     </div>
 </body>
