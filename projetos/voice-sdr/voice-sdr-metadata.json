@@ -1,0 +1,50 @@
+{
+    "name": "Voice SDR - Agente de Voz para Qualificação",
+    "version": "1.0.0",
+    "description": "Sistema automatizado de qualificação de leads via ligação telefônica usando VAPI + n8n + Supabase",
+    "author": "Isaac Silveira",
+    "contact": "izack07@gmail.com",
+    "license": "Proprietário",
+    "stack": {
+        "voice_orchestration": "VAPI",
+        "llm": "OpenAI GPT-4o-mini",
+        "tts": "ElevenLabs Neural",
+        "stt": "Deepgram (via VAPI)",
+        "backend": "n8n (self-hosted)",
+        "database": "Supabase PostgreSQL",
+        "rag": "Supabase pgvector",
+        "telephony": "Twilio / Vonage",
+        "calendar": "Google Calendar",
+        "forms": "Tally"
+    },
+    "features": [
+        "Ligações outbound automatizadas",
+        "Qualificação SPIN/BANT",
+        "RAG com base de conhecimento",
+        "Agendamento automático no Google Calendar",
+        "Tratamento de interrupções (barge-in)",
+        "Latência ~800ms-1.5s",
+        "TTS neural com qualidade humana",
+        "Anti-alucinação com fallback",
+        "Transferência para humano"
+    ],
+    "workflow_flow": [
+        "1. Lead preenche formulário Tally",
+        "2. Webhook dispara para n8n",
+        "3. n8n salva lead no Supabase",
+        "4. VAPI inicia ligação para o lead",
+        "5. Agente qualifica com perguntas SPIN",
+        "6. Se qualificado, agenda reunião",
+        "7. Dados salvos no CRM"
+    ],
+    "api_requirements": {
+        "vapi": "API Key + Assistant ID",
+        "openai": "API Key",
+        "elevenlabs": "API Key + Voice ID",
+        "supabase": "URL + Service Role Key",
+        "twilio": "Account SID + Auth Token + Phone Number",
+        "google_calendar": "OAuth 2.0 credentials"
+    },
+    "created_at": "2026-01-15",
+    "portfolio": "https://izack07-collab.github.io"
+}
