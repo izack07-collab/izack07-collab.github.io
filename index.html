@@ -220,6 +220,15 @@
             color: var(--accent);
         }
 
+        /* Utility to center specific sections */
+        .section-center {
+            text-align: center;
+        }
+
+        .section-center .section-title {
+            margin-bottom: 24px;
+        }
+
         .section-link {
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -347,13 +356,15 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .tech-item {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 16px;
+            padding: 12px;
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -369,7 +380,7 @@
         }
 
         .tech-item .name {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
             color: var(--text-primary);
         }
@@ -433,6 +444,36 @@
         .timeline {
             position: relative;
             padding-left: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline.centered {
+            padding-left: 0;
+            text-align: center;
+        }
+
+        .timeline.centered::before {
+            display: none;
+        }
+
+        .timeline.centered .timeline-item::before {
+            display: none;
+        }
+
+        .timeline.centered .timeline-header {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .timeline.centered .timeline-title {
+            font-size: 1.2rem;
+        }
+
+        .timeline.centered .timeline-date {
+            margin-top: 4px;
         }
 
         .timeline::before {
@@ -497,8 +538,10 @@
         /* Education */
         .edu-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 12px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .edu-item {
@@ -530,6 +573,9 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .cert-tag {
@@ -623,10 +669,10 @@
             <p class="subtitle">Especialista em Automação & Inteligência Artificial</p>
             <p class="location">Salvador, BA • Disponível para trabalho remoto</p>
             <div class="contact-row">
-                <a href="mailto:izack07@gmail.com">izack07@gmail.com</a>
-                <a href="https://wa.me/5511985587684" target="_blank">(11) 98558-7684</a>
-                <a href="https://www.linkedin.com/in/isaac-silveira-49b09821a" target="_blank">LinkedIn</a>
+                <a href="curriculo.html" target="_blank">Currículo</a>
                 <a href="https://github.com/izack07-collab" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/isaac-silveira-49b09821a" target="_blank">LinkedIn</a>
+                <a href="mailto:izack07@gmail.com">Email</a>
             </div>
         </header>
 
@@ -646,7 +692,7 @@
         <!-- Metrics -->
         <div class="metrics">
             <div class="metric">
-                <div class="metric-value">2+</div>
+                <div class="metric-value">4+</div>
                 <div class="metric-label">Projetos em produção</div>
             </div>
             <div class="metric">
@@ -794,14 +840,65 @@
                         <span class="tech-tag">Zod + HookForm</span>
                         <span class="tech-tag">Shadcn/UI</span>
                         <span class="tech-tag">Supabase</span>
+                        <span class="tech-tag">Lovable.dev</span>
+                        <span class="tech-tag">Netlify</span>
                     </div>
-                    <a href="#" class="btn-code">Ver Case</a>
+                    <div style="display: flex; gap: 10px; margin-top: 16px;">
+                        <a href="https://ripratas.com.br" target="_blank" class="btn-code">Visitar Portfólio (Site Ao
+                            Vivo)</a>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3 class="project-title">Sistema de Gestão Clínica Integrada</h3>
+                        <span class="project-badge production"
+                            style="background: rgba(16, 185, 129, 0.2); color: var(--success);">Case Exclusivo</span>
+                    </div>
+                    <p class="project-desc">Plataforma SaaS completa para gestão de clínicas multiprofissionais com
+                        agendamento inteligente, prontuário eletrônico e financeiro.</p>
+                    <p class="project-result">Otimização completa do fluxo de atendimento</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React + Vite</span>
+                        <span class="tech-tag">Shadcn/UI</span>
+                        <span class="tech-tag">Supabase</span>
+                        <span class="tech-tag">TanStack Query</span>
+                    </div>
+                    <a href="./projetos/clinica-online/index.html" class="btn-code">Ver Detalhes do Sistema</a>
+                </div>
+                <!-- Projeto 3: RI Pratas CRM (Novo) -->
+                <div class="project">
+                    <div class="project-header">
+                        <h3 class="project-title">Sistema de Operações Digitais (RI Pratas)</h3>
+                        <span class="project-badge production" style="background-color: #7C3AED; color: white;">Case
+                            Exclusivo</span>
+                    </div>
+                    <p class="project-desc">
+                        Plataforma "Backoffice" completa que substitui planilhas e centraliza a operação. Integra
+                        Estoque,
+                        Vendas (Asaas) e Logística em um Dashboard React moderno.
+                    </p>
+                    <p class="project-result">
+                        Fonte da verdade para o Agente de IA e controle total do funil de vendas.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React (Vite)</span>
+                        <span class="tech-tag">Supabase</span>
+                        <span class="tech-tag">Tailwind</span>
+                        <span class="tech-tag">n8n</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                    <div style="margin-top: auto; padding-top: 15px;">
+                        <a href="./projetos/ri-pratas-crm/index.html" class="btn-code"
+                            title="Ver detalhes do sistema">Ver
+                            Detalhes do Sistema</a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Tech Stack -->
-        <section>
+        <section class="section-center">
             <h2 class="section-title">Stack Principal</h2>
             <div class="tech-stack">
                 <div class="tech-item">
@@ -842,7 +939,7 @@
                 </div>
                 <div class="tech-item">
                     <div class="name">TypeScript</div>
-                    <div class="skill-level">Tipagem Estática</div>
+                    <div class="level">Tipagem Estática</div>
                 </div>
                 <div class="tech-item">
                     <div class="name">TanStack Query</div>
@@ -852,11 +949,23 @@
                     <div class="name">Zod / HookForm</div>
                     <div class="level">Validação</div>
                 </div>
+                <div class="tech-item">
+                    <div class="name">Lovable.dev</div>
+                    <div class="level">Prototipação AI</div>
+                </div>
+                <div class="tech-item">
+                    <div class="name">Asaas</div>
+                    <div class="level">Pagamentos</div>
+                </div>
+                <div class="tech-item">
+                    <div class="name">Netlify / Vercel</div>
+                    <div class="level">Deploy & CI/CD</div>
+                </div>
             </div>
         </section>
 
         <!-- Em Estudo -->
-        <section>
+        <section class="section-center">
             <h2 class="section-title">Em Estudo (AI Coding)</h2>
             <div class="tech-stack">
                 <div class="tech-item">
@@ -880,25 +989,18 @@
                     <div class="level">Rate Limiting</div>
                 </div>
                 <div class="tech-item">
-                    <div class="name">Netlify</div>
-                    <div class="level">CI/CD</div>
-                </div>
-                <div class="tech-item">
                     <div class="name">Node.js / PNPM</div>
                     <div class="level">Runtime</div>
                 </div>
-                <div class="tech-item">
-                    <div class="name">Lovable.dev</div>
-                    <div class="level">Prototipação</div>
-                </div>
+
             </div>
         </section>
 
 
         <!-- Experience -->
-        <section>
+        <section class="section-center">
             <h2 class="section-title">Experiência</h2>
-            <div class="timeline">
+            <div class="timeline centered">
                 <div class="timeline-item">
                     <div class="timeline-header">
                         <div>
@@ -917,7 +1019,7 @@
         </section>
 
         <!-- Education -->
-        <section>
+        <section class="section-center">
             <h2 class="section-title">Certificações e Treinamentos</h2>
             <div class="edu-grid">
                 <div class="edu-item">
@@ -941,7 +1043,7 @@
 
 
         <!-- Certifications -->
-        <section>
+        <section class="section-center">
             <h2 class="section-title">Certificações</h2>
             <div class="certs-list">
                 <span class="cert-tag">Agentes de IA & n8n</span>
@@ -962,7 +1064,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p class="footer-text">Portfólio atualizado em Janeiro 2026</p>
+            <p class="footer-text">Portfólio atualizado em Fevereiro 2026</p>
         </footer>
     </div>
 </body>

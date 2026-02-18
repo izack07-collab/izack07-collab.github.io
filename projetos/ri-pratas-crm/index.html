@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RI Pratas CRM | Isaac Silveira</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --primary: #7C3AED;
+            /* Violet for Premium/Luxury theme */
+            --primary-glow: rgba(124, 58, 237, 0.3);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #2e2e3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-image-container {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .hero-image {
+            width: 100%;
+            display: block;
+            /* CROP MAGIC: Inset to remove top bar (browser) and bottom bar (taskbar) */
+            clip-path: inset(9% 0 5% 0);
+            margin-top: -9%;
+            /* Pull up to hide the gap created by clip-path */
+            margin-bottom: -5%;
+            /* Pull up bottom */
+            transform: scale(1.02);
+            /* Slight zoom to avoid any border artifacts */
+        }
+
+        /* Container to hide the pulled margins */
+        .crop-wrapper {
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .feature-list h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .feature-list ul {
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li::before {
+            content: '•';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 12px;
+            transition: transform 0.3s;
+            cursor: pointer;
+            /* Same crop for gallery images */
+            clip-path: inset(9% 0 5% 0);
+            margin-top: -9%;
+            margin-bottom: -5%;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="../../index.html" class="back-btn">← Voltar ao Portfólio</a>
+            <h1>Sistema de Operações Digitais (SOD)</h1>
+            <div class="meta">
+                <span class="tag">React (Vite)</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Shadcn/UI</span>
+                <span class="tag">Supabase</span>
+                <span class="tag">n8n</span>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 800px;">
+                O "Cérebro" operacional da RI Pratas. Uma plataforma Backoffice centralizada que substitui planilhas
+                e integra estoque, vendas e logística em tempo real, servindo como fonte da verdade para o E-commerce e
+                Agentes de IA.
+            </p>
+        </header>
+
+        <div class="hero-image-container">
+            <div class="crop-wrapper">
+                <img src="./assets/dashboard.png" alt="Dashboard do SOD" class="hero-image">
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="feature-list">
+                    <h3>Principais Funcionalidades</h3>
+                    <ul>
+                        <li><strong>Motor Operacional:</strong> Automatiza tarefas repetitivas. Vendas atualizam
+                            estoque, calculam frete e enriquecem o CRM automaticamente.</li>
+                        <li><strong>Comando de Estoque:</strong> Gestão de variações (tamanhos) em tempo real, impedindo
+                            vendas sem estoque pelo Agente de IA.</li>
+                        <li><strong>Customer 360:</strong> Perfil completo do cliente com cálculo automático de LTV
+                            (Lifetime Value) e histórico de compras.</li>
+                        <li><strong>Kanban de Pedidos:</strong> Pipeline visual drag-and-drop para a equipe de logística
+                            (Pago -> Separação -> Enviado).</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="feature-list">
+                    <h3>Tecnologia</h3>
+                    <ul>
+                        <li>Frontend reativo com <strong>React + Vite</strong>.</li>
+                        <li>Design System "Minimal Luxury" com <strong>Shadcn/UI</strong>.</li>
+                        <li>Orquestração de eventos com <strong>n8n</strong>.</li>
+                        <li>Banco de dados relacional <strong>PostgreSQL</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <div class="crop-wrapper">
+                <img src="./assets/kanban.png" alt="Kanban de Pedidos" class="gallery-img">
+            </div>
+            <div class="crop-wrapper">
+                <img src="./assets/products.png" alt="Gestão de Produtos" class="gallery-img">
+            </div>
+            <div class="crop-wrapper">
+                <img src="./assets/customers.png" alt="Gestão de Clientes" class="gallery-img">
+            </div>
+            <div class="crop-wrapper">
+                <img src="./assets/settings.png" alt="Configurações e Integrações" class="gallery-img">
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+            <p>Projeto Desenvolvido por Isaac Silveira • 2026</p>
+        </footer>
+    </div>
+
+    <style>
+        /* Specific gallery image class to ensure clip-path works there too */
+        .gallery-img {
+            width: 100%;
+            display: block;
+            clip-path: inset(9% 0 5% 0);
+            margin-top: -9%;
+            margin-bottom: -5%;
+            transform: scale(1.02);
+        }
+    </style>
+</body>
+
+</html>

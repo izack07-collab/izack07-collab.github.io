@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Online | Isaac Silveira</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --primary: #10b981; /* Green for health/clinic theme */
+            --primary-glow: rgba(16, 185, 129, 0.3);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #2e2e3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        .header { margin-bottom: 40px; }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.9rem; margin-bottom: 24px;
+            transition: color 0.3s;
+        }
+        .back-btn:hover { color: var(--primary); }
+
+        h1 {
+            font-size: 2.5rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .meta {
+            display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;
+        }
+        .tag {
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; color: var(--text-secondary);
+        }
+
+        .hero-image-container {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+            /* Force aspect ratio or height if needed, but let's just let image define it */
+        }
+
+        .hero-image {
+            width: 100%;
+            display: block;
+            /* CROP MAGIC: Inset to remove top bar (browser) and bottom bar (taskbar) */
+            /* Assuming full screen 1080p: Top ~80px, Bottom ~40px */
+            /* 80px is approx 7.4% of 1080px. 40px is approx 3.7%. */
+            /* Let's be aggressive: 9% top, 5% bottom */
+            clip-path: inset(9% 0 5% 0);
+            margin-top: -9%; /* Pull up to hide the gap created by clip-path */
+            margin-bottom: -5%; /* Pull up bottom */
+            transform: scale(1.02); /* Slight zoom to avoid any border artifacts */
+        }
+        
+        /* Container to hide the pulled margins */
+        .crop-wrapper {
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .content-grid {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 40px;
+        }
+
+        .feature-list h3 { color: var(--primary); margin-bottom: 12px; }
+        .feature-list ul { list-style: none; }
+        .feature-list li {
+            margin-bottom: 12px; padding-left: 20px; position: relative;
+            color: var(--text-secondary);
+        }
+        .feature-list li::before {
+            content: '•'; color: var(--primary); position: absolute; left: 0; font-weight: bold;
+        }
+
+        .gallery {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px;
+        }
+        .gallery img {
+            width: 100%; border-radius: 12px;
+            transition: transform 0.3s;
+            cursor: pointer;
+            /* Same crop for gallery images */
+            clip-path: inset(9% 0 5% 0);
+            margin-top: -9%;
+            margin-bottom: -5%;
+        }
+        .gallery img:hover { transform: scale(1.02); }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .gallery { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="../../index.html" class="back-btn">← Voltar ao Portfólio</a>
+            <h1>Sistema de Gestão Clínica Integrada</h1>
+            <div class="meta">
+                <span class="tag">React</span>
+                <span class="tag">Vite</span>
+                <span class="tag">Shadcn/UI</span>
+                <span class="tag">Supabase</span>
+                <span class="tag">TanStack Query</span>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 800px;">
+                Uma plataforma SaaS completa para gestão de clínicas multiprofissionais. 
+                Desenvolvida com foco em UX/UI moderno, oferece agendamento inteligente, prontuário eletrônico personalizável e gestão financeira integrada.
+            </p>
+        </header>
+
+        <div class="hero-image-container">
+            <div class="crop-wrapper">
+                <img src="./assets/dashboard.jpeg" alt="Dashboard da Clínica" class="hero-image">
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="feature-list">
+                    <h3>Principais Funcionalidades</h3>
+                    <ul>
+                        <li><strong>Dashboard Inteligente:</strong> Visão geral do dia com KPIs em tempo real, próximos agendamentos e status financeiro.</li>
+                        <li><strong>Gestão de Pacientes:</strong> Prontuário eletrônico completo com histórico clínico, uploads de exames e timeline de interações.</li>
+                        <li><strong>Agenda Dinâmica:</strong> Sistema de agendamento drag-and-drop com verificação de conflitos e suporte a múltiplos profissionais.</li>
+                        <li><strong>Documentos & Contratos:</strong> Geração automática de documentos com assinatura digital integrada.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="feature-list">
+                    <h3>Tecnologia</h3>
+                    <ul>
+                        <li>Frontend ultra-rápido com <strong>Vite + React</strong>.</li>
+                        <li>Interface moderna e acessível com <strong>Shadcn/UI</strong>.</li>
+                        <li>Backend Serverless escalável com <strong>Supabase</strong>.</li>
+                        <li>Autenticação segura e RLS (Row Level Security).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <div class="crop-wrapper">
+                <img src="./assets/pacientes.jpeg" alt="Lista de Pacientes" class="gallery-img">
+            </div>
+            <div class="crop-wrapper">
+                <img src="./assets/paciente-detalhe.jpeg" alt="Detalhes do Paciente" class="gallery-img">
+            </div>
+        </div>
+        
+        <footer style="margin-top: 60px; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+            <p>Projeto Desenvolvido por Isaac Silveira • 2025/2026</p>
+        </footer>
+    </div>
+    
+    <style>
+        /* Specific gallery image class to ensure clip-path works there too */
+        .gallery-img {
+             width: 100%; display: block;
+            clip-path: inset(9% 0 5% 0);
+            margin-top: -9%;
+            margin-bottom: -5%;
+            transform: scale(1.02);
+        }
+    </style>
+</body>
+</html>
