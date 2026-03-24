@@ -692,12 +692,12 @@
         <!-- Metrics -->
         <div class="metrics">
             <div class="metric">
-                <div class="metric-value">4+</div>
+                <div class="metric-value">6+</div>
                 <div class="metric-label">Projetos em produção</div>
             </div>
             <div class="metric">
-                <div class="metric-value">6+</div>
-                <div class="metric-label">Workflows no GitHub</div>
+                <div class="metric-value">3</div>
+                <div class="metric-label">Ecossistemas completos</div>
             </div>
             <div class="metric">
                 <div class="metric-value">n8n</div>
@@ -849,50 +849,76 @@
                     </div>
                 </div>
 
-                <div class="project">
+                <!-- Ecossistema PainelPsi -->
+                <div class="project featured" style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, var(--bg-card) 100%);">
                     <div class="project-header">
-                        <h3 class="project-title">Sistema de Gestão Clínica Integrada</h3>
-                        <span class="project-badge production"
-                            style="background: rgba(16, 185, 129, 0.2); color: var(--success);">Case Exclusivo</span>
-                    </div>
-                    <p class="project-desc">Plataforma SaaS completa para gestão de clínicas multiprofissionais com
-                        agendamento inteligente, prontuário eletrônico e financeiro.</p>
-                    <p class="project-result">Otimização completa do fluxo de atendimento</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React + Vite</span>
-                        <span class="tech-tag">Shadcn/UI</span>
-                        <span class="tech-tag">Supabase</span>
-                        <span class="tech-tag">TanStack Query</span>
-                    </div>
-                    <a href="./projetos/clinica-online/index.html" class="btn-code">Ver Detalhes do Sistema</a>
-                </div>
-                <!-- Projeto 3: RI Pratas CRM (Novo) -->
-                <div class="project">
-                    <div class="project-header">
-                        <h3 class="project-title">Sistema de Operações Digitais (RI Pratas)</h3>
-                        <span class="project-badge production" style="background-color: #7C3AED; color: white;">Case
-                            Exclusivo</span>
+                        <h3 class="project-title">Ecossistema PainelPsi (Clínica Online)</h3>
+                        <span class="project-badge production" style="background: rgba(16,185,129,0.2); color: var(--success);">Case Exclusivo</span>
                     </div>
                     <p class="project-desc">
-                        Plataforma "Backoffice" completa que substitui planilhas e centraliza a operação. Integra
-                        Estoque,
-                        Vendas (Asaas) e Logística em um Dashboard React moderno.
+                        SaaS multi-tenant completo para gestão de consultórios de psicologia. Arquitetura em 3 camadas:
+                        <strong style="color: var(--text-primary);">Landing Page</strong> de aquisição,
+                        <strong style="color: var(--text-primary);">Painel do Psicólogo</strong> com prontuário eletrônico, agenda drag-and-drop, financeiro e exportação de dados,
+                        e <strong style="color: var(--text-primary);">PSI Admin Hub</strong> para gestão da plataforma (analytics de retenção, aprovação de contas, feature flags).
                     </p>
-                    <p class="project-result">
-                        Fonte da verdade para o Agente de IA e controle total do funil de vendas.
+                    <p class="project-result">Plataforma completa do cadastro ao atendimento clínico</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React + Vite</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Shadcn/UI</span>
+                        <span class="tech-tag">Supabase (RLS)</span>
+                        <span class="tech-tag">TanStack Query</span>
+                        <span class="tech-tag">Multi-tenant</span>
+                    </div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="./projetos/clinica-online/index.html" class="btn-code">Ver Painel do Psicólogo</a>
+                        <a href="./projetos/psi-admin-hub/index.html" class="btn-code" style="border-color: var(--primary); color: var(--primary);">Ver PSI Admin Hub</a>
+                    </div>
+                </div>
+
+                <!-- RI Pratas CRM -->
+                <div class="project">
+                    <div class="project-header">
+                        <h3 class="project-title">CRM / Backoffice (RI Pratas)</h3>
+                        <span class="project-badge production" style="background-color: rgba(124,58,237,0.2); color: #a78bfa;">Case Exclusivo</span>
+                    </div>
+                    <p class="project-desc">
+                        Backoffice que substitui planilhas e serve de fonte da verdade para o e-commerce e o Agente de IA.
+                        Kanban de pedidos, gestão de estoque com variações, CRM 360 com LTV automático e integração de pagamentos via Asaas.
                     </p>
+                    <p class="project-result">Operação centralizada com dados em tempo real para o agente</p>
                     <div class="project-tech">
                         <span class="tech-tag">React (Vite)</span>
                         <span class="tech-tag">Supabase</span>
-                        <span class="tech-tag">Tailwind</span>
-                        <span class="tech-tag">n8n</span>
                         <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">n8n</span>
+                        <span class="tech-tag">Asaas</span>
                     </div>
-                    <div style="margin-top: auto; padding-top: 15px;">
-                        <a href="./projetos/ri-pratas-crm/index.html" class="btn-code"
-                            title="Ver detalhes do sistema">Ver
-                            Detalhes do Sistema</a>
+                    <a href="./projetos/ri-pratas-crm/index.html" class="btn-code">Ver Detalhes do Sistema</a>
+                </div>
+
+                <!-- Agente Milena (RI Pratas) -->
+                <div class="project">
+                    <div class="project-header">
+                        <h3 class="project-title">Agente de Vendas IA (RI Pratas — Milena)</h3>
+                        <span class="project-badge production">Em Produção</span>
                     </div>
+                    <p class="project-desc">
+                        Agente de vendas autônomo que opera via WhatsApp seguindo metodologia SPIN Selling.
+                        Arquitetura com audio debouncing para escutar mensagens sequenciais, Output Splitter para respostas humanizadas
+                        e 12+ ferramentas MCP para acesso ao CRM, estoque e Asaas.
+                    </p>
+                    <p class="project-result">Atendimento e fechamento de vendas 24/7 via WhatsApp</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">n8n</span>
+                        <span class="tech-tag">OpenAI GPT-4</span>
+                        <span class="tech-tag">Evolution API</span>
+                        <span class="tech-tag">Supabase MCP</span>
+                        <span class="tech-tag">Asaas</span>
+                        <span class="tech-tag">SPIN Selling</span>
+                    </div>
+                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/projetos/mvm"
+                        target="_blank" class="btn-code">Ver Arquitetura</a>
                 </div>
             </div>
         </section>
@@ -1064,7 +1090,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p class="footer-text">Portfólio atualizado em Fevereiro 2026</p>
+            <p class="footer-text">Portfólio atualizado em Março 2026</p>
         </footer>
     </div>
 </body>

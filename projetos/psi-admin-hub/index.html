@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSI Admin Hub | Isaac Silveira</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.3);
+            --accent: #22d3ee;
+            --success: #10b981;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #2e2e3a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        .header { margin-bottom: 40px; }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.9rem; margin-bottom: 24px;
+            transition: color 0.3s;
+        }
+        .back-btn:hover { color: var(--primary); }
+
+        .project-ecosystem {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.8rem; color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .project-ecosystem span {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.5rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .meta {
+            display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;
+        }
+        .tag {
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; color: var(--text-secondary);
+        }
+
+        .description {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        /* Ecosystem Banner */
+        .ecosystem-banner {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(34, 211, 238, 0.05) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 20px 28px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .ecosystem-banner .ecosystem-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+        }
+        .ecosystem-parts {
+            display: flex; gap: 10px; flex-wrap: wrap;
+        }
+        .eco-part {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.85rem; color: var(--text-secondary);
+            padding: 6px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .eco-part:hover { border-color: var(--primary); color: var(--primary); }
+        .eco-part.active {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* Features Grid */
+        .features-section {
+            margin-bottom: 48px;
+        }
+        .features-section h2 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 22px;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .feature-icon {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        .feature-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .feature-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Architecture */
+        .arch-section {
+            margin-bottom: 48px;
+        }
+        .arch-section h2 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .arch-items {
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .arch-item {
+            display: flex; align-items: flex-start; gap: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+        .arch-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .arch-badge.layer-fe { background: rgba(99,102,241,0.2); color: var(--primary); }
+        .arch-badge.layer-auth { background: rgba(34,211,238,0.2); color: var(--accent); }
+        .arch-badge.layer-db { background: rgba(16,185,129,0.2); color: var(--success); }
+        .arch-badge.layer-sec { background: rgba(245,158,11,0.2); color: #f59e0b; }
+        .arch-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .arch-text strong {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .features-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+            .ecosystem-banner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="../../index.html" class="back-btn">← Voltar ao Portfólio</a>
+            <div class="project-ecosystem">
+                Parte do ecossistema <span>PainelPsi (Clínica Online)</span>
+            </div>
+            <h1>PSI Admin Hub</h1>
+            <div class="meta">
+                <span class="tag">React + Vite</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Shadcn/UI</span>
+                <span class="tag">Supabase Admin</span>
+                <span class="tag">Recharts</span>
+                <span class="tag">RLS Policies</span>
+            </div>
+            <p class="description">
+                Painel interno de administração da plataforma <strong style="color: var(--primary);">PainelPsi</strong>.
+                Enquanto o painel do psicólogo cuida do consultório, o Admin Hub dá controle total sobre a plataforma SaaS:
+                aprovação e monitoramento de contas, analytics de uso e retenção, logs de auditoria e configurações globais —
+                tudo em tempo real, protegido por RLS e autenticação de nível administrativo.
+            </p>
+        </header>
+
+        <!-- Ecosystem Banner -->
+        <div class="ecosystem-banner">
+            <div class="ecosystem-label">Ecossistema PainelPsi</div>
+            <div class="ecosystem-parts">
+                <a href="../../index.html" class="eco-part">🌐 Landing Page</a>
+                <a href="../clinica-online/index.html" class="eco-part">🩺 Painel do Psicólogo</a>
+                <span class="eco-part active">🛡️ PSI Admin Hub (você está aqui)</span>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-section">
+            <h2>Módulos do Painel</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Dashboard de Plataforma</div>
+                    <div class="feature-desc">
+                        Visão macro em tempo real: total de psicólogos ativos, novos cadastros da semana,
+                        conversão de trial para pago e métricas de engajamento por feature.
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-title">Gestão de Psicólogos</div>
+                    <div class="feature-desc">
+                        Lista completa de usuários com filtros de status (ativo, trial, suspenso).
+                        Aprovação e suspensão de contas com um clique, e acesso ao perfil detalhado de cada profissional.
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-title">Analytics de Retenção</div>
+                    <div class="feature-desc">
+                        Gráficos de uso por feature (pacientes, agenda, financeiro),
+                        retenção semanal/mensal e identificação de usuários em risco de churn.
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <div class="feature-title">Logs de Auditoria</div>
+                    <div class="feature-desc">
+                        Registro de todas as ações críticas da plataforma: login de admins, alterações de conta,
+                        aprovações e suspensões, com timestamps e rastreio por usuário.
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <div class="feature-title">Configurações Globais</div>
+                    <div class="feature-desc">
+                        Controle centralizado de limites de trial (dias e pacientes), feature flags por plano,
+                        e configurações de notificações e webhooks para integrações externas.
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">Segurança & Acesso</div>
+                    <div class="feature-desc">
+                        Acesso restrito por role de admin no Supabase Auth. Políticas de RLS
+                        garantem que nenhum psicólogo possa acessar dados internos da plataforma.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="arch-section">
+            <h2>Arquitetura Técnica</h2>
+            <div class="arch-items">
+                <div class="arch-item">
+                    <span class="arch-badge layer-fe">Frontend</span>
+                    <div class="arch-text">
+                        <strong>React + Vite + TypeScript</strong> — SPA de alta performance com componentes
+                        <strong>Shadcn/UI</strong> e <strong>Recharts</strong> para visualização de dados.
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <span class="arch-badge layer-auth">Autenticação</span>
+                    <div class="arch-text">
+                        Autenticação via <strong>Supabase Auth</strong> com verificação de role <code>admin</code>.
+                        Redirecionamento automático para login caso o usuário não tenha permissão administrativa.
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <span class="arch-badge layer-db">Banco de Dados</span>
+                    <div class="arch-text">
+                        <strong>PostgreSQL + Supabase</strong> — as mesmas tabelas do painel do psicólogo,
+                        acessadas via queries privilegiadas com <strong>service_role</strong> onde necessário.
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <span class="arch-badge layer-sec">Segurança</span>
+                    <div class="arch-text">
+                        <strong>Row Level Security (RLS)</strong> com políticas separadas por role.
+                        Nenhum dado de paciente é exposto ao admin — apenas metadados de uso e contas de psicólogos.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+            <p>Projeto Desenvolvido por Isaac Silveira • 2025/2026</p>
+        </footer>
+    </div>
+</body>
+</html>
