@@ -8,7 +8,7 @@
 
 ## 🚀 Sobre Mim
 
-Desenvolvedor de **agentes de IA em produção 24/7**. Crio sistemas autônomos que vendem, qualificam leads, recuperam carrinhos e atendem clientes — **sem intervenção humana**.
+Desenvolvedor especializado em **construção de ecossistemas digitais completos**: de landing pages SaaS e painéis multi-tenant até **agentes de IA autônomos** que vendem, qualificam leads e atendem clientes 24/7 sem intervenção humana.
 
 📍 Salvador, BA | 💼 Disponível para trabalho remoto
 
@@ -18,9 +18,10 @@ Desenvolvedor de **agentes de IA em produção 24/7**. Crio sistemas autônomos 
 
 | Métrica | Valor |
 |---------|-------|
-| 🕐 Sistemas em produção | **24/7** |
+| 🚀 Projetos em produção | **6+** |
+| 🌐 Ecossistemas completos | **3** |
 | 📉 Redução tempo pré-venda | **-70%** |
-| 🤖 Agentes desenvolvidos | **10+** |
+| 🤖 Agentes IA desenvolvidos | **10+** |
 
 ---
 
@@ -36,6 +37,28 @@ Desenvolvedor de **agentes de IA em produção 24/7**. Crio sistemas autônomos 
 ---
 
 ## 🎯 Projetos em Produção
+
+### 🏥 Ecossistema PainelPsi (Clínica Online)
+> SaaS multi-tenant completo para gestão de consultórios de psicologia. Arquitetura em 3 camadas (SaaS Proprietário).
+
+- ✅ **Landing Page:** Funil de aquisição e planos de assinatura.
+- ✅ **Painel do Psicólogo:** Prontuário eletrônico criptografado, agenda drag-and-drop e gestão financeira.
+- ✅ **PSI Admin Hub:** Painel gestor interno com analytics de retenção, auditoria e RLS.
+
+**Stack:** React, Vite, TypeScript, Shadcn/UI, Supabase, TanStack Query
+
+---
+
+### 💍 Ecossistema RI Pratas
+> Ecossistema digital completo para e-commerce (Site + CRM + IA Agent).
+
+- ✅ **Vitrine / E-commerce:** Site com precificação automática ao vivo.
+- ✅ **CRM / Backoffice (SOD):** Orquestrador via Supabase + n8n centralizando vendas, estoque e logística.
+- ✅ **Agente Milena:** Agente autônomo de WhatsApp aplicando SPIN Selling com +12 integrações.
+
+**Stack:** React, Supabase, n8n, PostgreSQL, OpenAI GPT-4, Evolution API, Asaas
+
+---
 
 ### 🛒 Sistema de Recuperação de Vendas
 > Agente IA que detecta carrinhos abandonados, faz follow-up em 3 etapas e atende clientes via WhatsApp.
