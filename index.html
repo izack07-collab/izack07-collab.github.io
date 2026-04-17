@@ -4,1130 +4,928 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isaac Silveira | Especialista em Automação & IA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <title>Isaac Silveira | Desenvolvedor Full-Stack & IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: #1a1a24;
-            --bg-card-hover: #22222e;
-            --primary: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.3);
-            --accent: #22d3ee;
-            --accent-glow: rgba(34, 211, 238, 0.3);
-            --tech-react: #61dafb;
-            /* React Blue */
-            --tech-ts: #3178c6;
-            /* TS Blue */
-            --success: #10b981;
-            --warning: #f59e0b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border: #2e2e3a;
+            --bg:        #07101f;
+            --bg-card:   #0d1a2e;
+            --bg-card2:  #0f1e35;
+            --indigo:    #818cf8;
+            --indigo-d:  rgba(129,140,248,0.12);
+            --indigo-g:  rgba(129,140,248,0.22);
+            --cyan:      #22d3ee;
+            --cyan-d:    rgba(34,211,238,0.08);
+            --cyan-g:    rgba(34,211,238,0.18);
+            --green:     #34d399;
+            --green-d:   rgba(52,211,153,0.1);
+            --purple:    #c084fc;
+            --purple-d:  rgba(192,132,252,0.1);
+            --text:      #f0f4f8;
+            --text2:     #8fa3b8;
+            --text3:     #4a6080;
+            --border:    #192840;
+            --border2:   #243d57;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            padding: 60px 0 40px;
-            position: relative;
-        }
-
-        .header::before {
+        body::before {
             content: '';
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(25,40,64,0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(25,40,64,0.4) 1px, transparent 1px);
+            background-size: 64px 64px;
             pointer-events: none;
             z-index: 0;
         }
 
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            margin: 0 auto 24px;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 0 60px var(--primary-glow);
-        }
-
-        .header h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            z-index: 1;
-            letter-spacing: -1px;
-        }
-
-        .header .subtitle {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-top: 8px;
+        .wrap {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
             position: relative;
             z-index: 1;
         }
 
-        .header .location {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-row {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-row a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 10px 20px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contact-row a:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        /* Pitch Box */
-        .pitch-box {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(34, 211, 238, 0.1) 100%);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px 28px;
-            margin: 40px 0;
+        /* ── Hero ── */
+        .hero {
+            padding: 84px 0 52px;
             text-align: center;
         }
 
-        .pitch-box p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--green);
+            background: var(--green-d);
+            border: 1px solid rgba(52,211,153,0.2);
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 28px;
         }
 
-        .pitch-box strong {
-            color: var(--accent);
+        .hero-badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: blink 2s infinite;
         }
 
-        /* Metrics */
+        @keyframes blink {
+            0%,100% { opacity: 1; }
+            50%      { opacity: 0.35; }
+        }
+
+        h1 {
+            font-size: 3.4rem;
+            font-weight: 800;
+            letter-spacing: -2.5px;
+            line-height: 1.08;
+            background: linear-gradient(140deg, #f0f4f8 25%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            color: var(--text2);
+            font-weight: 400;
+            margin-bottom: 6px;
+        }
+
+        .hero-loc {
+            font-size: 0.82rem;
+            color: var(--text3);
+            margin-bottom: 32px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.83rem;
+            color: var(--text2);
+            text-decoration: none;
+            padding: 9px 18px;
+            border: 1px solid var(--border2);
+            border-radius: 8px;
+            background: var(--bg-card);
+            transition: color .2s, border-color .2s, background .2s;
+        }
+
+        .link:hover {
+            color: var(--cyan);
+            border-color: var(--cyan);
+            background: var(--cyan-d);
+        }
+
+        /* ── Section label ── */
+        .label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--indigo);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        section { margin-bottom: 60px; }
+
+        /* ── About ── */
+        .about {
+            background: linear-gradient(135deg, var(--indigo-d), var(--cyan-d));
+            border: 1px solid var(--border2);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 60px;
+        }
+
+        .about p {
+            font-size: 1rem;
+            color: var(--text2);
+            line-height: 1.85;
+        }
+
+        .about strong { color: var(--text); font-weight: 600; }
+
+        .about .note {
+            margin-top: 14px;
+            font-size: 0.88rem;
+            color: var(--text3);
+        }
+
+        .about .note span { color: var(--indigo); font-weight: 500; }
+
+        /* ── Metrics ── */
         .metrics {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin: 40px 0;
+            gap: 12px;
+            margin-bottom: 60px;
         }
 
         .metric {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 20px 14px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: border-color .2s, transform .2s;
         }
 
-        .metric:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 30px var(--primary-glow);
-            transform: translateY(-4px);
-        }
+        .metric:hover { border-color: var(--border2); transform: translateY(-3px); }
 
-        .metric-value {
-            font-size: 2rem;
+        .metric-val {
+            font-size: 1.9rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--indigo);
+            line-height: 1;
+            margin-bottom: 8px;
         }
 
-        .metric-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 6px;
-        }
+        .metric-lbl { font-size: 0.72rem; color: var(--text3); }
 
-        /* Section */
-        section {
-            margin-bottom: 48px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .section-title {
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-        }
-
-        /* Utility to center specific sections */
-        .section-center {
-            text-align: center;
-        }
-
-        .section-center .section-title {
-            margin-bottom: 24px;
-        }
-
-        .section-link {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .section-link:hover {
-            color: var(--accent);
-        }
-
-        /* Projects */
-        .projects-grid {
+        /* ── Cards / Projects ── */
+        .grid2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 22px 20px;
+            display: flex;
+            flex-direction: column;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+        }
+
+        .card:hover {
+            border-color: var(--border2);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+        }
+
+        .card.span2 {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--indigo-d), var(--bg-card) 55%);
+            border-color: rgba(129,140,248,0.2);
+        }
+
+        .card.span2:hover { border-color: rgba(129,140,248,0.4); }
+
+        .card.green {
+            background: linear-gradient(135deg, rgba(52,211,153,0.06), var(--bg-card) 55%);
+            border-color: rgba(52,211,153,0.15);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 0.97rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .badge {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 100px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .badge.prod   { background: var(--green-d);  color: var(--green);  border: 1px solid rgba(52,211,153,0.2); }
+        .badge.func   { background: var(--indigo-d); color: var(--indigo); border: 1px solid rgba(129,140,248,0.2); }
+        .badge.case   { background: var(--purple-d); color: var(--purple); border: 1px solid rgba(192,132,252,0.2); }
+
+        .card-desc {
+            font-size: 0.86rem;
+            color: var(--text2);
+            line-height: 1.65;
+            margin-bottom: 10px;
+            flex: 1;
+        }
+
+        .card-result {
+            font-size: 0.8rem;
+            color: var(--green);
+            font-weight: 500;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-result::before { content: '→'; color: var(--cyan); }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .tag {
+            font-size: 0.68rem;
+            background: rgba(255,255,255,0.03);
+            color: var(--text3);
+            padding: 4px 9px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            transition: color .2s, border-color .2s;
+        }
+
+        .card:hover .tag { color: var(--text2); border-color: var(--border2); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.77rem;
+            color: var(--cyan);
+            text-decoration: none;
+            padding: 7px 13px;
+            border: 1px solid rgba(34,211,238,0.3);
+            border-radius: 7px;
+            transition: background .2s, border-color .2s;
+            align-self: flex-start;
+        }
+
+        .btn:hover { background: var(--cyan-d); border-color: var(--cyan); }
+
+        .btn.alt {
+            color: var(--indigo);
+            border-color: rgba(129,140,248,0.3);
+        }
+
+        .btn.alt:hover { background: var(--indigo-d); border-color: var(--indigo); }
+
+        .btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        /* ── Stack ── */
+        .stack-section {
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
 
-        .project {
+        .stack-group { }
+
+        .stack-group-title {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 10px;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .stack-item {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: border-color .2s, transform .2s;
+            cursor: default;
         }
 
-        .project:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 30px var(--primary-glow);
-            transform: translateY(-4px);
+        .stack-item:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+        .stack-name { font-size: 0.78rem; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+        .stack-sub  { font-size: 0.65rem; color: var(--text3); }
+
+        /* ── Timeline ── */
+        .tl { display: flex; flex-direction: column; gap: 14px; }
+
+        .tl-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 22px;
+            transition: border-color .2s;
         }
 
-        .project.featured {
-            grid-column: span 2;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, var(--bg-card) 100%);
-        }
+        .tl-card:hover { border-color: var(--border2); }
 
-        .project-header {
+        .tl-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 12px;
-        }
-
-        .project-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .project-badge {
-            font-size: 0.65rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-
-        .project-badge.production {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
-        }
-
-        .project-badge.functional {
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--primary);
-        }
-
-        .project-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-        }
-
-        .project-result {
-            font-size: 0.9rem;
-            color: var(--success);
-            font-weight: 500;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .project-result::before {
-            content: '→';
-            color: var(--accent);
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .tech-tag {
-            font-size: 0.75rem;
-            background: var(--bg-secondary);
-            color: var(--text-muted);
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-        }
-
-        .btn-code {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.8rem;
-            color: var(--accent);
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid var(--accent);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-code:hover {
-            background: var(--accent);
-            color: var(--bg-primary);
-        }
-
-        /* Tech Stack */
-        .tech-stack {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
             gap: 12px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .tech-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .tech-item:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .tech-item .icon {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-        }
-
-        .tech-item .name {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .tech-item .level {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* Skills with bars */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .skill-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 18px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .skill-item:hover {
-            border-color: var(--primary);
-        }
-
-        .skill-name {
-            width: 100px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .skill-bar {
-            flex: 1;
-            height: 6px;
-            background: var(--bg-secondary);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 3px;
-        }
-
-        .skill-level {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            width: 40px;
-            text-align: right;
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 24px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline.centered {
-            padding-left: 0;
-            text-align: center;
-        }
-
-        .timeline.centered::before {
-            display: none;
-        }
-
-        .timeline.centered .timeline-item::before {
-            display: none;
-        }
-
-        .timeline.centered .timeline-header {
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 12px;
-        }
-
-        .timeline.centered .timeline-title {
-            font-size: 1.2rem;
-        }
-
-        .timeline.centered .timeline-date {
-            margin-top: 4px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            bottom: 8px;
-            width: 2px;
-            background: var(--border);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-bottom: 32px;
-        }
-
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -28px;
-            top: 8px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--primary);
-            box-shadow: 0 0 10px var(--primary-glow);
-        }
-
-        .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
-        }
-
-        .timeline-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .timeline-company {
-            font-size: 0.9rem;
-            color: var(--accent);
-        }
-
-        .timeline-date {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .timeline-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        /* Education */
-        .edu-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .edu-item {
-            padding: 18px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .edu-item:hover {
-            border-color: var(--primary);
-        }
-
-        .edu-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-primary);
             margin-bottom: 4px;
         }
 
-        .edu-place {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+        .tl-title   { font-size: 0.97rem; font-weight: 600; color: var(--text); }
+        .tl-company { font-size: 0.84rem; color: var(--cyan); margin-bottom: 8px; }
+        .tl-date    { font-size: 0.76rem; color: var(--text3); white-space: nowrap; }
+        .tl-desc    { font-size: 0.86rem; color: var(--text2); line-height: 1.65; }
 
-        /* Certifications */
-        .certs-list {
-            display: flex;
-            flex-wrap: wrap;
+        /* ── Edu Grid ── */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            justify-content: center;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
-        .cert-tag {
-            font-size: 0.75rem;
+        .edu-card {
             background: var(--bg-card);
-            color: var(--text-secondary);
-            padding: 8px 14px;
-            border-radius: 8px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 18px;
+            transition: border-color .2s;
+        }
+
+        .edu-card:hover { border-color: var(--border2); }
+
+        .edu-title { font-size: 0.86rem; font-weight: 600; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
+        .edu-place { font-size: 0.72rem; color: var(--text3); }
+
+        /* ── Cert Groups ── */
+        .cert-groups { display: flex; flex-direction: column; gap: 14px; }
+
+        .cert-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+
+        .cert-group-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--indigo);
+            margin-bottom: 10px;
+        }
+
+        .cert-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+        .ct {
+            font-size: 0.73rem;
+            color: var(--text2);
+            background: rgba(255,255,255,0.03);
+            padding: 5px 11px;
+            border-radius: 7px;
             border: 1px solid var(--border);
         }
 
-        /* Footer */
+        /* ── Footer ── */
         .footer {
             text-align: center;
-            padding: 48px 0 24px;
+            padding: 48px 0 16px;
             border-top: 1px solid var(--border);
-            margin-top: 48px;
         }
 
-        .footer-text {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
+        .footer-note { font-size: 0.78rem; color: var(--text3); margin-bottom: 20px; }
 
         .footer-cta {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            color: var(--bg-primary);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: #07101f;
+            background: linear-gradient(135deg, var(--indigo), var(--cyan));
             text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            padding: 13px 28px;
+            border-radius: 10px;
+            transition: opacity .2s, transform .2s;
         }
 
-        .footer-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px var(--primary-glow);
-        }
+        .footer-cta:hover { opacity: 0.88; transform: translateY(-2px); }
 
-        /* Responsive */
+        /* ── Responsive ── */
         @media (max-width: 768px) {
-            .metrics {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project.featured {
-                grid-column: span 1;
-            }
-
-            .tech-stack {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .skills-grid,
-            .edu-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
+            h1 { font-size: 2.4rem; }
+            .metrics { grid-template-columns: repeat(2, 1fr); }
+            .grid2 { grid-template-columns: 1fr; }
+            .card.span2 { grid-column: span 1; }
+            .stack-grid { grid-template-columns: repeat(3, 1fr); }
+            .edu-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 480px) {
-            .metrics {
-                grid-template-columns: 1fr;
-            }
-
-            .tech-stack {
-                grid-template-columns: 1fr;
-            }
+            h1 { font-size: 1.9rem; }
+            .metrics { grid-template-columns: 1fr; }
+            .stack-grid { grid-template-columns: repeat(2, 1fr); }
+            .edu-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="avatar">IS</div>
-            <h1>Isaac Silveira</h1>
-            <p class="subtitle">Desenvolvedor Full-Stack & Especialista em Automação · IA</p>
-            <p class="location">Salvador, BA • Disponível para trabalho remoto</p>
-            <div class="contact-row">
-                <a href="curriculo.html" target="_blank">Currículo</a>
-                <a href="https://github.com/izack07-collab" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/isaac-silveira-49b09821a" target="_blank">LinkedIn</a>
-                <a href="mailto:izack07@gmail.com">Email</a>
-            </div>
-        </header>
+<div class="wrap">
 
-        <!-- Pitch -->
-        <div class="pitch-box">
-            <p>
-                Construo <strong>sistemas SaaS completos</strong> — de aplicações React/TypeScript multi-tenant
-                até <strong>agentes de IA autônomos</strong> que vendem, qualificam leads e atendem clientes
-                via WhatsApp <strong>24/7 em produção real</strong>.
-            </p>
-            <p style="margin-top: 16px; font-size: 0.95rem; color: var(--text-muted);">
-                Stack principal: React · TypeScript · Supabase · n8n · LLMs. Uso Claude Code e Cursor como
-                ferramentas de desenvolvimento no dia a dia.
-            </p>
-        </div>
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-badge">Disponível para novas oportunidades</div>
+        <h1>Isaac Silveira</h1>
+        <p class="hero-sub">Desenvolvedor Full-Stack &amp; Especialista em Automação · IA</p>
+        <p class="hero-loc">Salvador, BA · Remoto</p>
+        <nav class="links">
+            <a class="link" href="curriculo.html" target="_blank">Currículo</a>
+            <a class="link" href="https://github.com/izack07-collab" target="_blank">GitHub</a>
+            <a class="link" href="https://linkedin.com/in/isaac-silveira-49b09821a" target="_blank">LinkedIn</a>
+            <a class="link" href="mailto:izack07@gmail.com">izack07@gmail.com</a>
+        </nav>
+    </header>
 
-        <!-- Metrics -->
-        <div class="metrics">
-            <div class="metric">
-                <div class="metric-value">6+</div>
-                <div class="metric-label">Projetos em produção</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value">3</div>
-                <div class="metric-label">Ecossistemas completos</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value">n8n</div>
-                <div class="metric-label">Stack principal</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value">LLMs</div>
-                <div class="metric-label">OpenAI / Claude</div>
-            </div>
-        </div>
-
-        <!-- Projects -->
-        <section>
-            <div class="section-header">
-                <h2 class="section-title">Projetos em Produção</h2>
-                <a href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/workflows" target="_blank"
-                    class="section-link">Ver todos no GitHub →</a>
-            </div>
-
-            <div class="projects-grid">
-                <div class="project featured">
-                    <div class="project-header">
-                        <h3 class="project-title">Sistema de Recuperação de Vendas (MVM Creators)</h3>
-                        <span class="project-badge production">Em Produção</span>
-                    </div>
-                    <p class="project-desc">
-                        Agente IA completo para e-commerce que detecta carrinhos abandonados, executa follow-up em 3
-                        etapas,
-                        processa áudio/imagem/PDF e atende clientes via WhatsApp com memória persistente e RAG.
-                    </p>
-                    <p class="project-result">Recuperação automática de vendas operando 24/7</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">n8n</span>
-                        <span class="tech-tag">OpenAI GPT-4</span>
-                        <span class="tech-tag">Supabase</span>
-                        <span class="tech-tag">Redis</span>
-                        <span class="tech-tag">Evolution API</span>
-                        <span class="tech-tag">RAG</span>
-                    </div>
-                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/projetos/mvm"
-                        target="_blank" class="btn-code">Ver Arquitetura</a>
-                </div>
-
-                <div class="project">
-                    <div class="project-header">
-                        <h3 class="project-title">Agente SDR com IA</h3>
-                        <span class="project-badge production">Em Produção</span>
-                    </div>
-                    <p class="project-desc">Qualifica leads automaticamente e encaminha apenas os prontos para o time
-                        comercial.</p>
-                    <p class="project-result">Redução de 70% no tempo de pré-venda</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">n8n</span>
-                        <span class="tech-tag">LLMs</span>
-                        <span class="tech-tag">CRM</span>
-                    </div>
-                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/05-lead-capture-sdr.json"
-                        target="_blank" class="btn-code">Ver Código</a>
-                </div>
-
-                <div class="project">
-                    <div class="project-header">
-                        <h3 class="project-title">Gerador de Vídeos UGC</h3>
-                        <span class="project-badge functional">Funcional</span>
-                    </div>
-                    <p class="project-desc">Transforma imagem de produto em vídeo comercial estilo UGC automaticamente.
-                    </p>
-                    <p class="project-result">Criação de conteúdo em minutos</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">GPT-4 Vision</span>
-                        <span class="tech-tag">Veo3</span>
-                        <span class="tech-tag">fal.ai</span>
-                    </div>
-                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/01-ugc-video-generator.json"
-                        target="_blank" class="btn-code">Ver Código</a>
-                </div>
-
-                <div class="project">
-                    <div class="project-header">
-                        <h3 class="project-title">Sistema Multiagente de Suporte</h3>
-                        <span class="project-badge functional">Funcional</span>
-                    </div>
-                    <p class="project-desc">Orquestrador + especialistas com RAG próprio para suporte técnico
-                        automatizado.</p>
-                    <p class="project-result">Atendimento 24/7 sem intervenção</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Multiagente</span>
-                        <span class="tech-tag">Vector Store</span>
-                    </div>
-                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/02-multiagent-support.json"
-                        target="_blank" class="btn-code">Ver Código</a>
-                </div>
-
-                <div class="project">
-                    <div class="project-header">
-                        <h3 class="project-title">Agente Vendedor E-commerce</h3>
-                        <span class="project-badge functional">Funcional</span>
-                    </div>
-                    <p class="project-desc">Vendas automatizadas com geração de cobrança Pix/Boleto/Cartão via Asaas.
-                    </p>
-                    <p class="project-result">Checkout completo automatizado</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Asaas</span>
-                        <span class="tech-tag">MCP Tools</span>
-                    </div>
-                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/03-ecommerce-sales-agent.json"
-                        target="_blank" class="btn-code">Ver Código</a>
-                </div>
-
-                <div class="project">
-                    <div class="project-header">
-                        <h3 class="project-title">Agente de Voz SDR</h3>
-                        <span class="project-badge functional">Funcional</span>
-                    </div>
-                    <p class="project-desc">Agente de voz com IA que realiza ligações outbound para qualificar leads,
-                        com integração n8n + VAPI + Supabase.</p>
-                    <p class="project-result">Qualificação automatizada por telefone 24/7</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">VAPI</span>
-                        <span class="tech-tag">n8n</span>
-                        <span class="tech-tag">Supabase</span>
-                        <span class="tech-tag">Twilio</span>
-                    </div>
-                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/projetos/voice-sdr"
-                        target="_blank" class="btn-code">Ver Arquitetura</a>
-                </div>
-
-                <div class="project">
-                    <div class="project-header">
-                        <h3 class="project-title">Vitrine Digital Inteligente (Silver Shop)</h3>
-                        <span class="project-badge production">Em Produção</span>
-                    </div>
-                    <p class="project-desc">E-commerce moderno com precificação automática via Database Triggers e
-                        pipeline de geração de imagens padronizadas (Catálogo/Lifestyle) via Agentes de IA.</p>
-                    <p class="project-result">Automação total de cadastro e consistência visual</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React + Vite</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">TanStack Query</span>
-                        <span class="tech-tag">Zod + HookForm</span>
-                        <span class="tech-tag">Shadcn/UI</span>
-                        <span class="tech-tag">Supabase</span>
-                        <span class="tech-tag">Lovable.dev</span>
-                        <span class="tech-tag">Netlify</span>
-                    </div>
-                    <div style="display: flex; gap: 10px; margin-top: 16px;">
-                        <a href="https://ripratas.com.br" target="_blank" class="btn-code">Visitar Portfólio (Site Ao
-                            Vivo)</a>
-                    </div>
-                </div>
-
-                <!-- Ecossistema PainelPsi -->
-                <div class="project featured" style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, var(--bg-card) 100%);">
-                    <div class="project-header">
-                        <h3 class="project-title">Ecossistema PainelPsi (Clínica Online)</h3>
-                        <span class="project-badge production" style="background: rgba(16,185,129,0.2); color: var(--success);">Case Exclusivo</span>
-                    </div>
-                    <p class="project-desc">
-                        SaaS multi-tenant completo para gestão de consultórios de psicologia. Arquitetura em 3 camadas:
-                        <strong style="color: var(--text-primary);">Landing Page</strong> de aquisição,
-                        <strong style="color: var(--text-primary);">Painel do Psicólogo</strong> com prontuário eletrônico, agenda drag-and-drop, financeiro e exportação de dados,
-                        e <strong style="color: var(--text-primary);">PSI Admin Hub</strong> para gestão da plataforma (analytics de retenção, aprovação de contas, feature flags).
-                    </p>
-                    <p class="project-result">Plataforma completa do cadastro ao atendimento clínico</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React + Vite</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">Shadcn/UI</span>
-                        <span class="tech-tag">Supabase (RLS)</span>
-                        <span class="tech-tag">TanStack Query</span>
-                        <span class="tech-tag">Multi-tenant</span>
-                    </div>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <a href="./projetos/clinica-online/index.html" class="btn-code">Ver Painel do Psicólogo</a>
-                        <a href="./projetos/psi-admin-hub/index.html" class="btn-code" style="border-color: var(--primary); color: var(--primary);">Ver PSI Admin Hub</a>
-                    </div>
-                </div>
-
-                <!-- RI Pratas CRM -->
-                <div class="project">
-                    <div class="project-header">
-                        <h3 class="project-title">CRM / Backoffice (RI Pratas)</h3>
-                        <span class="project-badge production" style="background-color: rgba(124,58,237,0.2); color: #a78bfa;">Case Exclusivo</span>
-                    </div>
-                    <p class="project-desc">
-                        Backoffice que substitui planilhas e serve de fonte da verdade para o e-commerce e o Agente de IA.
-                        Kanban de pedidos, gestão de estoque com variações, CRM 360 com LTV automático e integração de pagamentos via Asaas.
-                    </p>
-                    <p class="project-result">Operação centralizada com dados em tempo real para o agente</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React (Vite)</span>
-                        <span class="tech-tag">Supabase</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">n8n</span>
-                        <span class="tech-tag">Asaas</span>
-                    </div>
-                    <a href="./projetos/ri-pratas-crm/index.html" class="btn-code">Ver Detalhes do Sistema</a>
-                </div>
-
-                <!-- Agente Milena (RI Pratas) -->
-                <div class="project">
-                    <div class="project-header">
-                        <h3 class="project-title">Agente de Vendas IA (RI Pratas — Milena)</h3>
-                        <span class="project-badge production">Em Produção</span>
-                    </div>
-                    <p class="project-desc">
-                        Agente de vendas autônomo que opera via WhatsApp seguindo metodologia SPIN Selling.
-                        Arquitetura com audio debouncing para escutar mensagens sequenciais, Output Splitter para respostas humanizadas
-                        e 12+ ferramentas MCP para acesso ao CRM, estoque e Asaas.
-                    </p>
-                    <p class="project-result">Atendimento e fechamento de vendas 24/7 via WhatsApp</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">n8n</span>
-                        <span class="tech-tag">OpenAI GPT-4</span>
-                        <span class="tech-tag">Evolution API</span>
-                        <span class="tech-tag">Supabase MCP</span>
-                        <span class="tech-tag">Asaas</span>
-                        <span class="tech-tag">SPIN Selling</span>
-                    </div>
-                    <a href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/projetos/mvm"
-                        target="_blank" class="btn-code">Ver Arquitetura</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tech Stack -->
-        <section class="section-center">
-            <h2 class="section-title">Stack Principal</h2>
-            <div class="tech-stack">
-                <div class="tech-item">
-                    <div class="name">n8n</div>
-                    <div class="level">Automação</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">OpenAI / Claude</div>
-                    <div class="level">LLMs</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">WhatsApp API</div>
-                    <div class="level">Evolution API</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Supabase</div>
-                    <div class="level">PostgreSQL + Auth</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">RAG / Embeddings</div>
-                    <div class="level">Vector Search</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">VAPI</div>
-                    <div class="level">Agentes de Voz</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Python / JS</div>
-                    <div class="level">Scripting</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Git / GitHub</div>
-                    <div class="level">Versionamento</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">React + Vite</div>
-                    <div class="level">Frontend Moderno</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">TypeScript</div>
-                    <div class="level">Tipagem Estática</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">TanStack Query</div>
-                    <div class="level">State Management</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Zod / HookForm</div>
-                    <div class="level">Validação</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Lovable.dev</div>
-                    <div class="level">Prototipação AI</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Asaas</div>
-                    <div class="level">Pagamentos</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Netlify / Vercel</div>
-                    <div class="level">Deploy & CI/CD</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- AI Dev Tools -->
-        <section class="section-center">
-            <h2 class="section-title">Ferramentas de Desenvolvimento IA</h2>
-            <div class="tech-stack">
-                <div class="tech-item">
-                    <div class="name">Claude Code</div>
-                    <div class="level">CLI · Agente IA</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Cursor</div>
-                    <div class="level">AI IDE</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Shadcn UI</div>
-                    <div class="level">Design System</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Node.js / PNPM</div>
-                    <div class="level">Runtime</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Vercel AI SDK</div>
-                    <div class="level">LLM Integration</div>
-                </div>
-                <div class="tech-item">
-                    <div class="name">Stripe</div>
-                    <div class="level">Pagamentos SaaS</div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Experience -->
-        <section class="section-center">
-            <h2 class="section-title">Experiência</h2>
-            <div class="timeline centered">
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <div>
-                            <h3 class="timeline-title">Desenvolvedor Full-Stack PJ</h3>
-                            <p class="timeline-company">Salt Systems</p>
-                        </div>
-                        <span class="timeline-date">2025 – Atual</span>
-                    </div>
-                    <p class="timeline-desc">
-                        Desenvolvimento de software como prestador de serviço PJ. Participação em equipe com rotinas
-                        ágeis (daily standup) e entregas contínuas.
-                    </p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <div>
-                            <h3 class="timeline-title">Desenvolvedor Full-Stack & IA</h3>
-                            <p class="timeline-company">Projetos Independentes (Autônomo)</p>
-                        </div>
-                        <span class="timeline-date">Jul 2025 – Atual</span>
-                    </div>
-                    <p class="timeline-desc">
-                        Construção de SaaS multi-tenant (React, TypeScript, Supabase), e-commerce e agentes de IA
-                        autônomos para PMEs. Integrações com WhatsApp, CRMs e plataformas de pagamento.
-                        Uso de Claude Code e Cursor como ferramentas principais de desenvolvimento.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education -->
-        <section class="section-center">
-            <h2 class="section-title">Certificações e Treinamentos</h2>
-            <div class="edu-grid">
-                <div class="edu-item">
-                    <div class="edu-title">Formação AI Coding — Claude Code</div>
-                    <div class="edu-place">NoCode StartUp • Abr 2026</div>
-                </div>
-                <div class="edu-item">
-                    <div class="edu-title">Formação Gestor de Agentes de IA 2.0</div>
-                    <div class="edu-place">NoCode StartUp</div>
-                </div>
-                <div class="edu-item">
-                    <div class="edu-title">Supabase Intermediário</div>
-                    <div class="edu-place">NoCode StartUp • Dez 2025 – Mar 2026</div>
-                </div>
-                <div class="edu-item">
-                    <div class="edu-title">Cursor — Prototipação e Setup</div>
-                    <div class="edu-place">NoCode StartUp • Dez 2025</div>
-                </div>
-                <div class="edu-item">
-                    <div class="edu-title">Fundamentos: Software, Produtos e IA</div>
-                    <div class="edu-place">NoCode StartUp • Mar – Abr 2026</div>
-                </div>
-                <div class="edu-item">
-                    <div class="edu-title">Automação e IA Avançado</div>
-                    <div class="edu-place">IAAcademy</div>
-                </div>
-                <div class="edu-item">
-                    <div class="edu-title">Lógica de Programação</div>
-                    <div class="edu-place">SENAI</div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Certifications -->
-        <section class="section-center">
-            <h2 class="section-title">Certificações</h2>
-            <div class="certs-list">
-                <span class="cert-tag">Do Zero a Um Claude Code</span>
-                <span class="cert-tag">Skills & Projeto Prático (AI Coding)</span>
-                <span class="cert-tag">Versionamento Git</span>
-                <span class="cert-tag">Deploy e Segurança</span>
-                <span class="cert-tag">Fundamentos de Desenvolvimento de Software</span>
-                <span class="cert-tag">Fundamentos de Desenvolvimento de Produtos</span>
-                <span class="cert-tag">Fundamentos de Inteligência Artificial</span>
-                <span class="cert-tag">Supabase Iniciante — Backend & Modelagem</span>
-                <span class="cert-tag">Supabase Intermediário — Gestão de Usuários</span>
-                <span class="cert-tag">Supabase Intermediário — APIs & RLS</span>
-                <span class="cert-tag">Supabase Intermediário — Edge Functions & Triggers</span>
-                <span class="cert-tag">Cursor — Planejamento & Setup</span>
-                <span class="cert-tag">Cursor — Prototipação, UX e Defesa de Dados</span>
-                <span class="cert-tag">Agente de Voz SDR (VAPI)</span>
-                <span class="cert-tag">Agentes de IA & n8n</span>
-                <span class="cert-tag">Agente SDR com Follow-up</span>
-                <span class="cert-tag">Agente de Agendamentos</span>
-                <span class="cert-tag">Agente de Vendas com Carrinho</span>
-                <span class="cert-tag">Geração de Vídeos UGC com IA</span>
-                <span class="cert-tag">Web Scraping & Raspagem de Dados</span>
-                <span class="cert-tag">RAG (PDF, Planilhas, Arquivos)</span>
-                <span class="cert-tag">Tools para Agentes</span>
-                <span class="cert-tag">Engenharia de Prompt</span>
-                <span class="cert-tag">API Meta WhatsApp</span>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p class="footer-text">Portfólio atualizado em Abril 2026</p>
-        </footer>
+    <!-- About -->
+    <div class="about">
+        <p>
+            Construo <strong>sistemas SaaS completos</strong> — de aplicações React/TypeScript multi-tenant
+            até <strong>agentes de IA autônomos</strong> que vendem, qualificam leads e atendem clientes
+            via WhatsApp <strong>24/7 em produção real</strong>.
+        </p>
+        <p class="note">
+            Stack principal:
+            <span>React · TypeScript · Supabase · n8n · LLMs</span>.
+            Uso <span>Claude Code</span> e <span>Cursor</span> como ferramentas de desenvolvimento no dia a dia.
+        </p>
     </div>
-</body>
 
+    <!-- Metrics -->
+    <div class="metrics">
+        <div class="metric">
+            <div class="metric-val">6+</div>
+            <div class="metric-lbl">Projetos em produção</div>
+        </div>
+        <div class="metric">
+            <div class="metric-val">3</div>
+            <div class="metric-lbl">Ecossistemas completos</div>
+        </div>
+        <div class="metric">
+            <div class="metric-val">10+</div>
+            <div class="metric-lbl">Agentes desenvolvidos</div>
+        </div>
+        <div class="metric">
+            <div class="metric-val">24/7</div>
+            <div class="metric-lbl">Sistemas em produção</div>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <section>
+        <h2 class="label">Projetos</h2>
+        <div class="grid2">
+
+            <!-- PainelPsi — featured -->
+            <div class="card span2 green">
+                <div class="card-top">
+                    <h3 class="card-title">Ecossistema PainelPsi (Clínica Online)</h3>
+                    <span class="badge case">Case Exclusivo</span>
+                </div>
+                <p class="card-desc">
+                    SaaS multi-tenant completo para gestão de consultórios de psicologia. Arquitetura em 3 camadas:
+                    <strong style="color:var(--text)">Landing Page</strong> de aquisição,
+                    <strong style="color:var(--text)">Painel do Psicólogo</strong> com prontuário eletrônico, agenda drag-and-drop, financeiro e exportação de dados,
+                    e <strong style="color:var(--text)">PSI Admin Hub</strong> para gestão da plataforma (analytics de retenção, aprovação de contas, feature flags).
+                </p>
+                <p class="card-result">Plataforma completa do cadastro ao atendimento clínico</p>
+                <div class="tags">
+                    <span class="tag">React + Vite</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Shadcn/UI</span>
+                    <span class="tag">Supabase (RLS)</span>
+                    <span class="tag">TanStack Query</span>
+                    <span class="tag">Multi-tenant</span>
+                </div>
+                <div class="btn-row">
+                    <a class="btn" href="./projetos/clinica-online/index.html">Ver Painel do Psicólogo</a>
+                    <a class="btn alt" href="./projetos/psi-admin-hub/index.html">Ver PSI Admin Hub</a>
+                </div>
+            </div>
+
+            <!-- RI Pratas CRM -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">CRM / Backoffice (RI Pratas)</h3>
+                    <span class="badge case">Case Exclusivo</span>
+                </div>
+                <p class="card-desc">
+                    Backoffice que substitui planilhas e serve de fonte da verdade para o e-commerce e o Agente de IA.
+                    Kanban de pedidos, gestão de estoque com variações, CRM 360 com LTV automático e integração de pagamentos via Asaas.
+                </p>
+                <p class="card-result">Operação centralizada com dados em tempo real</p>
+                <div class="tags">
+                    <span class="tag">React (Vite)</span>
+                    <span class="tag">Supabase</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">n8n</span>
+                    <span class="tag">Asaas</span>
+                </div>
+                <a class="btn" href="./projetos/ri-pratas-crm/index.html">Ver Detalhes</a>
+            </div>
+
+            <!-- Milena -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">Agente de Vendas IA (RI Pratas — Milena)</h3>
+                    <span class="badge prod">Em Produção</span>
+                </div>
+                <p class="card-desc">
+                    Agente de vendas autônomo via WhatsApp com SPIN Selling, audio debouncing, Output Splitter
+                    e 12+ ferramentas MCP para acesso ao CRM, estoque e Asaas.
+                </p>
+                <p class="card-result">Atendimento e fechamento de vendas 24/7</p>
+                <div class="tags">
+                    <span class="tag">n8n</span>
+                    <span class="tag">OpenAI GPT-4</span>
+                    <span class="tag">Evolution API</span>
+                    <span class="tag">Supabase MCP</span>
+                    <span class="tag">Asaas</span>
+                </div>
+                <a class="btn" href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/projetos/mvm" target="_blank">Ver Arquitetura</a>
+            </div>
+
+            <!-- Silver Shop -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">Vitrine Digital Inteligente (Silver Shop)</h3>
+                    <span class="badge prod">Em Produção</span>
+                </div>
+                <p class="card-desc">
+                    E-commerce moderno com precificação automática via Database Triggers e pipeline de geração de
+                    imagens padronizadas via Agentes de IA.
+                </p>
+                <p class="card-result">Automação total de cadastro e consistência visual</p>
+                <div class="tags">
+                    <span class="tag">React + Vite</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Shadcn/UI</span>
+                    <span class="tag">Supabase</span>
+                    <span class="tag">Netlify</span>
+                </div>
+                <a class="btn" href="https://ripratas.com.br" target="_blank">Site ao Vivo</a>
+            </div>
+
+            <!-- MVM -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">Sistema de Recuperação de Vendas (MVM Creators)</h3>
+                    <span class="badge prod">Em Produção</span>
+                </div>
+                <p class="card-desc">
+                    Agente IA para e-commerce que detecta carrinhos abandonados, executa follow-up em 3 etapas
+                    e atende clientes via WhatsApp com memória persistente e RAG.
+                </p>
+                <p class="card-result">Recuperação automática de vendas operando 24/7</p>
+                <div class="tags">
+                    <span class="tag">n8n</span>
+                    <span class="tag">OpenAI GPT-4</span>
+                    <span class="tag">Supabase</span>
+                    <span class="tag">Redis</span>
+                    <span class="tag">RAG</span>
+                </div>
+                <a class="btn" href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/workflows" target="_blank">Ver Arquitetura</a>
+            </div>
+
+            <!-- SDR -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">Agente SDR com IA</h3>
+                    <span class="badge prod">Em Produção</span>
+                </div>
+                <p class="card-desc">Qualifica leads automaticamente e encaminha apenas os prontos para o time comercial.</p>
+                <p class="card-result">Redução de 70% no tempo de pré-venda</p>
+                <div class="tags">
+                    <span class="tag">n8n</span>
+                    <span class="tag">LLMs</span>
+                    <span class="tag">CRM</span>
+                    <span class="tag">WhatsApp</span>
+                </div>
+                <a class="btn" href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/05-lead-capture-sdr.json" target="_blank">Ver Código</a>
+            </div>
+
+            <!-- Voice SDR -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">Agente de Voz SDR</h3>
+                    <span class="badge func">Funcional</span>
+                </div>
+                <p class="card-desc">Agente de voz com IA que realiza ligações outbound para qualificar leads.</p>
+                <p class="card-result">Qualificação automatizada por telefone 24/7</p>
+                <div class="tags">
+                    <span class="tag">VAPI</span>
+                    <span class="tag">n8n</span>
+                    <span class="tag">Supabase</span>
+                    <span class="tag">Twilio</span>
+                </div>
+                <a class="btn" href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/projetos/voice-sdr" target="_blank">Ver Arquitetura</a>
+            </div>
+
+            <!-- UGC -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">Gerador de Vídeos UGC</h3>
+                    <span class="badge func">Funcional</span>
+                </div>
+                <p class="card-desc">Transforma imagem de produto em vídeo comercial estilo UGC automaticamente.</p>
+                <p class="card-result">Criação de conteúdo em minutos</p>
+                <div class="tags">
+                    <span class="tag">GPT-4 Vision</span>
+                    <span class="tag">Veo3</span>
+                    <span class="tag">fal.ai</span>
+                    <span class="tag">n8n</span>
+                </div>
+                <a class="btn" href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/01-ugc-video-generator.json" target="_blank">Ver Código</a>
+            </div>
+
+            <!-- Multiagente -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">Sistema Multiagente de Suporte</h3>
+                    <span class="badge func">Funcional</span>
+                </div>
+                <p class="card-desc">Orquestrador + especialistas com RAG próprio para suporte técnico automatizado.</p>
+                <p class="card-result">Atendimento 24/7 sem intervenção</p>
+                <div class="tags">
+                    <span class="tag">Multiagente</span>
+                    <span class="tag">Vector Store</span>
+                    <span class="tag">n8n</span>
+                </div>
+                <a class="btn" href="https://github.com/izack07-collab/izack07-collab.github.io/blob/main/workflows/02-multiagent-support.json" target="_blank">Ver Código</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Stack -->
+    <section>
+        <h2 class="label">Stack Técnica</h2>
+        <div class="stack-section">
+            <div class="stack-group">
+                <p class="stack-group-title">Frontend</p>
+                <div class="stack-grid">
+                    <div class="stack-item"><div class="stack-name">React + Vite</div><div class="stack-sub">Frontend Moderno</div></div>
+                    <div class="stack-item"><div class="stack-name">TypeScript</div><div class="stack-sub">Tipagem Estática</div></div>
+                    <div class="stack-item"><div class="stack-name">Shadcn/UI</div><div class="stack-sub">Design System</div></div>
+                    <div class="stack-item"><div class="stack-name">TailwindCSS</div><div class="stack-sub">Estilização</div></div>
+                    <div class="stack-item"><div class="stack-name">TanStack Query</div><div class="stack-sub">State / Cache</div></div>
+                </div>
+            </div>
+            <div class="stack-group">
+                <p class="stack-group-title">Backend & Banco</p>
+                <div class="stack-grid">
+                    <div class="stack-item"><div class="stack-name">Supabase</div><div class="stack-sub">Auth · RLS · Storage</div></div>
+                    <div class="stack-item"><div class="stack-name">PostgreSQL</div><div class="stack-sub">Banco Relacional</div></div>
+                    <div class="stack-item"><div class="stack-name">Edge Functions</div><div class="stack-sub">Serverless</div></div>
+                    <div class="stack-item"><div class="stack-name">Zod + HookForm</div><div class="stack-sub">Validação</div></div>
+                    <div class="stack-item"><div class="stack-name">Node.js</div><div class="stack-sub">Runtime</div></div>
+                </div>
+            </div>
+            <div class="stack-group">
+                <p class="stack-group-title">IA & Automação</p>
+                <div class="stack-grid">
+                    <div class="stack-item"><div class="stack-name">n8n</div><div class="stack-sub">Automação</div></div>
+                    <div class="stack-item"><div class="stack-name">OpenAI / Claude</div><div class="stack-sub">LLMs</div></div>
+                    <div class="stack-item"><div class="stack-name">RAG / Embeddings</div><div class="stack-sub">Vector Search</div></div>
+                    <div class="stack-item"><div class="stack-name">VAPI</div><div class="stack-sub">Agentes de Voz</div></div>
+                    <div class="stack-item"><div class="stack-name">Evolution API</div><div class="stack-sub">WhatsApp</div></div>
+                </div>
+            </div>
+            <div class="stack-group">
+                <p class="stack-group-title">Ferramentas & Deploy</p>
+                <div class="stack-grid">
+                    <div class="stack-item"><div class="stack-name">Claude Code</div><div class="stack-sub">CLI · Agente IA</div></div>
+                    <div class="stack-item"><div class="stack-name">Cursor</div><div class="stack-sub">AI IDE</div></div>
+                    <div class="stack-item"><div class="stack-name">Git / GitHub</div><div class="stack-sub">Versionamento</div></div>
+                    <div class="stack-item"><div class="stack-name">Netlify / Vercel</div><div class="stack-sub">Deploy &amp; CI/CD</div></div>
+                    <div class="stack-item"><div class="stack-name">Asaas</div><div class="stack-sub">Pagamentos</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section>
+        <h2 class="label">Experiência</h2>
+        <div class="tl">
+            <div class="tl-card">
+                <div class="tl-top">
+                    <div>
+                        <h3 class="tl-title">Desenvolvedor Full-Stack PJ</h3>
+                        <p class="tl-company">Salt Systems</p>
+                    </div>
+                    <span class="tl-date">2025 – Atual</span>
+                </div>
+                <p class="tl-desc">Desenvolvimento de software como prestador de serviço PJ. Participação em equipe com rotinas ágeis (daily standup) e entregas contínuas.</p>
+            </div>
+            <div class="tl-card">
+                <div class="tl-top">
+                    <div>
+                        <h3 class="tl-title">Desenvolvedor Full-Stack &amp; IA</h3>
+                        <p class="tl-company">Projetos Independentes (Autônomo)</p>
+                    </div>
+                    <span class="tl-date">Jul 2025 – Atual</span>
+                </div>
+                <p class="tl-desc">Construção de SaaS multi-tenant (React, TypeScript, Supabase), e-commerce, painéis administrativos e agentes de IA autônomos para PMEs. Integrações com WhatsApp, CRMs e plataformas de pagamento. Uso de Claude Code e Cursor como ferramentas principais de desenvolvimento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formação -->
+    <section>
+        <h2 class="label">Formação &amp; Certificações</h2>
+        <div class="edu-grid">
+            <div class="edu-card">
+                <div class="edu-title">Formação AI Coding — Claude Code</div>
+                <div class="edu-place">NoCode StartUp · Abr 2026</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-title">Formação Gestor de Agentes de IA 2.0</div>
+                <div class="edu-place">NoCode StartUp</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-title">Supabase Intermediário</div>
+                <div class="edu-place">NoCode StartUp · Dez 2025 – Mar 2026</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-title">Cursor — Prototipação e Setup</div>
+                <div class="edu-place">NoCode StartUp · Dez 2025</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-title">Fundamentos: Software, Produtos e IA</div>
+                <div class="edu-place">NoCode StartUp · Mar – Abr 2026</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-title">Automação e IA Avançado</div>
+                <div class="edu-place">IAAcademy</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-title">Lógica de Programação</div>
+                <div class="edu-place">SENAI</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulos -->
+    <section>
+        <h2 class="label">Módulos Concluídos</h2>
+        <div class="cert-groups">
+
+            <div class="cert-group">
+                <div class="cert-group-label">AI Coding — Claude Code</div>
+                <div class="cert-tags">
+                    <span class="ct">Do Zero a Um Claude Code</span>
+                    <span class="ct">Skills & Projeto Prático</span>
+                    <span class="ct">Versionamento Git</span>
+                    <span class="ct">Deploy e Segurança</span>
+                </div>
+            </div>
+
+            <div class="cert-group">
+                <div class="cert-group-label">Supabase</div>
+                <div class="cert-tags">
+                    <span class="ct">Fundamentos Backend e Modelagem de Dados</span>
+                    <span class="ct">Gestão de Usuários</span>
+                    <span class="ct">APIs e RLS Segurança</span>
+                    <span class="ct">Funções, Triggers e Edge Functions</span>
+                </div>
+            </div>
+
+            <div class="cert-group">
+                <div class="cert-group-label">Cursor</div>
+                <div class="cert-tags">
+                    <span class="ct">Planejamento e Setup do Projeto</span>
+                    <span class="ct">Prototipação, UX e Defesa de Dados</span>
+                </div>
+            </div>
+
+            <div class="cert-group">
+                <div class="cert-group-label">Fundamentos</div>
+                <div class="cert-tags">
+                    <span class="ct">Fundamentos Desenvolvimento de Software</span>
+                    <span class="ct">Fundamentos Desenvolvimento de Produtos</span>
+                    <span class="ct">Fundamentos Inteligência Artificial</span>
+                </div>
+            </div>
+
+            <div class="cert-group">
+                <div class="cert-group-label">Agentes de IA</div>
+                <div class="cert-tags">
+                    <span class="ct">Agente de Voz SDR (VAPI)</span>
+                    <span class="ct">Agentes de IA & n8n</span>
+                    <span class="ct">Agente SDR com Follow-up</span>
+                    <span class="ct">Agente de Agendamentos</span>
+                    <span class="ct">Agente de Vendas com Carrinho</span>
+                    <span class="ct">Geração de Vídeos UGC com IA</span>
+                    <span class="ct">Web Scraping & Raspagem de Dados</span>
+                    <span class="ct">RAG (PDF, Planilhas, Arquivos)</span>
+                    <span class="ct">Tools para Agentes</span>
+                    <span class="ct">Engenharia de Prompt</span>
+                    <span class="ct">API Meta WhatsApp</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-note">Portfólio atualizado em Abril 2026</p>
+        <a class="footer-cta" href="mailto:izack07@gmail.com">Entre em contato</a>
+    </footer>
+
+</div>
+</body>
 </html>
