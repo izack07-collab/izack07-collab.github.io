@@ -187,10 +187,10 @@
             <h2 class="section-title">Habilidades Técnicas</h2>
             <p class="skills-text">
                 React, TypeScript, Vite, TanStack Query, Zod, React Hook Form, Shadcn/UI, TailwindCSS,
-                Supabase (Auth, RLS, Edge Functions, Triggers), PostgreSQL, Node.js,
-                n8n, OpenAI API, Anthropic API, Claude Code, Cursor,
-                VAPI (Agentes de Voz), Evolution API (WhatsApp), Langchain, Redis, GoHighLevel (CRM),
-                Python, JavaScript, Git/GitHub, Netlify, Vercel
+                Supabase (Auth, RLS, Edge Functions, Triggers), PostgreSQL, MongoDB, MySQL, Redis,
+                Node.js, Express, n8n, OpenAI API, Anthropic API, Claude Code, Cursor,
+                VAPI + ElevenLabs (Agentes de Voz), Evolution API (WhatsApp), Chatwoot, Gupshup/Twilio,
+                Metabase, MCP (Model Context Protocol), Python, JavaScript, Git/GitHub, Playwright, Netlify, Vercel
             </p>
         </div>
 
@@ -205,8 +205,12 @@
                 </div>
                 <div class="item-company">Salt Systems</div>
                 <p class="item-desc">
-                    Desenvolvimento de software como prestador de serviço PJ. Participação em equipe com rotinas ágeis
-                    (daily standup) e entregas contínuas.
+                    Prestação de serviço PJ em automação e integração de sistemas. Manutenção e correção de workflows n8n
+                    em produção para atendimento WhatsApp Business multicanal (Chatwoot, Gupshup, Twilio), com diagnóstico
+                    e correção de bugs críticos a partir de análise de execuções reais. Auditoria de fluxos conversacionais
+                    (Typebot) contra especificação de cliente, auditoria de custo de templates de mensageria (Meta/WhatsApp)
+                    e desenvolvimento de backend de microserviço REST (Node.js, MongoDB, Redis, MySQL) para carteiras de
+                    cobrança. Rotinas ágeis com daily standup.
                 </p>
             </div>
 
@@ -217,9 +221,10 @@
                 </div>
                 <div class="item-company">Autônomo / Freelancer</div>
                 <p class="item-desc">
-                    Construção de SaaS multi-tenant (React, TypeScript, Supabase), e-commerce, painéis administrativos
-                    e agentes de IA autônomos para PMEs. Integrações com WhatsApp, CRMs e plataformas de pagamento.
-                    Uso de Claude Code e Cursor como ferramentas principais de desenvolvimento.
+                    Construção de SaaS multi-tenant (React, TypeScript, Supabase), e-commerce e agentes de IA autônomos
+                    para PMEs. Desenvolvimento de um conjunto de produtos SaaS sobre um backbone multi-tenant compartilhado
+                    — plataforma de cobrança automatizada, ERP modular e controle de jornada — unificados por um control
+                    plane. Integrações com WhatsApp, CRMs e plataformas de pagamento. Uso de Claude Code e Cursor no dia a dia.
                 </p>
             </div>
         </div>
@@ -269,14 +274,14 @@
             </div>
 
             <div class="item">
-                <div class="item-title">Ecossistema PainelPsi (Clínica Online)</div>
+                <div class="item-title">Ecossistema PainelPsi — painelpsi.com.br (Em Produção)</div>
                 <p class="item-desc">
-                    SaaS multi-tenant completo para gestão de consultórios de psicologia, composto por 3 camadas:
-                    (1) <strong>Landing Page</strong> de aquisição com planos e fluxo de cadastro;
-                    (2) <strong>Painel do Psicólogo</strong> com prontuário eletrônico, agenda drag-and-drop, financeiro, exportação de dados e sistema de onboarding;
-                    (3) <strong>PSI Admin Hub</strong> — painel interno com analytics de retenção, gestão de contas (aprovação/suspensão), logs de auditoria e configurações globais da plataforma.
+                    SaaS B2B para gestão de consultórios de psicologia, ao vivo e com beta tester real. Arquitetura em 3 camadas:
+                    (1) <strong>Landing Page</strong> com tiers e billing via Asaas (PIX, cartão, boleto) e conformidade CFP/LGPD;
+                    (2) <strong>Painel do Psicólogo</strong> com prontuário eletrônico (IA + CFP), agenda com Google Meet, financeiro com exportação CSV, recibo IR e onboarding guiado;
+                    (3) <strong>PSI Admin Hub</strong> — analytics de MRR/churn/cohort, gestão de contas e logs de auditoria. Séries de email onboarding e reengajamento via n8n + Zoho Mail.
                 </p>
-                <p class="item-tech">Tecnologias: React, Vite, TypeScript, Shadcn/UI, Supabase (RLS), TanStack Query, Multi-tenant</p>
+                <p class="item-tech">Tecnologias: React, Vite, TypeScript, Shadcn/UI, Supabase (RLS + Edge Functions), TanStack Query, n8n, Asaas, Vercel</p>
             </div>
 
             <div class="item">
@@ -291,17 +296,45 @@
             </div>
 
             <div class="item">
-                <div class="item-title">Ecossistema Automatizza — Agência de IA para Clínicas (Co-fundador Técnico)</div>
+                <div class="item-title">Suite de Produtos SaaS Multi-tenant</div>
                 <p class="item-desc">
-                    Agência B2B de automação co-fundada como sócio técnico. Dois agentes em produção:
-                    (1) <strong>Ana (SDR da Automatizza)</strong> — qualifica leads B2B via WhatsApp com script M1→M4,
-                    cria contatos e oportunidades no GoHighLevel automaticamente, move leads no pipeline e notifica o
-                    sócio comercial com resumo estruturado ao qualificar (≥R$10k/mês) ou ao enviar convite de reunião;
-                    (2) <strong>Sofia (produto vendido às clínicas)</strong> — agente de atendimento humanizado para
-                    clínicas odontológicas, multimodal (texto, áudio via Whisper, imagem via GPT-4o Vision, PDF),
-                    com memória relacional (Langchain + Postgres), buffer Redis e transbordo seguro para recepção.
+                    Desenvolvimento de um conjunto de produtos SaaS sobre um backbone multi-tenant compartilhado,
+                    unificados por um <strong>control plane</strong> (painel único de operação por produto e por cliente):
+                    (1) <strong>plataforma de cobrança automatizada</strong> com planos/tiers e disparo de mensagens via WhatsApp (upload de planilha, validação, orquestração n8n);
+                    (2) <strong>ERP modular para PMEs</strong> (financeiro, emissão de NFSe, cadastros);
+                    (3) <strong>controle de jornada de trabalho</strong>. Isolamento por tenant via RLS, Edge Functions e automações integradas.
                 </p>
-                <p class="item-tech">Tecnologias: n8n, OpenAI GPT-4o, Whisper, Evolution API, Redis, Langchain, PostgreSQL, GoHighLevel</p>
+                <p class="item-tech">Tecnologias: React 18/19, Vite, TypeScript, Shadcn/UI, Supabase (RLS + Edge Functions), Multi-tenant, n8n, Evolution API, PostgreSQL</p>
+            </div>
+
+            <div class="item">
+                <div class="item-title">Microserviço de Integração para Carteiras de Cobrança (Salt)</div>
+                <p class="item-desc">
+                    Camada de integração REST entre agentes conversacionais e as APIs/bancos de carteiras de cobrança de
+                    grandes clientes. Roteamento por tipo de operação, régua de cobrança, geração de boletos e integração
+                    com APIs legadas (SOAP) e bases MongoDB, dentro de um microserviço em produção que atende múltiplas carteiras.
+                </p>
+                <p class="item-tech">Tecnologias: Node.js, Express, MongoDB, Redis, MySQL, REST/SOAP</p>
+            </div>
+
+            <div class="item">
+                <div class="item-title">OpenSquad — Framework de Orquestração Multi-Agente</div>
+                <p class="item-desc">
+                    Framework próprio que monta squads de agentes de IA que colaboram em tarefas (conteúdo, dados,
+                    automação), com definição declarativa de squads em YAML, pipeline de orquestração e dashboard de
+                    acompanhamento em tempo real. Skills plugáveis (scraping, publicação, design).
+                </p>
+                <p class="item-tech">Tecnologias: Node.js, YAML, Playwright, React, WebSocket</p>
+            </div>
+
+            <div class="item">
+                <div class="item-title">Agente de Voz para Atendimento Telefônico</div>
+                <p class="item-desc">
+                    MVP de agente de voz que atende ligações em tempo real (fala ↔ fala): reconhecimento de fala, LLM e
+                    síntese de voz, integrado a telefonia e base de conhecimento (RAG). Fluxo ligação → STT → LLM → TTS
+                    orquestrado por webhooks.
+                </p>
+                <p class="item-tech">Tecnologias: VAPI, ElevenLabs, Twilio, n8n, Supabase (RAG), OpenAI</p>
             </div>
 
             <div class="item">
@@ -310,7 +343,7 @@
                     Agente de IA para e-commerce que detecta carrinhos abandonados, executa follow-ups automáticos e
                     atende clientes via WhatsApp. Processa áudio, imagem e PDF.
                 </p>
-                <p class="item-tech">Tecnologias: n8n, OpenAI GPT-4, Supabase, Redis, Evolution API, RAG</p>
+                <p class="item-tech">Tecnologias: n8n, OpenAI GPT-4, Evolution API, Supabase, Redis, RAG</p>
             </div>
 
         </div>

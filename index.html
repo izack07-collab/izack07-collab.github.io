@@ -554,26 +554,52 @@
             <div class="card span2 green">
                 <div class="card-top">
                     <h3 class="card-title">Ecossistema PainelPsi (Clínica Online)</h3>
-                    <span class="badge case">Case Exclusivo</span>
+                    <span class="badge prod">Em Produção</span>
                 </div>
                 <p class="card-desc">
-                    SaaS multi-tenant completo para gestão de consultórios de psicologia. Arquitetura em 3 camadas:
-                    <strong style="color:var(--text)">Landing Page</strong> de aquisição,
-                    <strong style="color:var(--text)">Painel do Psicólogo</strong> com prontuário eletrônico, agenda drag-and-drop, financeiro e exportação de dados,
-                    e <strong style="color:var(--text)">PSI Admin Hub</strong> para gestão da plataforma (analytics de retenção, aprovação de contas, feature flags).
+                    SaaS B2B para gestão de consultórios de psicologia, ao vivo em <strong style="color:var(--text)">painelpsi.com.br</strong>. Arquitetura em 3 camadas:
+                    <strong style="color:var(--text)">Landing Page</strong> de aquisição com tiers e billing via Asaas,
+                    <strong style="color:var(--text)">Painel do Psicólogo</strong> com prontuário eletrônico (IA + CFP), agenda com Google Meet, financeiro com exportação CSV e recibo IR,
+                    e <strong style="color:var(--text)">PSI Admin Hub</strong> com analytics de MRR/churn/cohort, gestão de contas e logs de auditoria. Séries de email onboarding e reengajamento via n8n + Zoho Mail.
                 </p>
-                <p class="card-result">Plataforma completa do cadastro ao atendimento clínico</p>
+                <p class="card-result">Plataforma completa do cadastro ao atendimento clínico — validada por beta tester real</p>
                 <div class="tags">
                     <span class="tag">React + Vite</span>
                     <span class="tag">TypeScript</span>
                     <span class="tag">Shadcn/UI</span>
-                    <span class="tag">Supabase (RLS)</span>
+                    <span class="tag">Supabase (RLS + Edge Functions)</span>
                     <span class="tag">TanStack Query</span>
-                    <span class="tag">Multi-tenant</span>
+                    <span class="tag">n8n</span>
+                    <span class="tag">Asaas</span>
+                    <span class="tag">Vercel</span>
                 </div>
                 <div class="btn-row">
-                    <a class="btn" href="./projetos/clinica-online/index.html">Ver Painel do Psicólogo</a>
-                    <a class="btn alt" href="./projetos/psi-admin-hub/index.html">Ver PSI Admin Hub</a>
+                    <a class="btn" href="https://painelpsi.com.br" target="_blank">Site ao Vivo</a>
+                </div>
+            </div>
+
+            <!-- Suite SaaS Multi-tenant -->
+            <div class="card span2">
+                <div class="card-top">
+                    <h3 class="card-title">Suite de Produtos SaaS Multi-tenant</h3>
+                    <span class="badge func">Em Piloto</span>
+                </div>
+                <p class="card-desc">
+                    Desenvolvimento de um conjunto de produtos SaaS sobre um <strong style="color:var(--text)">backbone multi-tenant compartilhado</strong>,
+                    unificados por um <strong style="color:var(--text)">control plane</strong> (painel único de operação por produto e por cliente). Inclui:
+                    <strong style="color:var(--text)">plataforma de cobrança automatizada</strong> com planos/tiers e disparo de mensagens via WhatsApp (upload de planilha, validação e orquestração n8n);
+                    <strong style="color:var(--text)">ERP modular para PMEs</strong> (financeiro, emissão de NFSe, cadastros); e
+                    <strong style="color:var(--text)">sistema de controle de jornada de trabalho</strong>. Isolamento por tenant via RLS, Edge Functions e automações integradas.
+                </p>
+                <p class="card-result">Vários produtos sobre backbone multi-tenant unificado por um control plane</p>
+                <div class="tags">
+                    <span class="tag">React 18/19 + Vite</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Supabase (RLS + Edge Functions)</span>
+                    <span class="tag">Multi-tenant</span>
+                    <span class="tag">n8n</span>
+                    <span class="tag">Evolution API</span>
+                    <span class="tag">PostgreSQL</span>
                 </div>
             </div>
 
@@ -653,33 +679,74 @@
                 <div class="tags">
                     <span class="tag">n8n</span>
                     <span class="tag">OpenAI GPT-4</span>
+                    <span class="tag">Evolution API</span>
                     <span class="tag">Supabase</span>
                     <span class="tag">Redis</span>
                     <span class="tag">RAG</span>
                 </div>
             </div>
 
-            <!-- Automatizza — Ecossistema -->
-            <div class="card span2">
+            <!-- Backend microserviço (Salt) -->
+            <div class="card">
                 <div class="card-top">
-                    <h3 class="card-title">Ecossistema Automatizza — Agência de IA para Clínicas</h3>
+                    <h3 class="card-title">Microserviço de Integração para Carteiras de Cobrança</h3>
                     <span class="badge prod">Em Produção</span>
                 </div>
                 <p class="card-desc">
-                    Agência B2B de automação co-fundada como sócio técnico, com dois agentes distintos em produção:<br><br>
-                    <strong style="color:var(--text)">Ana (SDR da Automatizza)</strong> — agente que vende o serviço da agência. Prospecta e qualifica leads B2B via WhatsApp com script estruturado M1→M4: triagem de segmento, qualificação por faturamento (≥R$10k/mês), convite para reunião e handoff para o sócio comercial. Tools dedicadas: <em>AtualizarStageGHL</em> (move leads no pipeline), <em>NotificarFelipe</em> (alerta com resumo completo), <em>LeadNaoQualificado</em> (descarta e registra fora do ICP). Cria e atualiza contatos e oportunidades no GoHighLevel automaticamente.<br><br>
-                    <strong style="color:var(--text)">Sofia (produto vendido às clínicas)</strong> — agente de atendimento humanizado para clínicas odontológicas. Atende pacientes/leads via WhatsApp 24/7, processa texto, áudio (Whisper), imagem (GPT-4o Vision) e PDF, com transbordo seguro para a recepção.
+                    Camada de integração REST entre agentes conversacionais e as APIs/bancos de carteiras de cobrança de
+                    grandes clientes. Roteamento por tipo de operação, régua de cobrança, geração de boletos e integração
+                    com APIs legadas (SOAP) e bases MongoDB — dentro de um microserviço que atende múltiplas carteiras.
                 </p>
-                <p class="card-result">Pipeline de vendas B2B + atendimento 24/7 para clínicas, ambos em produção</p>
+                <p class="card-result">Backend de produção integrando IA a sistemas bancários legados</p>
                 <div class="tags">
-                    <span class="tag">n8n</span>
-                    <span class="tag">OpenAI GPT-4o</span>
-                    <span class="tag">Whisper</span>
-                    <span class="tag">Evolution API</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Express</span>
+                    <span class="tag">MongoDB</span>
                     <span class="tag">Redis</span>
-                    <span class="tag">Langchain</span>
-                    <span class="tag">GoHighLevel CRM</span>
-                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">REST / SOAP</span>
+                </div>
+            </div>
+
+            <!-- OpenSquad -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">OpenSquad — Orquestração Multi-Agente</h3>
+                    <span class="badge func">Funcional</span>
+                </div>
+                <p class="card-desc">
+                    Framework próprio que monta "squads" de agentes de IA que colaboram em tarefas (conteúdo, dados,
+                    automação), com definição declarativa de squads em YAML, pipeline de orquestração e dashboard de
+                    acompanhamento em tempo real. Skills plugáveis (scraping, publicação, design).
+                </p>
+                <p class="card-result">Framework reutilizável de agentes de IA colaborativos</p>
+                <div class="tags">
+                    <span class="tag">Node.js</span>
+                    <span class="tag">YAML</span>
+                    <span class="tag">Playwright</span>
+                    <span class="tag">React</span>
+                    <span class="tag">WebSocket</span>
+                </div>
+            </div>
+
+            <!-- Agente de Voz -->
+            <div class="card">
+                <div class="card-top">
+                    <h3 class="card-title">Agente de Voz para Atendimento Telefônico</h3>
+                    <span class="badge func">MVP</span>
+                </div>
+                <p class="card-desc">
+                    MVP de agente de voz que atende ligações em tempo real (fala ↔ fala): reconhecimento de fala, LLM e
+                    síntese de voz, integrado a telefonia e base de conhecimento (RAG). Fluxo ligação → STT → LLM → TTS
+                    orquestrado por webhooks.
+                </p>
+                <p class="card-result">Atendimento por voz em tempo real com IA</p>
+                <div class="tags">
+                    <span class="tag">VAPI</span>
+                    <span class="tag">ElevenLabs</span>
+                    <span class="tag">Twilio</span>
+                    <span class="tag">n8n</span>
+                    <span class="tag">Supabase (RAG)</span>
                 </div>
             </div>
 
@@ -748,7 +815,8 @@
                     <div class="stack-item"><div class="stack-name">PostgreSQL</div><div class="stack-sub">Banco Relacional</div></div>
                     <div class="stack-item"><div class="stack-name">Edge Functions</div><div class="stack-sub">Serverless</div></div>
                     <div class="stack-item"><div class="stack-name">Zod + HookForm</div><div class="stack-sub">Validação</div></div>
-                    <div class="stack-item"><div class="stack-name">Node.js</div><div class="stack-sub">Runtime</div></div>
+                    <div class="stack-item"><div class="stack-name">Node.js + Express</div><div class="stack-sub">Runtime / API</div></div>
+                    <div class="stack-item"><div class="stack-name">MongoDB</div><div class="stack-sub">Banco NoSQL</div></div>
                 </div>
             </div>
             <div class="stack-group">
@@ -757,11 +825,9 @@
                     <div class="stack-item"><div class="stack-name">n8n</div><div class="stack-sub">Automação</div></div>
                     <div class="stack-item"><div class="stack-name">OpenAI / Claude</div><div class="stack-sub">LLMs</div></div>
                     <div class="stack-item"><div class="stack-name">RAG / Embeddings</div><div class="stack-sub">Vector Search</div></div>
-                    <div class="stack-item"><div class="stack-name">VAPI</div><div class="stack-sub">Agentes de Voz</div></div>
+                    <div class="stack-item"><div class="stack-name">VAPI + ElevenLabs</div><div class="stack-sub">Agentes de Voz</div></div>
                     <div class="stack-item"><div class="stack-name">Evolution API</div><div class="stack-sub">WhatsApp</div></div>
-                    <div class="stack-item"><div class="stack-name">Langchain</div><div class="stack-sub">Memória Agentes</div></div>
                     <div class="stack-item"><div class="stack-name">Redis</div><div class="stack-sub">Buffer / Estado</div></div>
-                    <div class="stack-item"><div class="stack-name">GoHighLevel</div><div class="stack-sub">CRM</div></div>
                 </div>
             </div>
             <div class="stack-group">
@@ -789,7 +855,7 @@
                     </div>
                     <span class="tl-date">2025 – Atual</span>
                 </div>
-                <p class="tl-desc">Desenvolvimento de software como prestador de serviço PJ. Participação em equipe com rotinas ágeis (daily standup) e entregas contínuas.</p>
+                <p class="tl-desc">Prestação de serviço PJ em automação e integração de sistemas. Manutenção e correção de workflows n8n em produção para atendimento WhatsApp Business multicanal (Chatwoot, Gupshup, Twilio), incluindo diagnóstico e correção de bugs críticos a partir de análise de execuções reais. Auditoria de fluxos conversacionais (Typebot) contra especificação de cliente, auditoria de custo de templates de mensageria (Meta/WhatsApp) e desenvolvimento de backend de microserviço REST (Node.js, MongoDB, Redis, MySQL) para carteiras de cobrança. Rotinas ágeis com daily standup.</p>
             </div>
             <div class="tl-card">
                 <div class="tl-top">
@@ -799,7 +865,7 @@
                     </div>
                     <span class="tl-date">Jul 2025 – Atual</span>
                 </div>
-                <p class="tl-desc">Construção de SaaS multi-tenant (React, TypeScript, Supabase), e-commerce, painéis administrativos e agentes de IA autônomos para PMEs. Integrações com WhatsApp, CRMs e plataformas de pagamento. Uso de Claude Code e Cursor como ferramentas principais de desenvolvimento.</p>
+                <p class="tl-desc">Construção de SaaS multi-tenant (React, TypeScript, Supabase), e-commerce e agentes de IA autônomos para PMEs. Desenvolvimento de um conjunto de produtos SaaS sobre um backbone multi-tenant compartilhado — plataforma de cobrança automatizada, ERP modular e controle de jornada — unificados por um control plane. Integrações com WhatsApp, CRMs e plataformas de pagamento. Uso de Claude Code e Cursor no dia a dia.</p>
             </div>
         </div>
     </section>
@@ -903,7 +969,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p class="footer-note">Portfólio atualizado em Maio 2026</p>
+        <p class="footer-note">Portfólio atualizado em Julho 2026</p>
         <a class="footer-cta" href="mailto:izack07@gmail.com">Entre em contato</a>
     </footer>
 
