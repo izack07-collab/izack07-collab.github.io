@@ -603,6 +603,32 @@
                 </div>
             </div>
 
+            <!-- Dashboard BI Efetividade de Campanha -->
+            <div class="card span2">
+                <div class="card-top">
+                    <h3 class="card-title">Dashboard de BI · Efetividade de Campanhas WhatsApp</h3>
+                    <span class="badge prod">Em Produção</span>
+                </div>
+                <p class="card-desc">
+                    Dashboard de BI (Metabase) sobre MongoDB para monitorar a efetividade de campanhas de cobrança via WhatsApp.
+                    Construí uma <strong style="color:var(--text)">pipeline de agregação com $lookup</strong> unindo o registro de disparo
+                    aos callbacks de status da API do WhatsApp, reduzindo o funil cumulativo de status (aceito → entregue → lido) a um único
+                    estado por mensagem, sem contagem duplicada. Validei cada número com consultas de agregação reproduzíveis antes de
+                    publicar, e identifiquei um <strong style="color:var(--text)">achado operacional relevante</strong>: quase metade dos
+                    envios falhava antes de aceitos pela Meta, dividido entre limitação de taxa de disparo (infraestrutura) e número de
+                    telefone inválido (qualidade de dado). São dois problemas de responsável distinto, documentados com metodologia
+                    reproduzível. Também diagnostiquei e corrigi uma visualização existente que somava indevidamente as mesmas mensagens
+                    em múltiplas categorias, substituindo por um modelo de estado terminal único por mensagem.
+                </p>
+                <p class="card-result">Investigação orientada a dado que virou dashboard de produção e um achado de negócio acionável</p>
+                <div class="tags">
+                    <span class="tag">MongoDB (Aggregation Framework)</span>
+                    <span class="tag">Metabase</span>
+                    <span class="tag">WhatsApp Cloud API</span>
+                    <span class="tag">mongosh</span>
+                </div>
+            </div>
+
             <!-- RI Pratas CRM -->
             <div class="card">
                 <div class="card-top">
