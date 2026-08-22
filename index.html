@@ -506,7 +506,8 @@
         <p>
             Construo <strong>sistemas SaaS completos</strong>, de aplicações React/TypeScript multi-tenant
             até <strong>agentes de IA autônomos</strong> que vendem, qualificam leads e atendem clientes
-            via WhatsApp <strong>24/7 em produção real</strong>.
+            via WhatsApp <strong>24/7 em produção real</strong>. Sete produtos sobre um mesmo backbone
+            multi-tenant, com cobrança recorrente e um <strong>control plane único</strong> para operar todos.
         </p>
         <p class="note">
             Stack principal:
@@ -550,6 +551,60 @@
                 </div>
             </div>
 
+            <!-- JI Suite -->
+            <div class="card span2 green">
+                <div class="card-top">
+                    <h3 class="card-title">JI Suíte · Atendimento em Equipe no WhatsApp com CRM</h3>
+                    <span class="badge prod">Em Produção</span>
+                </div>
+                <p class="card-desc">
+                    Plataforma <strong style="color:var(--text)">multiempresa</strong> de atendimento no WhatsApp, construída do zero
+                    e hoje em operação com cliente pagante. Caixa de entrada compartilhada onde a equipe atende junto, com
+                    <strong style="color:var(--text)">fila, atribuição e transferência de conversa</strong>; papéis de administrador,
+                    supervisor e atendente, cada um enxergando só o que deve; histórico contínuo por contato desde a conexão do número;
+                    tarefas da equipe em quadro, base de conhecimento com modelos de resposta e chat interno entre atendentes;
+                    <strong style="color:var(--text)">funil de vendas criado direto da conversa</strong>; relatórios de atendimento e de
+                    vendas com trilha de auditoria. Por baixo: isolamento por linha no banco, mensagens em tempo real,
+                    controle de assentos por assinatura e teste grátis automatizado.
+                </p>
+                <p class="card-result">Plataforma mais completa do conjunto, em uso diário por uma equipe real de atendimento</p>
+                <div class="tags">
+                    <span class="tag">React + Vite</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Supabase (RLS + Realtime)</span>
+                    <span class="tag">Edge Functions</span>
+                    <span class="tag">Multi-tenant</span>
+                    <span class="tag">Evolution API</span>
+                    <span class="tag">Asaas</span>
+                    <span class="tag">Vercel</span>
+                </div>
+            </div>
+
+            <!-- JI Agentes -->
+            <div class="card span2">
+                <div class="card-top">
+                    <h3 class="card-title">JI Agentes · Plataforma de Agentes de IA no WhatsApp</h3>
+                    <span class="badge func">Em Piloto</span>
+                </div>
+                <p class="card-desc">
+                    Plataforma onde o cliente <strong style="color:var(--text)">conecta o próprio WhatsApp por QR Code</strong> e
+                    passa a ter um agente de IA atendendo 24 horas por dia, sem projeto sob medida. O agente conversa de verdade,
+                    sem menu de robô, respondendo a partir das informações do negócio que o cliente cadastrou; consulta horários
+                    livres, marca e cancela agendamento; e <strong style="color:var(--text)">encaminha para uma pessoa quando não
+                    sabe responder, em vez de inventar</strong>. O dono acompanha por um painel com status da conexão, consumo do
+                    mês com teto por plano e conversas recentes, e assume a conversa a qualquer momento pausando o agente.
+                </p>
+                <p class="card-result">Motor de conversa por nicho, memória por cliente e controle de consumo por plano</p>
+                <div class="tags">
+                    <span class="tag">React + Vite</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Supabase (RLS + Edge Functions)</span>
+                    <span class="tag">APIs de LLM</span>
+                    <span class="tag">Evolution API</span>
+                    <span class="tag">Google Calendar</span>
+                </div>
+            </div>
+
             <!-- PainelPsi - featured -->
             <div class="card span2 green">
                 <div class="card-top">
@@ -560,7 +615,10 @@
                     SaaS B2B para gestão de consultórios de psicologia, ao vivo em <strong style="color:var(--text)">painelpsi.com.br</strong>. Arquitetura em 3 camadas:
                     <strong style="color:var(--text)">Landing Page</strong> de aquisição com tiers e billing via Asaas,
                     <strong style="color:var(--text)">Painel do Psicólogo</strong> com prontuário eletrônico (IA + CFP), agenda com Google Meet, financeiro com exportação CSV e recibo IR,
-                    e <strong style="color:var(--text)">PSI Admin Hub</strong> com analytics de MRR/churn/cohort, gestão de contas e logs de auditoria. Séries de email onboarding e reengajamento via n8n + Zoho Mail.
+                    e <strong style="color:var(--text)">PSI Admin Hub</strong> com analytics de MRR/churn/cohort, gestão de contas e logs de auditoria.
+                    As séries de e-mail de onboarding e reengajamento rodam em <strong style="color:var(--text)">fila própria no banco</strong>
+                    (pg_cron + pg_net + Edge Functions) com envio via Resend, migradas do n8n em 2026, mais SEO por rota e
+                    autenticação de domínio (SPF, DKIM e DMARC).
                 </p>
                 <p class="card-result">Plataforma completa do cadastro ao atendimento clínico, validada por beta tester real</p>
                 <div class="tags">
@@ -569,7 +627,8 @@
                     <span class="tag">Shadcn/UI</span>
                     <span class="tag">Supabase (RLS + Edge Functions)</span>
                     <span class="tag">TanStack Query</span>
-                    <span class="tag">n8n</span>
+                    <span class="tag">pg_cron + pg_net</span>
+                    <span class="tag">Resend</span>
                     <span class="tag">Asaas</span>
                     <span class="tag">Vercel</span>
                 </div>
@@ -581,25 +640,33 @@
             <!-- Suite SaaS Multi-tenant -->
             <div class="card span2">
                 <div class="card-top">
-                    <h3 class="card-title">Suite de Produtos SaaS Multi-tenant</h3>
-                    <span class="badge func">Em Piloto</span>
+                    <h3 class="card-title">Suíte de Produtos SaaS Multi-tenant e Control Plane</h3>
+                    <span class="badge func">7 Produtos</span>
                 </div>
                 <p class="card-desc">
-                    Desenvolvimento de um conjunto de produtos SaaS sobre um <strong style="color:var(--text)">backbone multi-tenant compartilhado</strong>,
-                    unificados por um <strong style="color:var(--text)">control plane</strong> (painel único de operação por produto e por cliente). Inclui:
-                    <strong style="color:var(--text)">plataforma de cobrança automatizada</strong> com planos/tiers e disparo de mensagens via WhatsApp (upload de planilha, validação e orquestração n8n);
-                    <strong style="color:var(--text)">ERP modular para PMEs</strong> (financeiro, emissão de NFSe, cadastros); e
-                    <strong style="color:var(--text)">sistema de controle de jornada de trabalho</strong>. Isolamento por tenant via RLS, Edge Functions e automações integradas.
+                    Sete produtos sobre um <strong style="color:var(--text)">backbone multi-tenant compartilhado</strong>, unificados por um
+                    <strong style="color:var(--text)">control plane</strong> (painel único de clientes, planos, receita e uso por produto),
+                    com padrão único de checkout e desconto por combo aplicado a todos. Além da JI Suíte e do JI Agentes acima:
+                    <strong style="color:var(--text)">JI Notify</strong>, lembretes por WhatsApp a partir da lista do próprio cliente, com fila de
+                    disparo de intervalo variável, controle de saldo por pacote e registro de entrega;
+                    <strong style="color:var(--text)">Gestum ERP</strong>, financeiro, emissão de NFSe inclusive multi-município, contratos
+                    recorrentes com cobrança gerada a partir do contrato e conciliação por importação de OFX;
+                    <strong style="color:var(--text)">Jornada+</strong>, controle de ponto com numeração sequencial à prova de alteração, trilha de
+                    auditoria imutável e geração dos arquivos AFD e AEJ no layout do Ministério do Trabalho;
+                    <strong style="color:var(--text)">JI Pessoas</strong>, departamento pessoal com portal do colaborador, holerite com comprovante
+                    de visualização e controle de férias; e <strong style="color:var(--text)">JI Foco</strong>, organização pessoal com hábitos,
+                    rotina e gamificação. Isolamento por tenant via RLS, Edge Functions e automações integradas.
                 </p>
-                <p class="card-result">Vários produtos sobre backbone multi-tenant unificado por um control plane</p>
+                <p class="card-result">Sete produtos sobre um backbone único, com control plane e cobrança padronizada</p>
                 <div class="tags">
                     <span class="tag">React 18/19 + Vite</span>
                     <span class="tag">TypeScript</span>
                     <span class="tag">Supabase (RLS + Edge Functions)</span>
                     <span class="tag">Multi-tenant</span>
-                    <span class="tag">n8n</span>
-                    <span class="tag">Evolution API</span>
                     <span class="tag">PostgreSQL</span>
+                    <span class="tag">n8n</span>
+                    <span class="tag">Asaas</span>
+                    <span class="tag">Evolution API</span>
                 </div>
             </div>
 
@@ -678,9 +745,12 @@
                 </div>
                 <p class="card-desc">
                     E-commerce moderno com precificação automática via Database Triggers e pipeline de geração de
-                    imagens padronizadas via Agentes de IA.
+                    imagens padronizadas via Agentes de IA. Em 2026 ganhou uma camada de operação: baixa automática de
+                    estoque em pedido pago (peça esgotada sai da vitrine sozinha), recuperação de carrinho por WhatsApp e
+                    um <strong style="color:var(--text)">diagnóstico de funil com evidência</strong> (GA4, banco e logs de
+                    automação) que revelou tráfego orgânico recorrente vindo do ChatGPT chegando a uma loja que não fechava venda.
                 </p>
-                <p class="card-result">Automação total de cadastro e consistência visual</p>
+                <p class="card-result">Automação de cadastro, de estoque e diagnóstico de funil baseado em dado real</p>
                 <div class="tags">
                     <span class="tag">React + Vite</span>
                     <span class="tag">TypeScript</span>
@@ -722,6 +792,8 @@
                     Camada de integração REST entre agentes conversacionais e as APIs/bancos de carteiras de cobrança de
                     grandes clientes. Roteamento por tipo de operação, régua de cobrança, geração de boletos e integração
                     com APIs legadas (SOAP) e bases MongoDB, dentro de um microserviço que atende múltiplas carteiras.
+                    A carteira mais recente foi construída mock-first, com suíte de testes automatizados cobrindo os fluxos
+                    antes de qualquer conexão com o sistema real.
                 </p>
                 <p class="card-result">Backend de produção integrando IA a sistemas bancários legados</p>
                 <div class="tags">
@@ -786,9 +858,10 @@
                     Sites de alta conversão e institucionais para empresas, com design sob medida, SEO e tracking:<br><br>
                     <strong style="color:var(--text)">Job Cred</strong> (jobcred.com.br): landing fintech B2B de factoring, design dark, CTAs rastreados via GTM/GA4, formulários validados com React Hook Form + Zod e testes E2E com Playwright.<br><br>
                     <strong style="color:var(--text)">JI Tech</strong> (jitechsolucoes.com.br): site institucional multi-página (SSG) com SEO por página.<br><br>
-                    <strong style="color:var(--text)">Amparo Assessoria</strong> (amparoempresarial.com.br): site institucional para hub de soluções empresariais (BPO administrativo, financeiro e departamento pessoal).
+                    <strong style="color:var(--text)">Amparo Assessoria</strong> (amparoempresarial.com.br): site institucional para hub de soluções empresariais (BPO administrativo, financeiro e departamento pessoal).<br><br>
+                    <strong style="color:var(--text)">Rosângela Cavalcante</strong> (psicóloga clínica): site de seis páginas em arquitetura MPA com React 19 e Tailwind v4, pensado como destino do link da bio e das campanhas de tráfego pago.
                 </p>
-                <p class="card-result">Três sites de clientes no ar, com design próprio e otimização</p>
+                <p class="card-result">Quatro sites entregues, com design próprio e otimização</p>
                 <div class="tags">
                     <span class="tag">React 18/19 + Vite</span>
                     <span class="tag">TypeScript</span>
@@ -849,6 +922,7 @@
                     <div class="stack-item"><div class="stack-name">Zod + HookForm</div><div class="stack-sub">Validação</div></div>
                     <div class="stack-item"><div class="stack-name">Node.js + Express</div><div class="stack-sub">Runtime / API</div></div>
                     <div class="stack-item"><div class="stack-name">MongoDB</div><div class="stack-sub">Banco NoSQL</div></div>
+                    <div class="stack-item"><div class="stack-name">Metabase</div><div class="stack-sub">BI / Dashboards</div></div>
                 </div>
             </div>
             <div class="stack-group">
@@ -859,6 +933,7 @@
                     <div class="stack-item"><div class="stack-name">RAG / Embeddings</div><div class="stack-sub">Vector Search</div></div>
                     <div class="stack-item"><div class="stack-name">VAPI + ElevenLabs</div><div class="stack-sub">Agentes de Voz</div></div>
                     <div class="stack-item"><div class="stack-name">Evolution API</div><div class="stack-sub">WhatsApp</div></div>
+                    <div class="stack-item"><div class="stack-name">Meta Cloud API</div><div class="stack-sub">WhatsApp Oficial</div></div>
                     <div class="stack-item"><div class="stack-name">Redis</div><div class="stack-sub">Buffer / Estado</div></div>
                 </div>
             </div>
@@ -870,6 +945,7 @@
                     <div class="stack-item"><div class="stack-name">Git / GitHub</div><div class="stack-sub">Versionamento</div></div>
                     <div class="stack-item"><div class="stack-name">Netlify / Vercel</div><div class="stack-sub">Deploy &amp; CI/CD</div></div>
                     <div class="stack-item"><div class="stack-name">Asaas</div><div class="stack-sub">Pagamentos</div></div>
+                    <div class="stack-item"><div class="stack-name">Resend</div><div class="stack-sub">E-mail Transacional</div></div>
                 </div>
             </div>
         </div>
@@ -887,7 +963,7 @@
                     </div>
                     <span class="tl-date">Desde 2025</span>
                 </div>
-                <p class="tl-desc">Prestação de serviço PJ em automação e integração de sistemas. Manutenção e correção de workflows n8n em produção para atendimento WhatsApp Business multicanal (Chatwoot, Gupshup, Twilio), incluindo diagnóstico e correção de bugs críticos a partir de análise de execuções reais. Auditoria de fluxos conversacionais (Typebot) contra especificação de cliente, auditoria de custo de templates de mensageria (Meta/WhatsApp) e desenvolvimento de backend de microserviço REST (Node.js, MongoDB, Redis, MySQL) para carteiras de cobrança. Rotinas ágeis com daily standup.</p>
+                <p class="tl-desc">Prestação de serviço PJ em automação, integração e dados. Manutenção e correção de workflows n8n em produção para atendimento WhatsApp Business multicanal (Chatwoot, Gupshup, Twilio), com diagnóstico de bugs críticos a partir da análise de execuções reais. Migração do esquema de log de uma carteira para coleções append-only unidas na consulta, aposentando o caminho de enriquecimento que custava cerca de 82 milhões de exames de documento por dia. Automação do relatório mensal de consumo de mensageria de 10 carteiras (n8n + Meta Graph API + Metabase), em produção. Modelagem de agregação em MongoDB e construção de dashboards em Metabase. Auditoria de fluxo conversacional (Typebot) contra especificação do cliente e auditoria de custo de templates da Meta. Backend de microserviço REST (Node.js, MongoDB, Redis, MySQL) para carteiras de cobrança. Rotinas ágeis com daily standup.</p>
             </div>
             <div class="tl-card">
                 <div class="tl-top">
@@ -897,7 +973,7 @@
                     </div>
                     <span class="tl-date">Desde Jul 2025</span>
                 </div>
-                <p class="tl-desc">Construção de SaaS multi-tenant (React, TypeScript, Supabase), e-commerce e agentes de IA autônomos para PMEs. Desenvolvimento de um conjunto de produtos SaaS sobre um backbone multi-tenant compartilhado (plataforma de cobrança automatizada, ERP modular e controle de jornada), unificados por um control plane. Integrações com WhatsApp, CRMs e plataformas de pagamento. Uso de Claude Code e Cursor no dia a dia.</p>
+                <p class="tl-desc">Construção de SaaS multi-tenant (React, TypeScript, Supabase), e-commerce e agentes de IA autônomos para PMEs. Sete produtos entregues sobre um backbone multi-tenant compartilhado, com isolamento por tenant via RLS, padrão único de checkout e cobrança recorrente, teste grátis automatizado e um control plane próprio para operar clientes, planos, receita e uso dos sete. Responsável também pela infraestrutura de produção (VPS própria com n8n e gateway de WhatsApp) e por auditorias de segurança recorrentes nas Edge Functions. Integrações com WhatsApp, CRMs e plataformas de pagamento. Uso de Claude Code e Cursor no dia a dia.</p>
             </div>
         </div>
     </section>

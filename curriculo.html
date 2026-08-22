@@ -174,11 +174,13 @@
         <div class="section">
             <h2 class="section-title">Resumo Profissional</h2>
             <p>
-                Desenvolvedor full-stack com experiência em sistemas SaaS multi-tenant e ecossistemas digitais completos.
-                Constrói aplicações React/TypeScript com Supabase (RLS, Edge Functions, Triggers, Auth) e agentes de IA
-                autônomos integrados com WhatsApp, CRM e plataformas de pagamento. Experiência prática em projetos reais
-                com n8n, OpenAI/Claude, deploy em Netlify/Vercel e ferramentas modernas de desenvolvimento assistido por IA
-                (Claude Code, Cursor). Entrega soluções end-to-end funcionais para PMEs e negócios digitais.
+                Desenvolvedor full-stack que constrói e opera produtos SaaS multi-tenant, do banco à interface. Sete produtos
+                em produção sobre um backbone Supabase compartilhado (PostgreSQL com RLS, Edge Functions em Deno, triggers e
+                cron no próprio banco), com front em React/TypeScript, cobrança recorrente integrada e um control plane único
+                para operar todos. Atua também em integração e dados: backend REST em Node.js para sistemas de cobrança,
+                workflows n8n em produção sobre WhatsApp Business (Chatwoot, Gupshup, Twilio, Meta Cloud API) e modelagem de
+                agregação em MongoDB para dashboards de BI. Entrega soluções end-to-end para PMEs e negócios digitais, com
+                Claude Code e Cursor no dia a dia.
             </p>
         </div>
 
@@ -186,11 +188,13 @@
         <div class="section">
             <h2 class="section-title">Habilidades Técnicas</h2>
             <p class="skills-text">
-                React, TypeScript, Vite, TanStack Query, Zod, React Hook Form, Shadcn/UI, TailwindCSS,
-                Supabase (Auth, RLS, Edge Functions, Triggers), PostgreSQL, MongoDB, MySQL, Redis,
+                React 18/19, TypeScript, Vite, TanStack Query, Zod, React Hook Form, Shadcn/UI, TailwindCSS (v3/v4),
+                Supabase (Auth, RLS, Edge Functions em Deno, Triggers, pg_cron/pg_net, Realtime, Storage),
+                PostgreSQL, MongoDB (Aggregation Framework), MySQL, Redis,
                 Node.js, Express, n8n, OpenAI API, Anthropic API, Claude Code, Cursor,
-                VAPI + ElevenLabs (Agentes de Voz), Evolution API (WhatsApp), Chatwoot, Gupshup/Twilio,
-                Metabase, MCP (Model Context Protocol), Python, JavaScript, Git/GitHub, Playwright, Netlify, Vercel
+                VAPI + ElevenLabs (Agentes de Voz), Evolution API e Meta Cloud API (WhatsApp), Chatwoot, Gupshup/Twilio, Typebot,
+                Asaas (PIX, cartão e boleto), Resend, Metabase, MCP (Model Context Protocol),
+                Python, JavaScript, Git/GitHub, Playwright, GTM/GA4, Netlify, Vercel
             </p>
         </div>
 
@@ -205,12 +209,15 @@
                 </div>
                 <div class="item-company">Salt Systems</div>
                 <p class="item-desc">
-                    Prestação de serviço PJ em automação e integração de sistemas. Manutenção e correção de workflows n8n
-                    em produção para atendimento WhatsApp Business multicanal (Chatwoot, Gupshup, Twilio), com diagnóstico
-                    e correção de bugs críticos a partir de análise de execuções reais. Auditoria de fluxos conversacionais
-                    (Typebot) contra especificação de cliente, auditoria de custo de templates de mensageria (Meta/WhatsApp)
-                    e desenvolvimento de backend de microserviço REST (Node.js, MongoDB, Redis, MySQL) para carteiras de
-                    cobrança. Rotinas ágeis com daily standup.
+                    Prestação de serviço PJ em automação, integração e dados. Manutenção e correção de workflows n8n em
+                    produção para atendimento WhatsApp Business multicanal (Chatwoot, Gupshup, Twilio), com diagnóstico de
+                    bugs críticos a partir da análise de execuções reais. Migração do esquema de log de uma carteira para
+                    coleções append-only unidas na consulta, aposentando o caminho de enriquecimento que custava cerca de
+                    82 milhões de exames de documento por dia. Automação do relatório mensal de consumo de mensageria de
+                    10 carteiras (n8n + Meta Graph API + Metabase), em produção. Modelagem de agregação em MongoDB e
+                    construção de dashboards em Metabase. Auditoria de fluxo conversacional (Typebot) contra especificação
+                    do cliente e auditoria de custo de templates da Meta. Backend de microserviço REST (Node.js, MongoDB,
+                    Redis, MySQL) para carteiras de cobrança. Rotinas ágeis com daily standup.
                 </p>
             </div>
 
@@ -222,9 +229,12 @@
                 <div class="item-company">Autônomo / Freelancer</div>
                 <p class="item-desc">
                     Construção de SaaS multi-tenant (React, TypeScript, Supabase), e-commerce e agentes de IA autônomos
-                    para PMEs. Desenvolvimento de um conjunto de produtos SaaS sobre um backbone multi-tenant compartilhado
-                    (plataforma de cobrança automatizada, ERP modular e controle de jornada), unificados por um control
-                    plane. Integrações com WhatsApp, CRMs e plataformas de pagamento. Uso de Claude Code e Cursor no dia a dia.
+                    para PMEs. Sete produtos entregues sobre um backbone multi-tenant compartilhado, com isolamento por
+                    tenant via RLS, padrão único de checkout e cobrança recorrente, teste grátis automatizado e um control
+                    plane próprio para operar clientes, planos, receita e uso dos sete. Responsável também pela
+                    infraestrutura de produção (VPS própria com n8n e gateway de WhatsApp) e por auditorias de segurança
+                    recorrentes nas Edge Functions. Integrações com WhatsApp, CRMs e plataformas de pagamento. Uso de
+                    Claude Code e Cursor no dia a dia.
                 </p>
             </div>
         </div>
@@ -232,6 +242,30 @@
         <!-- Projects -->
         <div class="section">
             <h2 class="section-title">Projetos</h2>
+
+            <div class="item">
+                <div class="item-title">JI Suíte · Atendimento em Equipe no WhatsApp com CRM</div>
+                <p class="item-desc">
+                    Plataforma multiempresa de atendimento no WhatsApp, em operação com cliente pagante. Caixa de entrada
+                    compartilhada com fila, atribuição e transferência de conversa; papéis de administrador, supervisor e
+                    atendente; histórico contínuo por contato; tarefas da equipe em quadro, base de conhecimento e chat
+                    interno; funil de vendas criado direto da conversa; relatórios com trilha de auditoria. Isolamento por
+                    linha no banco, mensagens em tempo real, controle de assentos por assinatura e teste grátis automatizado.
+                </p>
+                <p class="item-tech">Tecnologias: React, TypeScript, Supabase (RLS + Edge Functions + Realtime), Evolution API, Asaas, Vercel</p>
+            </div>
+
+            <div class="item">
+                <div class="item-title">JI Agentes · Plataforma de Agentes de IA no WhatsApp</div>
+                <p class="item-desc">
+                    Plataforma onde o cliente conecta o próprio WhatsApp por QR Code e passa a ter um agente de IA atendendo
+                    24 horas por dia. O agente responde a partir das informações do negócio cadastradas, consulta horários
+                    livres, marca e cancela agendamento, e encaminha para uma pessoa quando não sabe responder, em vez de
+                    inventar. Painel com status da conexão, consumo do mês com teto por plano e conversas recentes; o dono
+                    assume a conversa e pausa o agente a qualquer momento.
+                </p>
+                <p class="item-tech">Tecnologias: React, TypeScript, Supabase (RLS + Edge Functions), APIs de LLM, Evolution API, Google Calendar</p>
+            </div>
 
             <div class="item">
                 <div class="item-title">Dashboard de BI · Efetividade de Campanhas WhatsApp</div>
@@ -262,7 +296,8 @@
                     Sites de alta conversão e institucionais para empresas, com design sob medida, SEO e tracking:
                     (1) <strong>Job Cred</strong> (jobcred.com.br): landing fintech B2B de factoring, CTAs rastreados via GTM/GA4, formulários com React Hook Form + Zod e testes E2E com Playwright;
                     (2) <strong>JI Tech</strong> (jitechsolucoes.com.br): site institucional multi-página (SSG) com SEO por página;
-                    (3) <strong>Amparo Assessoria</strong> (amparoempresarial.com.br): site institucional para hub de soluções empresariais (BPO administrativo, financeiro e departamento pessoal).
+                    (3) <strong>Amparo Assessoria</strong> (amparoempresarial.com.br): site institucional para hub de soluções empresariais (BPO administrativo, financeiro e departamento pessoal);
+                    (4) <strong>Rosângela Cavalcante</strong> (psicóloga): site de seis páginas em arquitetura MPA com React 19 e Tailwind v4, destino do link da bio e das campanhas de tráfego pago.
                 </p>
                 <p class="item-tech">Tecnologias: React 18/19, Vite, TypeScript, Shadcn/UI, TailwindCSS, Vercel, GTM/GA4, Playwright</p>
             </div>
@@ -283,9 +318,11 @@
                     SaaS B2B para gestão de consultórios de psicologia, ao vivo e com beta tester real. Arquitetura em 3 camadas:
                     (1) <strong>Landing Page</strong> com tiers e billing via Asaas (PIX, cartão, boleto) e conformidade CFP/LGPD;
                     (2) <strong>Painel do Psicólogo</strong> com prontuário eletrônico (IA + CFP), agenda com Google Meet, financeiro com exportação CSV, recibo IR e onboarding guiado;
-                    (3) <strong>PSI Admin Hub</strong> com analytics de MRR/churn/cohort, gestão de contas e logs de auditoria. Séries de email onboarding e reengajamento via n8n + Zoho Mail.
+                    (3) <strong>PSI Admin Hub</strong> com analytics de MRR/churn/cohort, gestão de contas e logs de auditoria.
+                    Séries de e-mail de onboarding e reengajamento em fila própria no banco (pg_cron + pg_net + Edge Functions)
+                    com envio via Resend, migradas do n8n em 2026, mais SEO por rota e autenticação de domínio (SPF, DKIM e DMARC).
                 </p>
-                <p class="item-tech">Tecnologias: React, Vite, TypeScript, Shadcn/UI, Supabase (RLS + Edge Functions), TanStack Query, n8n, Asaas, Vercel</p>
+                <p class="item-tech">Tecnologias: React, Vite, TypeScript, Shadcn/UI, Supabase (RLS + Edge Functions + pg_cron), TanStack Query, Resend, Asaas, Vercel</p>
             </div>
 
             <div class="item">
@@ -294,21 +331,25 @@
                     Ecossistema digital completo para joalheria e-commerce em 3 pilares:
                     (1) <strong>Vitrine / E-commerce</strong> (ripratas.com.br): loja ao vivo com catálogo interativo, precificação automática via Database Triggers, pipeline de imagens padronizadas via agentes de IA e fechamento de vendas direto por WhatsApp;
                     (2) <strong>CRM / Backoffice (SOD)</strong>: substitui planilhas, integra estoque com variações, Kanban de pedidos, CRM 360 com LTV automático e webhooks Asaas;
-                    (3) <strong>Agente de Vendas (Milena)</strong>: agente autônomo via WhatsApp com SPIN Selling, audio debouncing, Output Splitter e 12+ ferramentas MCP para CRM, estoque e Asaas.
+                    (3) <strong>Agente de Vendas (Milena)</strong>: agente autônomo via WhatsApp com SPIN Selling, audio debouncing, Output Splitter e 12+ ferramentas MCP para CRM, estoque e Asaas;
+                    (4) <strong>Operação</strong>: diagnóstico do funil com evidência (GA4, banco e logs de automação) que identificou tráfego orgânico recorrente vindo do ChatGPT sem nenhuma conversão, além de baixa automática de estoque em pedido pago e recuperação de carrinho por WhatsApp.
                 </p>
                 <p class="item-tech">Tecnologias: React, Vite, Shadcn/UI, Supabase, n8n, PostgreSQL, OpenAI GPT-4, Evolution API, Asaas</p>
             </div>
 
             <div class="item">
-                <div class="item-title">Suite de Produtos SaaS Multi-tenant</div>
+                <div class="item-title">Suíte de Produtos SaaS Multi-tenant e Control Plane</div>
                 <p class="item-desc">
-                    Desenvolvimento de um conjunto de produtos SaaS sobre um backbone multi-tenant compartilhado,
-                    unificados por um <strong>control plane</strong> (painel único de operação por produto e por cliente):
-                    (1) <strong>plataforma de cobrança automatizada</strong> com planos/tiers e disparo de mensagens via WhatsApp (upload de planilha, validação, orquestração n8n);
-                    (2) <strong>ERP modular para PMEs</strong> (financeiro, emissão de NFSe, cadastros);
-                    (3) <strong>controle de jornada de trabalho</strong>. Isolamento por tenant via RLS, Edge Functions e automações integradas.
+                    Sete produtos sobre um backbone multi-tenant compartilhado, unificados por um <strong>control plane</strong>
+                    (painel único de clientes, planos, receita e uso por produto), com padrão único de checkout e desconto por
+                    combo aplicado a todos. Além da JI Suíte e do JI Agentes acima:
+                    (1) <strong>JI Notify</strong>: lembretes por WhatsApp a partir da lista do cliente, com fila de disparo de intervalo variável, controle de saldo por pacote e registro de entrega;
+                    (2) <strong>Gestum ERP</strong>: financeiro, emissão de NFSe inclusive multi-município, contratos recorrentes com cobrança gerada a partir do contrato e conciliação por importação de OFX;
+                    (3) <strong>Jornada+</strong>: controle de ponto com numeração sequencial à prova de alteração, trilha de auditoria imutável e geração dos arquivos AFD e AEJ no layout do Ministério do Trabalho;
+                    (4) <strong>JI Pessoas</strong>: departamento pessoal com portal do colaborador, holerite com comprovante de visualização e controle de férias;
+                    (5) <strong>JI Foco</strong>: organização pessoal com hábitos, rotina e gamificação. Isolamento por tenant via RLS, Edge Functions e automações integradas.
                 </p>
-                <p class="item-tech">Tecnologias: React 18/19, Vite, TypeScript, Shadcn/UI, Supabase (RLS + Edge Functions), Multi-tenant, n8n, Evolution API, PostgreSQL</p>
+                <p class="item-tech">Tecnologias: React 18/19, Vite, TypeScript, Shadcn/UI, Supabase (RLS + Edge Functions), Multi-tenant, PostgreSQL, n8n, Asaas, Evolution API</p>
             </div>
 
             <div class="item">
@@ -317,6 +358,8 @@
                     Camada de integração REST entre agentes conversacionais e as APIs/bancos de carteiras de cobrança de
                     grandes clientes. Roteamento por tipo de operação, régua de cobrança, geração de boletos e integração
                     com APIs legadas (SOAP) e bases MongoDB, dentro de um microserviço em produção que atende múltiplas carteiras.
+                    Carteira mais recente construída mock-first, com suíte de testes automatizados cobrindo os fluxos antes de
+                    qualquer conexão com o sistema real.
                 </p>
                 <p class="item-tech">Tecnologias: Node.js, Express, MongoDB, Redis, MySQL, REST/SOAP</p>
             </div>
