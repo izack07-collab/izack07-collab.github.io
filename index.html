@@ -10,10 +10,10 @@
     <meta property="og:description" content="Agentes de IA que atendem e vendem pelo WhatsApp, automações em produção e três produtos SaaS no ar. Salvador, BA, remoto.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://izack07-collab.github.io">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0c0e'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='38' fill='%23d9a552'%3EIS%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0c0e'/%3E%3Ctext x='50%25' y='56%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='700' font-size='30' fill='%23d9a552'%3EIS%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg:          #0b0c0e;
@@ -29,8 +29,8 @@
             --accent-2:    #f0c674;
             --accent-dim:  rgba(217,165,82,0.10);
             --accent-line: rgba(217,165,82,0.38);
-            --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
             --sans:  'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            --display: var(--sans);
             --mono:  'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
             --w: 1040px;
             --z-nav: 30;
@@ -92,10 +92,10 @@
             height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
         }
         .brand {
-            font-family: var(--serif); font-size: 1.25rem; letter-spacing: -0.01em;
+            font-family: var(--display); font-size: 0.98rem; font-weight: 600; letter-spacing: -0.01em;
             text-decoration: none; color: var(--text);
         }
-        .brand em { color: var(--accent); font-style: italic; }
+        .brand em { color: var(--accent); font-style: normal; }
         .nav-links { display: flex; align-items: center; gap: 4px; }
         .nav-links a {
             font-size: 0.84rem; color: var(--text-2); text-decoration: none;
@@ -120,15 +120,15 @@
             box-shadow: 0 0 0 4px var(--accent-dim);
         }
         h1 {
-            font-family: var(--serif); font-weight: 400;
-            font-size: clamp(3.2rem, 8vw, 5.6rem); line-height: 0.98; letter-spacing: -0.02em;
+            font-family: var(--display); font-weight: 700;
+            font-size: clamp(2.7rem, 6.5vw, 4.4rem); line-height: 1.02; letter-spacing: -0.035em;
             margin-bottom: 18px; text-wrap: balance;
         }
         .hero-role {
-            font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.2;
-            color: var(--text-2); max-width: 26ch; margin-bottom: 44px; text-wrap: balance;
+            font-family: var(--display); font-weight: 400; font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.35;
+            letter-spacing: -0.01em; color: var(--text-2); max-width: 30ch; margin-bottom: 44px; text-wrap: balance;
         }
-        .hero-role em { color: var(--text); font-style: italic; }
+        .hero-role em { color: var(--text); font-style: normal; font-weight: 500; }
         .hero-grid {
             display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: start;
         }
@@ -154,7 +154,7 @@
             padding-bottom: 14px; border-bottom: 1px solid var(--line-2);
         }
         .sec .mono { color: var(--accent); }
-        .sec h2 { font-family: var(--serif); font-weight: 400; font-size: 2rem; letter-spacing: -0.01em; }
+        .sec h2 { font-family: var(--display); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.02em; }
         .sec p { margin-left: auto; color: var(--text-3); font-size: 0.84rem; max-width: 34ch; text-align: right; }
 
         .group { margin-bottom: 44px; }
@@ -174,8 +174,8 @@
         .proj:hover .proj-n { color: var(--accent); }
         .proj-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 18px; margin-bottom: 12px; }
         .proj-title {
-            font-family: var(--serif); font-weight: 400; font-size: 1.62rem; line-height: 1.15;
-            letter-spacing: -0.01em; text-wrap: balance;
+            font-family: var(--display); font-weight: 600; font-size: 1.22rem; line-height: 1.25;
+            letter-spacing: -0.015em; text-wrap: balance;
             transition: color .25s var(--ease);
         }
         .proj:hover .proj-title { color: var(--accent-2); }
@@ -217,7 +217,7 @@
             background: linear-gradient(90deg, var(--accent), transparent 70%);
             border-radius: 0 0 2px 2px;
         }
-        .proj.featured .proj-title { font-size: 2.1rem; }
+        .proj.featured .proj-title { font-size: 1.6rem; letter-spacing: -0.02em; }
         .modules {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 22px;
         }
@@ -236,7 +236,7 @@
             padding: 20px 0; border-top: 1px solid var(--line);
         }
         .stack-row:first-of-type { border-top: 0; }
-        .stack-row h3 { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; color: var(--text); }
+        .stack-row h3 { font-family: var(--display); font-weight: 600; font-size: 0.98rem; letter-spacing: -0.01em; color: var(--text); padding-top: 2px; }
         .stack-row p { color: var(--text-2); font-size: 0.95rem; line-height: 1.8; }
         .stack-row p b { color: var(--text); font-weight: 500; }
         .stack-row p i { color: var(--text-3); font-style: normal; margin: 0 6px; }
@@ -246,7 +246,7 @@
         .xp:first-of-type { border-top: 0; }
         .xp-when { font-family: var(--mono); font-size: 0.74rem; color: var(--text-3); padding-top: 8px; line-height: 1.7; }
         .xp-when b { color: var(--accent); font-weight: 500; display: block; }
-        .xp h3 { font-family: var(--serif); font-weight: 400; font-size: 1.55rem; line-height: 1.2; margin-bottom: 2px; }
+        .xp h3 { font-family: var(--display); font-weight: 600; font-size: 1.2rem; letter-spacing: -0.015em; line-height: 1.25; margin-bottom: 2px; }
         .xp-org { color: var(--text-3); font-size: 0.86rem; margin-bottom: 12px; }
         .xp p { color: var(--text-2); font-size: 0.95rem; line-height: 1.7; max-width: 70ch; }
 
@@ -266,7 +266,7 @@
             border-top: 1px solid var(--line-2); padding-top: 40px;
             display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px;
         }
-        .footer h2 { font-family: var(--serif); font-weight: 400; font-size: 2.2rem; line-height: 1.05; letter-spacing: -0.01em; max-width: 14ch; text-wrap: balance; }
+        .footer h2 { font-family: var(--display); font-weight: 600; font-size: 1.7rem; line-height: 1.15; letter-spacing: -0.025em; max-width: 16ch; text-wrap: balance; }
         .footer h2 em { color: var(--accent); }
         .footer-links { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
         .footer-note { font-family: var(--mono); font-size: 0.68rem; color: var(--text-3); margin-top: 10px; }
@@ -287,7 +287,7 @@
             .proj-n { padding-top: 0; }
             .proj.featured { padding: 24px 20px 22px; }
             .proj.featured::before { left: 20px; right: 20px; }
-            .proj.featured .proj-title { font-size: 1.7rem; }
+            .proj.featured .proj-title { font-size: 1.35rem; }
             .proj-side { padding-top: 0; }
             .modules { grid-template-columns: 1fr; }
             .stack-row, .xp, .mods-row { grid-template-columns: 1fr; gap: 6px; }
@@ -299,8 +299,8 @@
         @media (max-width: 480px) {
             .wrap { padding: 0 18px 72px; }
             .nav-in { padding: 0 18px; }
-            h1 { font-size: 3rem; }
-            .proj-title { font-size: 1.4rem; }
+            h1 { font-size: 2.5rem; }
+            .proj-title { font-size: 1.12rem; }
         }
 
         @media print {
@@ -403,8 +403,36 @@
                 </aside>
             </article>
 
-            <article class="proj reveal">
+            <article class="proj reveal" id="milena">
                 <div class="proj-n mono">02</div>
+                <div class="proj-body">
+                    <div class="proj-head">
+                        <h3 class="proj-title">Milena Victoria: recuperação de carrinhos abandonados (MVM Creators)</h3>
+                        <span class="status">Em produção desde jan. 2025</span>
+                    </div>
+                    <p class="proj-desc">
+                        Agente de vendas por IA que recupera checkouts abandonados de infoprodutos pelo WhatsApp, hoje na v3.
+                        O webhook do Kiwify registra o carrinho; um <strong>disparador em ciclo de 10 minutos</strong> agenda a régua de
+                        follow-ups (2h, 26h, estendido e tentativa final) respeitando horário comercial e priorizando o produto de
+                        maior valor; quando o lead responde, a Milena assume com memória persistente em PostgreSQL, RAG em pgvector
+                        com mais de 100 documentos e tratamento de objeção, parcelamento e prova social por imagem. Entrada
+                        multimodal (áudio transcrito, imagem analisada, PDF extraído), buffer em Redis para esperar o cliente terminar
+                        de digitar, resposta humanizada em duas ou três mensagens com simulação de digitação, pausa automática quando
+                        uma pessoa entra na conversa, fallback por e-mail e monitor de contingência do chip. Integrada em tempo real ao
+                        CRM de recuperação (dashboard, Kanban e lista de leads). Em junho de 2026 conduzi uma <strong>auditoria de dados
+                        somente leitura</strong> que reconciliou o banco com a conta do Kiwify e identificou a origem de cada divergência.
+                    </p>
+                    <p class="proj-result">Da captura do carrinho à venda recuperada, sem intervenção humana, com o dado auditado contra a fonte de pagamento.</p>
+                </div>
+                <aside class="proj-side">
+                    <p class="side-label mono">Stack</p>
+                    <p class="side-stack">n8n · Claude API<br>Evolution API · Kiwify<br>Supabase (PostgreSQL + pgvector)<br>Redis · React (CRM)</p>
+                    <div class="side-links"><a class="lnk" href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/projetos/mvm" target="_blank" rel="noopener">Arquitetura</a></div>
+                </aside>
+            </article>
+
+            <article class="proj reveal">
+                <div class="proj-n mono">03</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Atendente de IA comercial no WhatsApp</h3>
@@ -428,14 +456,14 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">03</div>
+                <div class="proj-n mono">04</div>
                 <div class="proj-body">
                     <div class="proj-head">
-                        <h3 class="proj-title">Agente de vendas Milena (RI Pratas): do n8n para código</h3>
+                        <h3 class="proj-title">Agente de vendas da RI Pratas: do n8n para código</h3>
                         <span class="status">Em produção · versão em código implantada</span>
                     </div>
                     <p class="proj-desc">
-                        Agente de vendas autônomo via WhatsApp para uma joalheria, em produção desde 2025 em n8n com SPIN
+                        Agente de vendas autônomo via WhatsApp para a joalheria RI Pratas, em produção desde 2025 em n8n com SPIN
                         Selling, audio debouncing, Output Splitter e mais de 12 ferramentas MCP para CRM, estoque e Asaas.
                         Em setembro de 2026 foi <strong>portado para código</strong>: Edge Functions de entrada, motor (11 tools, prompt
                         versionado no banco) e envio; chat do WhatsApp e painel do assistente dentro do CRM; checkout com totais
@@ -448,26 +476,6 @@
                 <aside class="proj-side">
                     <p class="side-label mono">Stack</p>
                     <p class="side-stack">Edge Functions (Deno)<br>OpenAI · Evolution API<br>Asaas · React (CRM)<br>n8n (versão anterior)</p>
-                    <div class="side-links"><a class="lnk" href="https://github.com/izack07-collab/izack07-collab.github.io/tree/main/projetos/mvm" target="_blank" rel="noopener">Arquitetura</a></div>
-                </aside>
-            </article>
-
-            <article class="proj reveal">
-                <div class="proj-n mono">04</div>
-                <div class="proj-body">
-                    <div class="proj-head">
-                        <h3 class="proj-title">Sistema de recuperação de vendas (MVM Creators)</h3>
-                        <span class="status">Em produção</span>
-                    </div>
-                    <p class="proj-desc">
-                        Agente de IA para e-commerce que detecta carrinhos abandonados, executa follow-up em três etapas e atende
-                        clientes via WhatsApp com memória persistente e RAG. Processa áudio, imagem e PDF.
-                    </p>
-                    <p class="proj-result">Recuperação automática de vendas operando 24 horas.</p>
-                </div>
-                <aside class="proj-side">
-                    <p class="side-label mono">Stack</p>
-                    <p class="side-stack">n8n · OpenAI GPT-4<br>Evolution API<br>Supabase · Redis · RAG</p>
                 </aside>
             </article>
 
@@ -718,17 +726,22 @@
                         Hook Form e Zod e testes E2E com Playwright. <strong>JI Tech</strong>: site institucional multi-página (SSG) com SEO
                         por página e catálogo de produtos. <strong>Amparo Assessoria</strong>: institucional para hub de soluções
                         empresariais. <strong>Rosângela Cavalcante</strong> (psicóloga): seis páginas em MPA com React 19 e Tailwind v4,
-                        mobile-first, com barra de contato fixa e alvos de toque pensados para tráfego pago.
+                        mobile-first, com barra de contato fixa pensada para tráfego pago. <strong>Necrophos</strong>: one-page para projeto
+                        de música eletrônica, com agenda, links de streaming e booking por WhatsApp, em React Router 7 e Framer Motion.
+                        <strong>Forjage</strong>: one-page institucional de um pacote de vitrine, CRM e agente de IA para lojas físicas.
                     </p>
-                    <p class="proj-result">Quatro sites entregues, com design próprio, SEO e medição.</p>
+                    <p class="proj-result">Seis sites no ar, com design próprio, SEO e medição.</p>
                 </div>
                 <aside class="proj-side">
                     <p class="side-label mono">Stack</p>
-                    <p class="side-stack">React 18/19 · Vite<br>Tailwind · Shadcn/UI<br>GTM/GA4 · Playwright<br>Vercel</p>
+                    <p class="side-stack">React 18/19 · Vite<br>Tailwind · Shadcn/UI<br>Framer Motion · React Router<br>GTM/GA4 · Playwright · Vercel</p>
                     <div class="side-links">
                         <a class="lnk" href="https://jobcred.com.br" target="_blank" rel="noopener">Job Cred</a>
                         <a class="lnk" href="https://jitechsolucoes.com.br" target="_blank" rel="noopener">JI Tech</a>
                         <a class="lnk" href="https://www.amparoempresarial.com.br" target="_blank" rel="noopener">Amparo</a>
+                        <a class="lnk" href="https://site-rosangela.vercel.app" target="_blank" rel="noopener">Rosângela</a>
+                        <a class="lnk" href="https://necrophos.com.br" target="_blank" rel="noopener">Necrophos</a>
+                        <a class="lnk" href="https://forja-ai-site.vercel.app" target="_blank" rel="noopener">Forjage</a>
                     </div>
                 </aside>
             </article>

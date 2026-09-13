@@ -259,6 +259,21 @@
             </div>
 
             <div class="item">
+                <div class="item-title">Milena Victoria · Recuperação de Carrinhos Abandonados (MVM Creators, Em Produção desde Jan 2025)</div>
+                <p class="item-desc">
+                    Agente de vendas por IA que recupera checkouts abandonados de infoprodutos pelo WhatsApp, hoje na v3. Webhook
+                    do Kiwify registra o carrinho; disparador em ciclo de 10 minutos agenda a régua de follow-ups (2h, 26h, estendido
+                    e final) respeitando horário comercial e priorizando o produto de maior valor; quando o lead responde, a Milena
+                    assume com memória persistente em PostgreSQL, RAG em pgvector (100+ documentos), tratamento de objeção e prova
+                    social por imagem. Entrada multimodal (áudio, imagem, PDF), buffer em Redis, resposta humanizada em 2 ou 3
+                    mensagens com simulação de digitação, pausa automática quando uma pessoa entra, fallback por e-mail e monitor de
+                    contingência do chip. Integrada em tempo real ao CRM de recuperação (dashboard, Kanban e lista de leads). Em
+                    junho de 2026, auditoria de dados somente leitura reconciliou o banco com a conta do Kiwify.
+                </p>
+                <p class="item-tech">Tecnologias: n8n, Claude API, Evolution API, Kiwify, Supabase (PostgreSQL + pgvector), Redis, React (CRM)</p>
+            </div>
+
+            <div class="item">
                 <div class="item-title">Atendente de IA Comercial no WhatsApp (Em Produção)</div>
                 <p class="item-desc">
                     Agente que atende o WhatsApp comercial da operação no mesmo motor de IA da JI Suíte, como persona própria em Edge
@@ -270,9 +285,9 @@
             </div>
 
             <div class="item">
-                <div class="item-title">Agente de Vendas Milena (RI Pratas) · do n8n para Código</div>
+                <div class="item-title">Agente de Vendas da RI Pratas · do n8n para Código</div>
                 <p class="item-desc">
-                    Agente de vendas autônomo via WhatsApp para joalheria, em produção desde 2025 em n8n (SPIN Selling, audio debouncing,
+                    Agente de vendas autônomo via WhatsApp para a joalheria RI Pratas, em produção desde 2025 em n8n (SPIN Selling, audio debouncing,
                     Output Splitter e 12+ ferramentas MCP para CRM, estoque e Asaas). Em setembro de 2026 foi portado para código:
                     Edge Functions de entrada, motor (11 tools, prompt versionado no banco) e envio; chat e painel do assistente dentro
                     do CRM; checkout com totais no servidor e modo simular; kill switch de vendas; auditoria de segurança com 23 achados
@@ -358,15 +373,6 @@
             </div>
 
             <div class="item">
-                <div class="item-title">Sistema de Recuperação de Vendas (MVM Creators)</div>
-                <p class="item-desc">
-                    Agente de IA para e-commerce que detecta carrinhos abandonados, executa follow-ups automáticos e atende clientes via
-                    WhatsApp com memória persistente e RAG. Processa áudio, imagem e PDF.
-                </p>
-                <p class="item-tech">Tecnologias: n8n, OpenAI GPT-4, Evolution API, Supabase, Redis, RAG</p>
-            </div>
-
-            <div class="item">
                 <div class="item-title">Agente de Voz para Atendimento Telefônico</div>
                 <p class="item-desc">
                     MVP de agente de voz que atende ligações em tempo real: reconhecimento de fala, LLM e síntese de voz, integrado a
@@ -390,9 +396,11 @@
                     (1) <strong>Job Cred</strong> (jobcred.com.br): landing fintech B2B com CTAs rastreados via GTM/GA4, React Hook Form + Zod e E2E com
                     Playwright; (2) <strong>JI Tech</strong> (jitechsolucoes.com.br): institucional multi-página (SSG) com SEO por página;
                     (3) <strong>Amparo Assessoria</strong> (amparoempresarial.com.br): institucional para hub de soluções empresariais;
-                    (4) <strong>Rosângela Cavalcante</strong> (psicóloga): seis páginas em MPA com React 19 e Tailwind v4, mobile-first, para tráfego pago.
+                    (4) <strong>Rosângela Cavalcante</strong> (psicóloga): seis páginas em MPA com React 19 e Tailwind v4, mobile-first, para tráfego pago;
+                    (5) <strong>Necrophos</strong> (necrophos.com.br): one-page para projeto de música eletrônica, com agenda, streaming e booking por WhatsApp, em React Router 7 e Framer Motion;
+                    (6) <strong>Forjage</strong>: one-page institucional de um pacote de vitrine, CRM e agente de IA para lojas físicas.
                 </p>
-                <p class="item-tech">Tecnologias: React 18/19, Vite, TypeScript, Shadcn/UI, TailwindCSS, Vercel, GTM/GA4, Playwright</p>
+                <p class="item-tech">Tecnologias: React 18/19, Vite, TypeScript, Shadcn/UI, TailwindCSS, Framer Motion, React Router, Vercel, GTM/GA4, Playwright</p>
             </div>
 
             <div class="item">
