@@ -278,6 +278,24 @@
             </div>
 
             <div class="item">
+                <div class="item-title">Copiloto de Operação · Assistente Autônomo com MCP (OpenClaw)</div>
+                <p class="item-desc">
+                    Assistente autônomo self-hospedado que fica ligado 24 horas, conversa por canal privado no Telegram e
+                    senta em cima das automações existentes, coordenando e avisando em vez de substituir o que já roda em
+                    produção. Duas instâncias independentes, cada uma com seu próprio servidor de MCP expondo o sistema
+                    real como ferramentas: a pessoal (ligada ao meu Personal OS) cresceu de 11 para 17 ferramentas
+                    (tarefas com subtarefa/checklist/dependência, hábitos, radar de notícias, leitura estruturada de
+                    refeição a partir de foto); a da empresa, com 12 ferramentas, foi desenhada como analista somente
+                    leitura de propósito, só uma ação escreve (publicar auditoria), o resto é leitura, para ficar
+                    auditável e reversível. Toda ferramenta é uma RPC própria com segurança no banco; nada muda de
+                    estado sem aprovação humana. Validado com uma semana de uso pessoal real antes de virar oferta sob
+                    medida no catálogo da JI Tech; a instância da empresa está pausada hoje por custo de infraestrutura,
+                    não por falha.
+                </p>
+                <p class="item-tech">Tecnologias: OpenClaw, MCP (JSON-RPC), Supabase (Edge Functions + RPC security definer), Telegram Bot API, OpenAI API</p>
+            </div>
+
+            <div class="item">
                 <div class="item-title">Atendente de IA Comercial no WhatsApp (Em Produção)</div>
                 <p class="item-desc">
                     Agente que atende o WhatsApp comercial da operação no mesmo motor de IA da JI Suíte, como persona própria em Edge

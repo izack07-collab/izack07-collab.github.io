@@ -440,6 +440,35 @@
                 <div class="proj-n mono">03</div>
                 <div class="proj-body">
                     <div class="proj-head">
+                        <h3 class="proj-title">Copiloto de Operação: assistente autônomo com MCP (OpenClaw)</h3>
+                        <span class="status soft">Validado, uso pessoal diário</span>
+                    </div>
+                    <p class="proj-desc">
+                        Um assistente autônomo self-hospedado (OpenClaw) que fica ligado 24 horas, conversa por um canal
+                        privado no Telegram e senta em cima das automações que já existem, coordenando e avisando em vez de
+                        substituir o que já roda em produção (o n8n continua sendo quem executa). Construí duas instâncias
+                        independentes, cada uma com seu próprio servidor de MCP expondo o sistema real como ferramentas:
+                        a pessoal, ligada ao meu Personal OS, cresceu de 11 para 17 ferramentas (tarefas com subtarefa,
+                        checklist e dependência, hábitos, um radar de notícias e, mais recente, leitura estruturada de
+                        refeição a partir de foto); a da empresa, com 12 ferramentas, foi desenhada como
+                        <strong>analista somente leitura de propósito</strong>: só uma ação pode escrever (publicar um
+                        relatório de auditoria), o resto é leitura, exatamente para ficar auditável e reversível antes de
+                        qualquer cliente confiar mais nisso. Toda ferramenta é uma RPC própria com segurança no banco, e
+                        nada muda de estado sem aprovação: o motor sugere, uma pessoa aceita.
+                    </p>
+                    <p class="proj-result">Validado com uma semana de uso pessoal real antes de virar oferta sob medida no catálogo da JI Tech.</p>
+                    <p class="proj-result">A instância da empresa está pausada hoje por custo de infraestrutura, não por falha: a arquitetura está pronta e reativar é um comando.</p>
+                </div>
+                <aside class="proj-side">
+                    <p class="side-label mono">Stack</p>
+                    <p class="side-stack">OpenClaw<br>MCP (JSON-RPC)<br>Supabase (Edge Functions + RPC security definer)<br>Telegram Bot API · OpenAI API</p>
+                </aside>
+            </article>
+
+            <article class="proj reveal">
+                <div class="proj-n mono">04</div>
+                <div class="proj-body">
+                    <div class="proj-head">
                         <h3 class="proj-title">Atendente de IA comercial no WhatsApp</h3>
                         <span class="status">Em produção</span>
                     </div>
@@ -461,7 +490,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">04</div>
+                <div class="proj-n mono">05</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Agente de vendas da RI Pratas: do n8n para código</h3>
@@ -485,7 +514,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">05</div>
+                <div class="proj-n mono">06</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Agente de voz para atendimento telefônico</h3>
@@ -505,7 +534,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">06</div>
+                <div class="proj-n mono">07</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">OpenSquad: orquestração multi-agente</h3>
@@ -525,7 +554,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">07</div>
+                <div class="proj-n mono">08</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Split payment: Airtable + Asaas via n8n</h3>
@@ -549,7 +578,7 @@
             <p class="group-title reveal">Produtos SaaS</p>
 
             <article class="proj reveal">
-                <div class="proj-n mono">08</div>
+                <div class="proj-n mono">09</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">JI Gestão: financeiro, pessoal e ponto para empresa de serviço</h3>
@@ -574,7 +603,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">09</div>
+                <div class="proj-n mono">10</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Control plane multi-produto</h3>
@@ -597,7 +626,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">10</div>
+                <div class="proj-n mono">11</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">PainelPsi: gestão de consultório para psicólogos</h3>
@@ -621,7 +650,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">11</div>
+                <div class="proj-n mono">12</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">E-commerce e CRM RI Pratas</h3>
@@ -644,7 +673,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">12</div>
+                <div class="proj-n mono">13</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Jarvis: personal OS</h3>
@@ -670,7 +699,7 @@
             <p class="group-title reveal">Dados e integração</p>
 
             <article class="proj reveal">
-                <div class="proj-n mono">13</div>
+                <div class="proj-n mono">14</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Dashboard de BI: efetividade de campanhas no WhatsApp</h3>
@@ -694,7 +723,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">14</div>
+                <div class="proj-n mono">15</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Microserviço de integração para carteiras de cobrança</h3>
@@ -720,7 +749,7 @@
             <p class="group-title reveal">Sites</p>
 
             <article class="proj reveal">
-                <div class="proj-n mono">15</div>
+                <div class="proj-n mono">16</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Landing pages e sites institucionais</h3>
