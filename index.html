@@ -229,6 +229,7 @@
         .mod b { display: block; font-weight: 500; font-size: 0.9rem; margin-bottom: 3px; }
         .mod span { font-size: 0.8rem; color: var(--text-2); line-height: 1.5; display: block; }
         .mod small { display: block; font-family: var(--mono); font-size: 0.62rem; color: var(--text-3); margin-top: 6px; letter-spacing: 0.04em; }
+        .mod.full { grid-column: 1 / -1; }
 
         /* ── Stack ── */
         .stack-row {
@@ -342,7 +343,8 @@
                     Construo <strong>agentes de IA que atendem e vendem pelo WhatsApp</strong>, as automações que
                     sustentam operações reais em produção e os produtos onde tudo isso roda: três plataformas SaaS
                     multi-tenant no ar sobre um mesmo backbone, com cobrança recorrente e um control plane único para
-                    operar todas.
+                    operar todas, e uma quarta, white-label para casas noturnas e produtores de eventos, pronta para o
+                    primeiro cliente.
                 </p>
                 <p>
                     Do lado da automação, mantenho workflows n8n em produção sobre WhatsApp Business para grandes
@@ -376,7 +378,7 @@
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">JI Suíte: atendimento, CRM e automação no WhatsApp</h3>
-                        <span class="status">Em produção · clientes pagantes</span>
+                        <span class="status">Em produção · uso diário por empresas</span>
                     </div>
                     <p class="proj-desc">
                         Plataforma multiempresa que coloca o WhatsApp da empresa em uma <strong>caixa de entrada compartilhada</strong>,
@@ -388,7 +390,7 @@
                         tela cheia, ficha do cliente e um modo monitor para a gestão acompanhar em tempo real. O sistema também
                         concilia sozinho contatos duplicados pelo mesmo número com e sem o nono dígito, um problema clássico de
                         numeração de telefone brasileira. Em 2026 virou modular: dois produtos que antes eram separados (lembretes
-                        em massa e agentes de IA) foram absorvidos como módulos, mais dois novos, sem interromper quem já pagava.
+                        em massa e agentes de IA) foram absorvidos como módulos, mais três novos, sem interromper quem já usava.
                         Por baixo: isolamento por linha no banco, mensagens em tempo real, controle de assentos por assinatura e
                         teste grátis automatizado.
                     </p>
@@ -399,6 +401,7 @@
                         <div class="mod"><b>Assistente de IA</b><span>Responde 24 horas a partir de uma entrevista com o cliente, transfere para a equipe com contexto e mede tokens por mensagem, atendimento e modelo.</span><small>ex-plataforma de agentes, absorvida</small></div>
                         <div class="mod"><b>Fluxos</b><span>Menus, triagem e formulários dentro do próprio WhatsApp. Um roteiro escrito em português vira rascunho de fluxo.</span><small>novo</small></div>
                         <div class="mod"><b>Jornada</b><span>Onde cada cliente parou no funil, com retomada automática de quem não respondeu, dentro de limites.</span><small>novo</small></div>
+                        <div class="mod full"><b>Parceiros</b><span>Programa de indicações com portal do parceiro, vitrine do que ele pode indicar e comissão recorrente calculada pela regra de cada serviço. Em uso real com doze parceiros.</span><small>novo</small></div>
                     </div>
                 </div>
                 <aside class="proj-side">
@@ -440,6 +443,55 @@
                 <div class="proj-n mono">03</div>
                 <div class="proj-body">
                     <div class="proj-head">
+                        <h3 class="proj-title">Atendente de IA comercial no WhatsApp</h3>
+                        <span class="status">Em produção</span>
+                    </div>
+                    <p class="proj-desc">
+                        Agente que atende o WhatsApp comercial da operação, rodando no mesmo motor de IA da JI Suíte como uma
+                        persona própria em Edge Function. Substituiu o fluxo anterior em n8n depois de um incidente com dois
+                        motores respondendo o mesmo número. Base de conhecimento por produto mantida pelo painel de operação;
+                        <strong>modo consultivo para dúvida e modo venda para interesse</strong>; marca reunião na agenda da equipe
+                        com Google Calendar e Meet automático, ou envia convite .ics via Resend quando não há Google conectado;
+                        escala para uma pessoa depois de responder, nunca antes, com aviso por WhatsApp à equipe; e espera o cliente
+                        terminar de escrever antes de responder. Regras que precisavam ser garantidas saíram do
+                        prompt e foram para código: expediente da agenda, poda de fecho passivo, lead criado ao marcar.
+                    </p>
+                    <p class="proj-result">n8n aposentado nesse canal. Um motor só por número.</p>
+                </div>
+                <aside class="proj-side">
+                    <p class="side-label mono">Stack</p>
+                    <p class="side-stack">Edge Functions (Deno)<br>OpenAI · Claude<br>Google Calendar API<br>Resend · Evolution API</p>
+                </aside>
+            </article>
+
+            <article class="proj reveal">
+                <div class="proj-n mono">04</div>
+                <div class="proj-body">
+                    <div class="proj-head">
+                        <h3 class="proj-title">Agente de vendas da RI Pratas: do n8n para código</h3>
+                        <span class="status">Em produção · versão em código implantada</span>
+                    </div>
+                    <p class="proj-desc">
+                        Agente de vendas autônomo via WhatsApp para a joalheria RI Pratas, em produção desde 2025 em n8n com SPIN
+                        Selling, audio debouncing, Output Splitter e mais de 12 ferramentas MCP para CRM, estoque e Asaas.
+                        Em setembro de 2026 foi <strong>portado para código</strong>: Edge Functions de entrada, motor (11 tools, prompt
+                        versionado no banco) e envio; chat do WhatsApp e painel do assistente dentro do CRM; checkout com totais
+                        calculados no servidor e modo simular antes de confirmar; kill switch de vendas; auditoria de segurança
+                        com 23 achados tratados. Tudo implantado com o motor nascendo pausado, para a virada de chave acontecer
+                        sem dois motores no mesmo número.
+                    </p>
+                    <p class="proj-result">Da instância pessoal de n8n para infraestrutura própria, sem parar o atendimento.</p>
+                </div>
+                <aside class="proj-side">
+                    <p class="side-label mono">Stack</p>
+                    <p class="side-stack">Edge Functions (Deno)<br>OpenAI · Evolution API<br>Asaas · React (CRM)<br>n8n (versão anterior)</p>
+                </aside>
+            </article>
+
+            <article class="proj reveal">
+                <div class="proj-n mono">05</div>
+                <div class="proj-body">
+                    <div class="proj-head">
                         <h3 class="proj-title">Copiloto de Operação: assistente autônomo com MCP (OpenClaw)</h3>
                         <span class="status soft">Validado, uso pessoal diário</span>
                     </div>
@@ -462,54 +514,6 @@
                 <aside class="proj-side">
                     <p class="side-label mono">Stack</p>
                     <p class="side-stack">OpenClaw<br>MCP (JSON-RPC)<br>Supabase (Edge Functions + RPC security definer)<br>Telegram Bot API · OpenAI API</p>
-                </aside>
-            </article>
-
-            <article class="proj reveal">
-                <div class="proj-n mono">04</div>
-                <div class="proj-body">
-                    <div class="proj-head">
-                        <h3 class="proj-title">Atendente de IA comercial no WhatsApp</h3>
-                        <span class="status">Em produção</span>
-                    </div>
-                    <p class="proj-desc">
-                        Agente que atende o WhatsApp comercial da operação, rodando no mesmo motor de IA da JI Suíte como uma
-                        persona própria em Edge Function. Substituiu o fluxo anterior em n8n depois de um incidente com dois
-                        motores respondendo o mesmo número. Base de conhecimento por produto mantida pelo painel de operação;
-                        <strong>modo consultivo para dúvida e modo venda para interesse</strong>; marca reunião na agenda da equipe
-                        com Google Calendar e Meet automático, ou envia convite .ics via Resend quando não há Google conectado;
-                        escala para uma pessoa depois de responder, nunca antes. Regras que precisavam ser garantidas saíram do
-                        prompt e foram para código: expediente da agenda, poda de fecho passivo, lead criado ao marcar.
-                    </p>
-                    <p class="proj-result">n8n aposentado nesse canal. Um motor só por número.</p>
-                </div>
-                <aside class="proj-side">
-                    <p class="side-label mono">Stack</p>
-                    <p class="side-stack">Edge Functions (Deno)<br>OpenAI · Claude<br>Google Calendar API<br>Resend · Evolution API</p>
-                </aside>
-            </article>
-
-            <article class="proj reveal">
-                <div class="proj-n mono">05</div>
-                <div class="proj-body">
-                    <div class="proj-head">
-                        <h3 class="proj-title">Agente de vendas da RI Pratas: do n8n para código</h3>
-                        <span class="status">Em produção · versão em código implantada</span>
-                    </div>
-                    <p class="proj-desc">
-                        Agente de vendas autônomo via WhatsApp para a joalheria RI Pratas, em produção desde 2025 em n8n com SPIN
-                        Selling, audio debouncing, Output Splitter e mais de 12 ferramentas MCP para CRM, estoque e Asaas.
-                        Em setembro de 2026 foi <strong>portado para código</strong>: Edge Functions de entrada, motor (11 tools, prompt
-                        versionado no banco) e envio; chat do WhatsApp e painel do assistente dentro do CRM; checkout com totais
-                        calculados no servidor e modo simular antes de confirmar; kill switch de vendas; auditoria de segurança
-                        com 23 achados tratados. Tudo implantado com o motor nascendo pausado, para a virada de chave acontecer
-                        sem dois motores no mesmo número.
-                    </p>
-                    <p class="proj-result">Da instância pessoal de n8n para infraestrutura própria, sem parar o atendimento.</p>
-                </div>
-                <aside class="proj-side">
-                    <p class="side-label mono">Stack</p>
-                    <p class="side-stack">Edge Functions (Deno)<br>OpenAI · Evolution API<br>Asaas · React (CRM)<br>n8n (versão anterior)</p>
                 </aside>
             </article>
 
@@ -577,8 +581,37 @@
         <div class="group">
             <p class="group-title reveal">Produtos SaaS</p>
 
-            <article class="proj reveal">
+            <article class="proj reveal" id="ji-eventos">
                 <div class="proj-n mono">09</div>
+                <div class="proj-body">
+                    <div class="proj-head">
+                        <h3 class="proj-title">JI Eventos: plataforma white-label para casas noturnas e produtores</h3>
+                        <span class="status soft">Pronto · pré-lançamento</span>
+                    </div>
+                    <p class="proj-desc">
+                        Um sistema para a noite inteira, do ingresso ao fechamento do mês, que cada casa ou produtora usa com a
+                        própria marca, domínio, e-mail e WhatsApp. O dinheiro das vendas cai direto na conta do cliente: a
+                        plataforma cobra a mensalidade e a taxa por ingresso por <strong>split no Asaas</strong> e nunca guarda valor
+                        de ninguém. Na loja, lotes com virada, cupons, Pix e cartão, reserva com cronômetro, QR assinado e as regras
+                        do Decreto 13.108 (preço total desde o primeiro contato, arrependimento, transferência e meia-entrada), com
+                        cada pagamento conferido na fonte antes de liberar o ingresso. Na noite, a <strong>porta roda como PWA sem
+                        internet</strong> e sincroniza quando a rede volta, tratando conflito; o bar abre comandas de balcão, mesa,
+                        equipe, camarim e cortesia, baixa o estoque pela receita de cada drink e confere as maquininhas contra o
+                        relatório da adquirente. Depois, o acerto entre casa e produtor sai com memória de cálculo, e a casa
+                        acompanha contas, caixa projetado, resultado do mês com meta, escala da equipe confirmada pelo WhatsApp e um
+                        resumo da noite às 10h com alertas.
+                    </p>
+                    <p class="proj-result">110 tabelas com RLS, mais de 1.000 testes de app e 1.195 asserções de banco, passando por cinco rodadas de revisão adversarial de segurança.</p>
+                    <p class="proj-result">Implantação de uma casa nova desenhada para caber em até duas horas, a partir de um molde.</p>
+                </div>
+                <aside class="proj-side">
+                    <p class="side-label mono">Stack</p>
+                    <p class="side-stack">React + TypeScript<br>Tailwind v4 · Radix · TanStack Query<br>PWA offline<br>Supabase (RLS, Edge Function em Hono)<br>Asaas (split) · Resend<br>OpenAI e Claude · Vercel</p>
+                </aside>
+            </article>
+
+            <article class="proj reveal">
+                <div class="proj-n mono">10</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">JI Gestão: financeiro, pessoal e ponto para empresa de serviço</h3>
@@ -592,9 +625,14 @@
                         de OFX. Módulos: Departamento Pessoal (ficha, documentos com aviso de vencimento, holerite com
                         comprovante de visualização, férias e portal do colaborador) e Controle de Ponto (registro sequencial à
                         prova de alteração, banco de horas, espelho, trilha de auditoria imutável e arquivos AFD e AEJ no layout
-                        do Ministério do Trabalho).
+                        do Ministério do Trabalho). Em setembro de 2026 ganhou o necessário para tirar um escritório de
+                        assessoria do ERP de mercado que usava: livro-caixa único com trilha imutável, contratos com régua de
+                        cobrança, comissão de parceiro pela baixa, DRE gerencial, aging, orçamento e projeções, alertas
+                        agendados, fechamento mensal com auditor, construtor de relatórios, NF-e de entrada por XML e
+                        <strong>modo multiempresa</strong> para operar a carteira de clientes do escritório (BPO).
                     </p>
                     <p class="proj-result">Três produtos viraram um, com o financeiro como núcleo e o resto ligado por módulo.</p>
+                    <p class="proj-result">Pronto para tirar um escritório de assessoria do ERP de mercado, com a virada planejada para novembro.</p>
                 </div>
                 <aside class="proj-side">
                     <p class="side-label mono">Stack</p>
@@ -603,7 +641,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">10</div>
+                <div class="proj-n mono">11</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Control plane multi-produto</h3>
@@ -626,7 +664,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">11</div>
+                <div class="proj-n mono">12</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">PainelPsi: gestão de consultório para psicólogos</h3>
@@ -650,7 +688,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">12</div>
+                <div class="proj-n mono">13</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">E-commerce e CRM RI Pratas</h3>
@@ -673,7 +711,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">13</div>
+                <div class="proj-n mono">14</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Jarvis: personal OS</h3>
@@ -699,7 +737,7 @@
             <p class="group-title reveal">Dados e integração</p>
 
             <article class="proj reveal">
-                <div class="proj-n mono">14</div>
+                <div class="proj-n mono">15</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Dashboard de BI: efetividade de campanhas no WhatsApp</h3>
@@ -723,7 +761,7 @@
             </article>
 
             <article class="proj reveal">
-                <div class="proj-n mono">15</div>
+                <div class="proj-n mono">16</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Microserviço de integração para carteiras de cobrança</h3>
@@ -749,7 +787,7 @@
             <p class="group-title reveal">Sites</p>
 
             <article class="proj reveal">
-                <div class="proj-n mono">16</div>
+                <div class="proj-n mono">17</div>
                 <div class="proj-body">
                     <div class="proj-head">
                         <h3 class="proj-title">Landing pages e sites institucionais</h3>
@@ -788,7 +826,7 @@
             <p>O que uso em produção, não o que já testei uma vez.</p>
         </div>
         <div class="stack-row reveal"><h3>Frontend</h3><p><b>React 18/19</b><i>·</i><b>TypeScript</b><i>·</i>Vite<i>·</i>Tailwind CSS v3 e v4<i>·</i>Shadcn/UI<i>·</i>TanStack Query<i>·</i>React Hook Form + Zod<i>·</i>PWA</p></div>
-        <div class="stack-row reveal"><h3>Backend e banco</h3><p><b>Supabase</b> (Auth, RLS, Storage, Realtime)<i>·</i><b>Edge Functions em Deno</b><i>·</i>PostgreSQL (pg_cron, pg_net, triggers)<i>·</i>Node.js + Express<i>·</i>MongoDB (Aggregation Framework)<i>·</i>MySQL<i>·</i>Redis</p></div>
+        <div class="stack-row reveal"><h3>Backend e banco</h3><p><b>Supabase</b> (Auth, RLS, Storage, Realtime)<i>·</i><b>Edge Functions em Deno</b><i>·</i>Hono<i>·</i>PostgreSQL (pg_cron, pg_net, triggers)<i>·</i>Node.js + Express<i>·</i>MongoDB (Aggregation Framework)<i>·</i>MySQL<i>·</i>Redis</p></div>
         <div class="stack-row reveal"><h3>IA e automação</h3><p><b>Claude API</b><i>·</i><b>OpenAI API</b><i>·</i><b>n8n</b><i>·</i>RAG e embeddings<i>·</i>MCP<i>·</i>Evolution API<i>·</i>Meta Cloud API<i>·</i>Chatwoot<i>·</i>Gupshup e Twilio<i>·</i>Typebot<i>·</i>VAPI + ElevenLabs</p></div>
         <div class="stack-row reveal"><h3>Dados e medição</h3><p><b>Metabase</b><i>·</i>mongosh<i>·</i>GA4 e GTM (Consent Mode v2)</p></div>
         <div class="stack-row reveal"><h3>Ferramentas e deploy</h3><p><b>Claude Code</b><i>·</i>Cursor<i>·</i>Git e GitHub<i>·</i>Vercel<i>·</i>Netlify<i>·</i>Cloudflare<i>·</i>Asaas<i>·</i>Resend<i>·</i>Playwright</p></div>
@@ -813,7 +851,7 @@
             <div>
                 <h3>Desenvolvedor de automação, IA e produto</h3>
                 <p class="xp-org">Autônomo</p>
-                <p>Construção e operação de produtos SaaS multi-tenant, agentes de IA e automações para PMEs. Três produtos no ar sobre um backbone compartilhado (atendimento e CRM no WhatsApp, gestão financeira e de pessoal, organização pessoal), depois de consolidar sete módulos em três plataformas sem interromper clientes pagantes. Motor de IA próprio em Edge Functions com modelo escolhido por cliente, com um atendente comercial e um agente de vendas rodando nele. Control plane com cobrança recorrente no Asaas, infraestrutura de produção própria (VPS com n8n e gateway de WhatsApp) e varreduras de segurança recorrentes. Claude Code e Cursor no dia a dia.</p>
+                <p>Construção e operação de produtos SaaS multi-tenant, agentes de IA e automações para PMEs. Três produtos no ar sobre um backbone compartilhado (atendimento e CRM no WhatsApp, gestão financeira e de pessoal, organização pessoal), depois de consolidar sete módulos em três plataformas sem interromper quem já usava, e uma plataforma white-label para casas noturnas e produtores de eventos pronta para o primeiro cliente. Motor de IA próprio em Edge Functions com modelo escolhido por cliente, com um atendente comercial e um agente de vendas rodando nele. Control plane com cobrança recorrente no Asaas, infraestrutura de produção própria (VPS com n8n e gateway de WhatsApp) e varreduras de segurança recorrentes. Claude Code e Cursor no dia a dia.</p>
             </div>
         </div>
     </section>

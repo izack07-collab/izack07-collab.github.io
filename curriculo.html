@@ -178,7 +178,8 @@
                 WhatsApp (motor próprio em Edge Functions com Claude e OpenAI, ferramentas de agenda, CRM e pagamento),
                 automações n8n em produção sobre WhatsApp Business (Chatwoot, Gupshup, Twilio, Meta Cloud API) e os produtos
                 SaaS onde tudo isso roda: três plataformas multi-tenant no ar sobre um backbone Supabase (PostgreSQL com
-                RLS, Edge Functions em Deno, cron no banco), com cobrança recorrente e um control plane único. Atua também em
+                RLS, Edge Functions em Deno, cron no banco), com cobrança recorrente e um control plane único, e uma quarta,
+                white-label para casas noturnas e produtores de eventos, em pré-lançamento. Atua também em
                 dados: modelagem de agregação em MongoDB e dashboards de BI em Metabase que já mudaram decisão de operação.
                 Claude Code e Cursor no dia a dia.
             </p>
@@ -188,10 +189,10 @@
         <div class="section">
             <h2 class="section-title">Habilidades Técnicas</h2>
             <p class="skills-text">
-                React 18/19, TypeScript, Vite, TanStack Query, Zod, React Hook Form, Shadcn/UI, TailwindCSS (v3/v4),
+                React 18/19, TypeScript, Vite, TanStack Query, Zod, React Hook Form, Shadcn/UI, TailwindCSS (v3/v4), PWA offline,
                 Supabase (Auth, RLS, Edge Functions em Deno, Triggers, pg_cron/pg_net, Realtime, Storage),
                 PostgreSQL, MongoDB (Aggregation Framework), MySQL, Redis,
-                Node.js, Express, Deno, n8n, OpenAI API, Anthropic (Claude) API, RAG, Claude Code, Cursor,
+                Node.js, Express, Deno, Hono, n8n, OpenAI API, Anthropic (Claude) API, RAG, Claude Code, Cursor,
                 VAPI + ElevenLabs (Agentes de Voz), Evolution API e Meta Cloud API (WhatsApp), Chatwoot, Gupshup/Twilio, Typebot,
                 Asaas (PIX, cartão e boleto), Resend, Metabase, MCP (Model Context Protocol),
                 Python, JavaScript, Git/GitHub, Playwright, GTM/GA4, Netlify, Vercel
@@ -231,7 +232,8 @@
                     Construção e operação de produtos SaaS multi-tenant, agentes de IA e automações para PMEs. Três
                     produtos no ar sobre um backbone compartilhado (atendimento e CRM no WhatsApp, gestão financeira e de
                     pessoal, organização pessoal), depois de consolidar sete módulos em três plataformas sem interromper
-                    clientes pagantes. Motor de IA próprio em Edge Functions com modelo escolhido por cliente, com um
+                    quem já usava, e uma plataforma white-label para casas noturnas e produtores de eventos pronta para o
+                    primeiro cliente. Motor de IA próprio em Edge Functions com modelo escolhido por cliente, com um
                     atendente comercial e um agente de vendas rodando nele. Control plane com cobrança recorrente no Asaas,
                     infraestrutura de produção própria (VPS com n8n e gateway de WhatsApp) e varreduras de segurança
                     recorrentes. Uso de Claude Code e Cursor no dia a dia.
@@ -246,20 +248,36 @@
             <div class="item">
                 <div class="item-title">JI Suíte · Atendimento, CRM e Automação no WhatsApp (Em Produção)</div>
                 <p class="item-desc">
-                    Plataforma multiempresa com clientes pagantes: caixa de entrada compartilhada do WhatsApp com fila, atribuição e
+                    Plataforma multiempresa em uso diário por empresas reais: caixa de entrada compartilhada do WhatsApp com fila, atribuição e
                     transferência, papéis por equipe, histórico contínuo por contato, tarefas, base de conhecimento e chat interno.
                     CRM com negócios vinculados entre si, proposta registrada, contrato ligado ao negócio ganho, campanhas com origem
                     unificada, histórico único por contato e atividade da equipe executável do Kanban até o atendimento. Acesso
                     completo pelo celular (chat em tela cheia, ficha do cliente, modo monitor) e conciliação automática de contatos
-                    duplicados pelo mesmo número com e sem o nono dígito. Em 2026 virou modular, absorvendo dois produtos que eram
-                    separados: <strong>Disparos</strong> (lembretes e campanhas por canal não oficial ou pela API oficial da Meta, com ritmo
+                    duplicados pelo mesmo número com e sem o nono dígito. Em 2026 virou modular, com cinco módulos, dois deles vindos de
+                    produtos que eram separados: <strong>Disparos</strong> (lembretes e campanhas por canal não oficial ou pela API oficial da Meta, com ritmo
                     seguro, opt-in e opt-out), <strong>Assistente de IA</strong> (responde 24 horas a partir de uma entrevista com o cliente,
                     transfere com contexto e mede tokens por modelo), <strong>Fluxos</strong> (triagem no WhatsApp; um roteiro em português vira
-                    rascunho de fluxo) e <strong>Jornada</strong> (funil por etapa com retomada automática). Tempo real, assentos por
+                    rascunho de fluxo), <strong>Jornada</strong> (funil por etapa com retomada automática) e <strong>Parceiros</strong> (programa de
+                    indicações com portal do parceiro e comissão recorrente por serviço, em uso real com doze parceiros). Tempo real, assentos por
                     assinatura, teste grátis automatizado e uma varredura de segurança que encontrou e fechou um vazamento real de
                     dados entre contas diferentes.
                 </p>
                 <p class="item-tech">Tecnologias: React, TypeScript, Supabase (RLS + Realtime + Edge Functions em Deno), Claude e OpenAI, Evolution API, Asaas, Resend, Vercel</p>
+            </div>
+
+            <div class="item">
+                <div class="item-title">JI Eventos · Plataforma White-label para Casas Noturnas e Produtores (Pré-lançamento)</div>
+                <p class="item-desc">
+                    Sistema para a noite inteira, com a marca, o domínio e o WhatsApp de cada cliente, e o dinheiro das vendas caindo
+                    direto na conta dele: a plataforma cobra mensalidade e taxa por ingresso por split no Asaas e nunca guarda valor.
+                    Ticketeria com lotes, cupons, Pix e cartão, QR assinado e as regras do Decreto 13.108 (preço total, arrependimento,
+                    meia-entrada), com cada pagamento conferido na fonte antes de liberar o ingresso; porta em PWA que lê ingresso sem
+                    internet e sincroniza depois; bar e caixa com comandas, estoque pela receita de cada drink e conferência das
+                    maquininhas; acerto automático entre casa e produtor; contas, caixa projetado e resultado do mês; equipe com escala
+                    confirmada pelo WhatsApp; agente de IA que vende por Pix. Construído a partir de PRD próprio: 110 tabelas com RLS,
+                    mais de 1.000 testes de app, 1.195 asserções de banco e cinco rodadas de revisão adversarial de segurança.
+                </p>
+                <p class="item-tech">Tecnologias: React, TypeScript, Tailwind v4, Radix, TanStack Query, PWA offline, Supabase (RLS + Edge Function em Hono), Asaas (split), Evolution API, Resend, OpenAI e Claude, Vercel</p>
             </div>
 
             <div class="item">
@@ -278,30 +296,13 @@
             </div>
 
             <div class="item">
-                <div class="item-title">Copiloto de Operação · Assistente Autônomo com MCP (OpenClaw)</div>
-                <p class="item-desc">
-                    Assistente autônomo self-hospedado que fica ligado 24 horas, conversa por canal privado no Telegram e
-                    senta em cima das automações existentes, coordenando e avisando em vez de substituir o que já roda em
-                    produção. Duas instâncias independentes, cada uma com seu próprio servidor de MCP expondo o sistema
-                    real como ferramentas: a pessoal, cobrindo tarefas, hábitos, rotina e saúde do dia a dia, cresceu de 11 para 17 ferramentas
-                    (tarefas com subtarefa/checklist/dependência, hábitos, radar de notícias, leitura estruturada de
-                    refeição a partir de foto); a da empresa, com 12 ferramentas, foi desenhada como analista somente
-                    leitura de propósito, só uma ação escreve (publicar auditoria), o resto é leitura, para ficar
-                    auditável e reversível. Toda ferramenta é uma RPC própria com segurança no banco; nada muda de
-                    estado sem aprovação humana. Validado com uma semana de uso pessoal real antes de virar oferta sob
-                    medida no catálogo da JI Tech; a instância da empresa está pausada hoje por custo de infraestrutura,
-                    não por falha.
-                </p>
-                <p class="item-tech">Tecnologias: OpenClaw, MCP (JSON-RPC), Supabase (Edge Functions + RPC security definer), Telegram Bot API, OpenAI API</p>
-            </div>
-
-            <div class="item">
                 <div class="item-title">Atendente de IA Comercial no WhatsApp (Em Produção)</div>
                 <p class="item-desc">
                     Agente que atende o WhatsApp comercial da operação no mesmo motor de IA da JI Suíte, como persona própria em Edge
                     Function, no lugar do fluxo anterior em n8n. Base de conhecimento por produto, modo consultivo para dúvida e modo
                     venda para interesse, reunião marcada na agenda da equipe com Google Calendar e Meet (ou convite .ics via Resend)
-                    e escalonamento para uma pessoa depois de responder. Regras críticas saíram do prompt e foram para código.
+                    e escalonamento para uma pessoa depois de responder, com aviso por WhatsApp à equipe. Espera o cliente terminar de
+                    escrever antes de responder. Regras críticas saíram do prompt e foram para código.
                 </p>
                 <p class="item-tech">Tecnologias: Supabase Edge Functions (Deno), OpenAI, Claude, Google Calendar API, Resend, Evolution API</p>
             </div>
@@ -325,9 +326,31 @@
                     incluso: contas com recorrência, fluxo de caixa realizado e previsto, contratos recorrentes com cobrança por boleto,
                     cartão e PIX, NFSe inclusive multi-município e conciliação por OFX. Módulos: Departamento Pessoal (documentos com
                     aviso de vencimento, holerite com comprovante de visualização, férias e portal do colaborador) e Controle de Ponto
-                    (registro sequencial à prova de alteração, banco de horas, auditoria imutável e arquivos AFD e AEJ do MTE).
+                    (registro sequencial à prova de alteração, banco de horas, auditoria imutável e arquivos AFD e AEJ do MTE). Em
+                    setembro de 2026 ganhou o necessário para tirar um escritório de assessoria do ERP de mercado que usava:
+                    livro-caixa único com trilha imutável, contratos com régua de cobrança, comissão de parceiro pela baixa, DRE
+                    gerencial, aging, orçamento e projeções, alertas agendados, fechamento mensal com auditor, construtor de
+                    relatórios, NF-e de entrada por XML e modo multiempresa para operar a carteira de clientes do escritório (BPO).
                 </p>
                 <p class="item-tech">Tecnologias: React, TypeScript, Supabase (RLS + Edge Functions), Asaas, emissor de NFSe municipal, Vercel</p>
+            </div>
+
+            <div class="item">
+                <div class="item-title">Copiloto de Operação · Assistente Autônomo com MCP (OpenClaw)</div>
+                <p class="item-desc">
+                    Assistente autônomo self-hospedado que fica ligado 24 horas, conversa por canal privado no Telegram e
+                    senta em cima das automações existentes, coordenando e avisando em vez de substituir o que já roda em
+                    produção. Duas instâncias independentes, cada uma com seu próprio servidor de MCP expondo o sistema
+                    real como ferramentas: a pessoal, cobrindo tarefas, hábitos, rotina e saúde do dia a dia, cresceu de 11 para 17 ferramentas
+                    (tarefas com subtarefa/checklist/dependência, hábitos, radar de notícias, leitura estruturada de
+                    refeição a partir de foto); a da empresa, com 12 ferramentas, foi desenhada como analista somente
+                    leitura de propósito, só uma ação escreve (publicar auditoria), o resto é leitura, para ficar
+                    auditável e reversível. Toda ferramenta é uma RPC própria com segurança no banco; nada muda de
+                    estado sem aprovação humana. Validado com uma semana de uso pessoal real antes de virar oferta sob
+                    medida no catálogo da JI Tech; a instância da empresa está pausada hoje por custo de infraestrutura,
+                    não por falha.
+                </p>
+                <p class="item-tech">Tecnologias: OpenClaw, MCP (JSON-RPC), Supabase (Edge Functions + RPC security definer), Telegram Bot API, OpenAI API</p>
             </div>
 
             <div class="item">
